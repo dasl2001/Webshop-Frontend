@@ -1,15 +1,9 @@
 
 export function getBaseUrl() {
-  // Get the group number from the hostname to determine the base URL for BE
-  const regex = https://webshop-2025-be-g1.vercel.app/;
-  const href = window.location.href;
-  const match = regex.exec(href);
-  console.log(match);
-  if (match) {
-    const group = match[1];
-    return `https://webshop-2025-be-g1.vercel.app/`;
+  if(window.location.href.includes("localhost") {
+    return "http://localhost:3000/";
   }
-  return "http://localhost:3000/";
+  return "https://webshop-2025-be-g10-five.vercel.app/"
 }
 
 export async function fetchProducts(endpoint = "api/products") {
