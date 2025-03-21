@@ -22,3 +22,23 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+
+# Tillagd av frontend
+# Ignorera kompilerad CSS
+public/css/*.css
+public/css/*.css.map
+
+# VS Code inställningar
+.vscode/
+*.code-workspace
+
+# OS-filer
+.DS_Store
+Thumbs.db
+
+# Node och logs
+node_modules/
+dist/
+.env
+npm-debug.log*
