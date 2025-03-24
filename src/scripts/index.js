@@ -42,3 +42,19 @@ function createProductCard(product) {
 
   return element;
 }
+
+const categories = [
+  { name: "Mejeri" },
+  { name: "Frukt" },
+  { name: "Skafferi" },
+  { name: "Chark" },
+];
+
+const categoryList = document.getElementById("category-list");
+
+categories.forEach((cat) => {
+  const categoryLi = document.createElement("li");
+
+  categoryLi.textContent = cat.name;
+  categoryList.appendChild(categoryLi);
+});
