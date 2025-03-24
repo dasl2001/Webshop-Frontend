@@ -25,9 +25,12 @@ dist-ssr
 
 
 # Tillagd av frontend
-# Ignorera kompilerad CSS
-public/css/*.css
-public/css/*.css.map
+# Ignorera endast felaktiga filer (om någon har gammalt sass-script)
+public/css/main.css
+public/css/main.css.map
+
+# Men tillåt den rätta kompilerade CSS-filen
+!public/css/style.css
 
 # VS Code inställningar
 .vscode/

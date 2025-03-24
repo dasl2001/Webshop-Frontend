@@ -1,0 +1,10 @@
+"scripts": {
+  "sass": "sass --watch src/scss/main.scss:public/css/style.css --style expanded",
+  ...
+
+//   Detta kan en ha för att slippa .css.map - okej i mindre projekt som vårt
+  "sass": "sass --no-source-map --watch src/scss/main.scss:public/css/style.css --style expanded",
+  ...
+
+
+}
