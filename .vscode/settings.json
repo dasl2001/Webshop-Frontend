@@ -1,0 +1,23 @@
+{
+  "files.autoSave": "afterDelay",
+  "editor.minimap.enabled": false,
+
+  "liveSassCompile.settings.formats": [
+    {
+      "format": "expanded",
+      "extensionName": ".css",
+      "savePath": "/public/css",
+      "savePathReplacementPairs": [
+        {
+          "replace": "main.css",
+          "with": "style.css"
+        }
+      ]
+    }
+  ],
+  "liveSassCompile.settings.excludeList": [
+    "**/node_modules/**",
+    ".vscode/**"
+  ],
+  "liveSassCompile.settings.watchOnLaunch": true
+}
