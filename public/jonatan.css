@@ -23,7 +23,7 @@ body {
 
 /* Header */
 .site-header {
-  background: #eaeaea;
+  /* background: #eaeaea; */
   padding: 1rem;
 }
 
@@ -122,7 +122,7 @@ body {
 
 /* Footer */
 .site-footer {
-  background: #eaeaea;
+  /* background: #eaeaea; */
   padding: 1rem;
   text-align: center;
 }
