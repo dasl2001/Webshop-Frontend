@@ -1,19 +1,22 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hakim Livs</title>
-    <link rel="stylesheet" href="public/jonatan.css" /><!-- Jonatans, ta bort när vi börjar koda -->
-    <!-- Rätt:  --><!-- <link rel="stylesheet" href="public/css/style.css"> -->
+    <link rel="stylesheet" href="public/jonatan.css" />
+    <!-- Rätt sen: <link rel="stylesheet" href="public/css/style.css"> -->
   </head>
   <body>
+    <div class="site-wrapper">
       <!-- HEADER -->
       <header class="site-header">
         <nav>
-          <!-- <a href="index.html" class="logo">Hakim Livs</a> -->
-          <img src="/src/assets/hakim-logo-color-319a84.png" id="hakim-logo" alt="Logotype for Hakim's Livs">
-          
+          <img
+            src="/src/assets/hakim-logo-color-319a84.png"
+            id="hakim-logo"
+            alt="Logotype for Hakim's Livs"
+          />
           <ul class="nav-links">
             <li><a href="/pages/products.html">Products</a></li>
             <li><a href="/pages/cart.html">Cart (0)</a></li>
@@ -21,36 +24,39 @@
           </ul>
         </nav>
       </header>
+
+      <!-- SIDEBAR + MAIN -->
       <div class="content-container">
+        <!-- SIDEBAR -->
+        <aside>
+          <section class="sidebar-section">
+            <h2>Kategorier</h2>
+            <ul id="category-list" class="category-list"></ul>
+          </section>
+        </aside>
 
-      <!-- SIDEBAR -->
-      <aside>
-        <section class="sidebar-section">
-          <h2>Kategorier</h2>
-          <ul id="category-list" class="category-list"></ul>
-        </section>
-      </aside>
-
-      <!-- MAIN CONTENT -->
-      <main class="main-content">
-        <h1>Welcome to Hakim Livs</h1>
-        <div id="products"></div>
-      </main>
+        <!-- MAIN -->
+        <main class="main-content">
+          <h1>Här nere ska produktkorten synas</h1>
+          <div id="products"></div>
+        </main>
+      </div>
+      <!-- Avslut på content-container -->
     </div>
-    
-      <!-- FOOTER -->
-      <footer class="site-footer">
-        <div class="footer-content">
-          <p>&copy; 2024 Hakim Livs. All rights reserved.</p>
-          <div class="footer-links">
-            <a href="/about">About</a>
-            <a href="/contact">Contact</a>
-            <a href="/terms">Terms</a>
-          </div>
-        </div>
-      </footer>
+    <!-- site-wrapper -->
 
-      <!-- PAGE-SPECIFIC JAVASCRIPT -->
-      <script type="module" src="./src/scripts/index.js"></script>
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="footer-content">
+        <p>&copy; 2024 Hakim Livs. All rights reserved.</p>
+        <div class="footer-links">
+          <a href="/about">About</a>
+          <a href="/contact">Contact</a>
+          <a href="/terms">Terms</a>
+        </div>
+      </div>
+    </footer>
+
+    <script type="module" src="./src/scripts/index.js"></script>
   </body>
 </html>

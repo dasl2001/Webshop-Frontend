@@ -4,27 +4,28 @@
   background-color: #fff;
 }
 
-body {
+body,
+html {
   margin: 0;
   padding: 0;
-}
-
-.button {
-  padding: 10px 20px;
-  border: none;
-  cursor: pointer;
-}
-
-body {
-  margin: 0;
-  min-width: 320px;
   min-height: 100vh;
 }
 
-/* Header */
+.site-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+#hakim-logo {
+  width: 140px;
+  height: auto;
+  margin-left: 1rem;
+}
+
+/* HEADER */
 .site-header {
-  /* background: #eaeaea; */
-  padding: 1rem;
+  padding: 1rem 2rem;
 }
 
 .site-header nav {
@@ -33,16 +34,12 @@ body {
   align-items: center;
 }
 
-/* .logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-} */
-
 .nav-links {
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 .nav-links a {
@@ -50,84 +47,59 @@ body {
   color: black;
 }
 
-/* Lagt till av Lo tillfälligt */
-.content-container{
+/* CONTENT AREA */
+.content-container {
   display: flex;
-}
-.sidebar-section{
- 
-  width: 150%;
-  font-size: 13px;
-  margin: 10px;
-
-  h2{
-    font-size: 16px;
-  }
-
-  ul{
-    flex-direction: column;
-    align-items: left;
-    margin: 3px;
-    padding: 0;
-  }
-  
-}
-
-
-/* Main Content */
-.main-content {
+  flex: 1;
   padding: 2rem;
-  max-width: 800px;
-  width: 60%;
-  margin: auto;
-
+  gap: 2rem;
 }
 
-/* Products */
-#products {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 1rem;
-}
-
-.product-card {
-  border: 1px solid #ddd;
+/* SIDEBAR */
+.sidebar-section {
+  background-color: #f8f8f8;
   padding: 1rem;
-  text-align: center;
+  border-radius: 8px;
+  width: 200px;
 }
 
-.product-card button {
-  background: lightgray;
-  border: none;
-  padding: 0.5rem 1rem;
+.sidebar-section h2 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.category-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.category-list li {
+  margin-bottom: 0.5rem;
   cursor: pointer;
 }
 
-/* Login */
-.login-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+/* MAIN CONTENT */
+.main-content {
+  flex: 1;
+  max-width: 1000px;
 }
 
-.form-group {
-  display: flex;
-  flex-direction: column;
+.main-content h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
 }
 
-.form-group input {
-  padding: 0.5rem;
-  border: 1px solid #ddd;
-}
-
-/* Footer */
+/* FOOTER */
 .site-footer {
-  /* background: #eaeaea; */
-  padding: 1rem;
+  background-color: #f5f5f5;
   text-align: center;
+  padding: 1rem 0;
+  margin-top: auto;
 }
 
 .footer-links {
+  margin-top: 0.5rem;
   display: flex;
   gap: 1rem;
   justify-content: center;
@@ -137,32 +109,3 @@ body {
   text-decoration: none;
   color: black;
 }
-
-/* Lagt till av Lo tillfälligt */
-li {
-  list-style: none;
-}
-
-/* Lagt till av Lo tillfälligt */
-#hakim-logo{
-  width: 145px;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- /*# sourceMappingURL=main.css.map */
