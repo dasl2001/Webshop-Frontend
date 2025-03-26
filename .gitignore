@@ -1,4 +1,4 @@
-# Logs
+# LOGGAR OCH FEL
 logs
 *.log
 npm-debug.log*
@@ -7,43 +7,32 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
+# NODE & BYGGFILER
+node_modules/
+dist/
+dist-ssr/
 *.local
+.env
 
-# Editor directories and files
+# EDITORER OCH SYSTEMFILER
 .vscode/*
 !.vscode/extensions.json
+*.code-workspace
 .idea
 .DS_Store
+Thumbs.db
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
 
+# FRONTEND / SCSS-KOMPILERING
 
-# Tillagd av frontend
-# Ignorera endast felaktiga filer (om någon har gammalt sass-script)
-public/css/main.css
+# Ignorera gamla/felaktiga css-filer
+public/css/style.css
 public/css/main.css.map
+public/css/jonatan.css
 
-# Men tillåt den rätta kompilerade CSS-filen
-!public/css/style.css
-
-# VS Code inställningar
-.vscode/
-*.code-workspace
-
-# OS-filer
-.DS_Store
-Thumbs.db
-
-# Node och logs
-node_modules/
-dist/
-.env
-npm-debug.log*
-# Viktigt för lokala inställningar
-*.local                 
+# Tillåt main.css (rätt Sass-kompilering)
+!public/css/main.css

@@ -1,26 +1,34 @@
 {
-    "name": "be-webshop-2025-fe",
-    "version": "1.0.0",
-    "description": "Frontend-projekt för Webshop 2025",
-    "main": "index.js",
-    "scripts": {
-      "sass": "sass --no-source-map --watch src/scss/main.scss:public/css/style.css --style expanded",
-      "lint": "eslint 'src/**/*.{js,ts,jsx,tsx}'",
-      "format": "prettier --write .",
-      "prepare": "husky install"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
-    "devDependencies": {
-      "eslint": "^8.56.0",
-      "husky": "^8.0.3",
-      "lint-staged": "^15.2.2",
-      "prettier": "^3.2.5",
-      "sass": "^1.70.0"
-    },
-    "lint-staged": {
-      "*.{js,jsx,ts,tsx}": ["eslint --fix", "prettier --write"]
-    }
+  "name": "be-webshop-2025-fe",
+  "version": "1.0.0",
+  "description": "Frontend-projekt för Webshop 2025",
+  "main": "index.js",
+  "scripts": {
+
+    "sass": "sass --no-source-map --watch src/scss/main.scss:public/css/main.css --style expanded",
+
+
+    "lint": "eslint 'src/**/*.{js,ts,jsx,tsx}'",
+
+
+    "format": "prettier --write .",
+
+    "prepare": "husky install"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.56.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.2",
+    "prettier": "^3.2.5",
+    "sass": "^1.70.0"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
   }
-  
+}
