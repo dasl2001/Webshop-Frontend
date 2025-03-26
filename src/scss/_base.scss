@@ -1,9 +1,17 @@
-// Standardelement, h1, h2, ul, ol, hela sidans margin/padding
+// Grundinstyling för typsnitt, margin/padding på body/html,
 
+:root{
+  font-family: "Roboto" sans-serif;
+   // color: $text-color;
+    // background-color: $bg-color;
+}
+html,
 body {
-    // font-family: $font-stack;
+    // font-family: ;
     // color: $text-color;
     margin: 0;
     padding: 0;
+    // min-height: 100vh; //Ska vi ha detta? 
   }
+  
   

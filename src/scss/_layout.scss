@@ -1,1 +1,14 @@
-// Header, footer, navbar och sidebar
+//Layoutstrukturen – t.ex. site-wrapper, content-container, grid/flex-uppdelning.
+
+.site-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  .content-container {
+    display: flex;
+    flex: 1;
+    padding: 2rem;
+    gap: 2rem;
+  }

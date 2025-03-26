@@ -1,13 +1,12 @@
-// Här är endast "import" ingen styling
+//  Bara styling som är specifik för startsidan (index.html).
 
-@forward "variables";
-@forward "mixins";
-@forward "base";
-@forward "layout";
-@forward "components";
-@forward "category";
-@forward "products";
-@forward "cart";
-@forward "login";
-
-
+.main-content {
+    flex: 1;
+    max-width: 1000px;
+  
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+  }
+  
