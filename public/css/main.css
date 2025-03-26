@@ -1,0 +1,47 @@
+:root {
+  font-family: "Roboto" sans-serif;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.site-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content-container {
+  display: flex;
+  flex: 1;
+  padding: 2rem;
+  gap: 2rem;
+}
+
+#hakim-logo {
+  width: 140px;
+  height: auto;
+  margin-left: 1rem;
+}
+
+.category-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.category-list li {
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+}
+
+.main-content {
+  flex: 1;
+  max-width: 1000px;
+}
+.main-content h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
