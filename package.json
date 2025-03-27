@@ -4,22 +4,19 @@
   "description": "Frontend-projekt för Webshop 2025",
   "main": "index.js",
   "scripts": {
-
     "sass": "sass --no-source-map --watch src/scss/main.scss:public/css/main.css --style expanded",
-
-
     "lint": "eslint 'src/**/*.{js,ts,jsx,tsx}'",
-
-
     "format": "prettier --write .",
-
     "prepare": "husky install"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "eslint": "^8.56.0",
+    "@eslint/js": "^9.23.0",
+    "eslint": "^8.57.1",
+    "eslint-plugin-react": "^7.37.4",
+    "globals": "^16.0.0",
     "husky": "^8.0.3",
     "lint-staged": "^15.2.2",
     "prettier": "^3.2.5",
