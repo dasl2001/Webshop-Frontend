@@ -11,7 +11,9 @@
   "liveSassCompile.settings.generateMap": false,
   "liveSassCompile.settings.excludeList": [
     "/node_modules/**",
-    "/.vscode/**"
+    "/.vscode/**",
+    "/style.scss",
+    "/jonatan.scss"
   ],
   "liveSassCompile.settings.watchOnLaunch": true
 }
