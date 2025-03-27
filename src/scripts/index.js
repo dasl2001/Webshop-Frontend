@@ -1,15 +1,19 @@
 import { fetchProducts } from "../utils/api.js";
+import { fetchCategories } from "../utils/api.js";
 
-document.addEventListener("DOMContentLoaded", loadProducts);
+document.addEventListener("DOMContentLoaded", () => {
+  loadProducts();
+  loadCategories();
+});
 
 // Function to fetch and render products
 async function loadProducts() {
   const productsContainer = document.getElementById("products");
-  productsContainer.innerHTML = "<p>Loading products...</p>"; // Temporary message while loading
+  productsContainer.innerHTML = "<p>Loading products...</p>";
 
   try {
     const products = await fetchProducts();
-    productsContainer.innerHTML = ""; // Clear loading text
+    productsContainer.innerHTML = "";
 
     if (products.length > 0) {
       products.forEach((product) => {
@@ -43,18 +47,13 @@ function createProductCard(product) {
   return element;
 }
 
-const categories = [
-  { name: "Mejeri" },
-  { name: "Frukt" },
-  { name: "Skafferi" },
-  { name: "Chark" },
-];
+async function loadCategories() {
+  const categoriesContainer = document.getElementById("category-list");
+  const categories = await fetchCategories();
 
-const categoryList = document.getElementById("category-list");
-
-categories.forEach((cat) => {
-  const categoryLi = document.createElement("li");
-
-  categoryLi.textContent = cat.name;
-  categoryList.appendChild(categoryLi);
-});
+  categories.forEach((cat) => {
+    const categoryLi = document.createElement("li");
+    categoryLi.textContent = cat.name;
+    categoriesContainer.appendChild(categoryLi);
+  });
+}
