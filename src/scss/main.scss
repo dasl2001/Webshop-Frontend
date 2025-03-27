@@ -1,11 +1,21 @@
 // Alla partials ska finnas här: 
 @use "variables";
 @use "mixins";
+
+// Base styles
 @use "base";
+
+// Layout och komponenter
 @use "layout";
+@use "header";
+@use "footer";
+@use "sidebar";
 @use "components";
+
+// Page-specifika
+@use "index";
 @use "category";
 @use "products";
 @use "cart";
 @use "login";
-@use "index";
+
