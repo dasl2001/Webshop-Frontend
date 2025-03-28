@@ -1,13 +1,30 @@
 // Grundinstyling för typsnitt, margin/padding på body/html,
 
 :root {
-  font-family: "Roboto" sans-serif;
-  color: $text-color;
-  background-color: $bg-color;
+  font-family: 'Roboto', sans-serif;
 }
 html,
 body {
-  color: $text-color;
   margin: 0;
   padding: 0;
+
 }
+
+
+
+.main-content { 
+  flex: 1;
+  padding: 2rem; 
+  max-width: 1000px;
+  margin: auto; 
+  // border: orange 3px solid !important;
+  // background-color: aqua !important;
+
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+}
+
+
+  

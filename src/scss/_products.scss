@@ -1,1 +1,25 @@
 // All styling för produkt-element och produktkort etc
+
+
+
+    .content-container {
+        flex: 1;
+        padding: 2rem;
+        gap: 2rem;
+      }
+
+      #products {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+
+        .product-card{
+                display: flex;
+                flex-direction: column;
+                 border: 1px solid #c4c4c4;
+                 align-items: center;
+                 border-radius: 6px;
+                 padding: 20px 20px 20px 20px;
+        }
+   
+      }

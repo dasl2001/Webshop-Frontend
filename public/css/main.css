@@ -1,11 +1,22 @@
 :root {
-  font-family: "Roboto" sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 html,
 body {
   margin: 0;
   padding: 0;
+}
+
+.main-content {
+  flex: 1;
+  padding: 2rem;
+  max-width: 1000px;
+  margin: auto;
+}
+.main-content h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
 }
 
 .site-wrapper {
@@ -89,11 +100,22 @@ body {
   cursor: pointer;
 }
 
-.main-content {
+.content-container {
   flex: 1;
-  max-width: 1000px;
+  padding: 2rem;
+  gap: 2rem;
 }
-.main-content h1 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
+
+#products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+#products .product-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #c4c4c4;
+  align-items: center;
+  border-radius: 6px;
+  padding: 20px 20px 20px 20px;
 }
