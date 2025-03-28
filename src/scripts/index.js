@@ -14,6 +14,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Hämta och visa produkter
 async function loadProducts(category = null) {
+  console.log("Vald kategori:", category); // 👈 Lägg den här!
+
   const productsContainer = document.getElementById("products");
   productsContainer.innerHTML = "<p>Laddar produkter...</p>";
 
@@ -22,8 +24,17 @@ async function loadProducts(category = null) {
     allProducts = products;
 
     // Om man klickat på en kategori, filtrera bara de som har den kategorin
+    products.forEach((p) => {
+      if (!p.category) {
+        console.warn("⚠️ Produkt utan kategori:", p.name);
+      }
+    });
+
     let filteredProducts = category
-      ? products.filter((product) => product.category.name === category)
+      ? products.filter(
+          (product) =>
+            product.category && product.category.name === category.name,
+        )
       : products;
 
     if (filteredProducts.length > 0) {
@@ -119,7 +130,7 @@ async function loadCategories() {
 
     // När man klickar på kategorin, filtreras produkterna
     categoryLi.addEventListener("click", () => {
-      loadProducts(cat.name);
+      loadProducts(cat);
     });
 
     categoriesContainer.appendChild(categoryLi);
