@@ -1,6 +1,6 @@
 // Alla partials ska finnas här: 
-@use "./variables";
-@use "./mixins";
+@use "./variables" as *;
+@use "./mixins" as *;
 
 // Base styles
 @use "./base";
