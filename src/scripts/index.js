@@ -14,19 +14,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Hämta och visa produkter
 async function loadProducts(category = null) {
-  console.log("Vald kategori:", category); // 👈 Lägg den här!
+  console.log("Vald kategori:", category);
 
   const productsContainer = document.getElementById("products");
   productsContainer.innerHTML = "<p>Laddar produkter...</p>";
 
   try {
-    const products = await fetchProducts(); // Hämta alla produkter från databasen
+    const products = await fetchProducts();
     allProducts = products;
 
     // Om man klickat på en kategori, filtrera bara de som har den kategorin
     products.forEach((p) => {
       if (!p.category) {
-        console.warn("⚠️ Produkt utan kategori:", p.name);
+        console.warn("Produkt utan kategori:", p.name);
       }
     });
 
@@ -79,7 +79,7 @@ function createProductCard(product) {
   element
     .querySelector(".add-to-cart-btn")
     .addEventListener("click", (event) => {
-      event.stopPropagation(); // stoppar klicket från att bubbla upp
+      event.stopPropagation();
       alert(
         `Lägger till ${product.name} i varukorgen\n(Funktionen är inte klar än)`,
       );
@@ -119,7 +119,7 @@ async function loadCategories() {
   const allCategoriesLi = document.createElement("li");
   allCategoriesLi.textContent = "Visa alla";
   allCategoriesLi.addEventListener("click", () => {
-    loadProducts(); // Ladda alla produkter igen
+    loadProducts();
   });
   categoriesContainer.appendChild(allCategoriesLi);
 
@@ -136,40 +136,3 @@ async function loadCategories() {
     categoriesContainer.appendChild(categoryLi);
   });
 }
-
-// Original för produkter 2 sektioner nedan:
-// ORIGINAL:
-// Function to fetch and render products
-// async function loadProducts() {
-//   const productsContainer = document.getElementById("products");
-//   productsContainer.innerHTML = "<p>Loading products...</p>";
-
-//   try {
-//     const products = await fetchProducts();
-//     productsContainer.innerHTML = "";
-
-//     if (products.length > 0) {
-//       products.forEach((product) => {
-//         const productCard = createProductCard(product);
-//         productsContainer.appendChild(productCard);
-//       });
-//     } else {
-//       productsContainer.innerHTML = "<p>No products available.</p>";
-//     }
-//   } catch (error) {
-//     console.error("Error fetching products:", error);
-//     productsContainer.innerHTML = "<p>Failed to load products.</p>";
-//   }
-// }
-
-// ORIGINAL:
-// async function loadCategories() {
-//   const categoriesContainer = document.getElementById("category-list");
-//   const categories = await fetchCategories();
-
-//   categories.forEach((cat) => {
-//     const categoryLi = document.createElement("li");
-//     categoryLi.textContent = cat.name;
-//     categoriesContainer.appendChild(categoryLi);
-//   });
-// }
