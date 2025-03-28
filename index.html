@@ -4,9 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hakim Livs</title>
-    <!-- <link rel="stylesheet" href="public/jonatan.css" /> -->
     <link rel="stylesheet" href="/public/css/main.css" />
-    
   </head>
   <body>
     <div class="site-wrapper">
@@ -14,11 +12,11 @@
       <header class="site-header">
         <nav>
           <a href="index.html">
-          <img
-            src="/src/assets/hakim-logo-color-319a84.png"
-            id="hakim-logo"
-            alt="Logotype for Hakim's Livs"
-          />
+            <img
+              src="/src/assets/hakim-logo-color-319a84.png"
+              id="hakim-logo"
+              alt="Logotype for Hakim's Livs"
+            />
           </a>
           <ul class="nav-links">
             <li><a href="/pages/cart.html">Varukorg (0)</a></li>
@@ -39,13 +37,24 @@
 
         <!-- MAIN -->
         <main class="main-content">
-          <h1>Här nere ska produktkorten synas</h1>
+          <h1>Alla produkter</h1>
           <div id="products"></div>
         </main>
       </div>
       <!-- Avslut på content-container -->
     </div>
     <!-- site-wrapper -->
+
+    <!-- Modal -->
+    <div id="product-modal" class="modal hidden">
+      <div class="modal-content">
+        <span id="close-modal" class="close-button">&times;</span>
+        <h2 id="modal-title"></h2>
+        <p id="modal-description"></p>
+        <p id="modal-category"></p>
+        <p id="modal-price"></p>
+      </div>
+    </div>
 
     <!-- FOOTER -->
     <footer class="site-footer">
@@ -58,16 +67,6 @@
         </div>
       </div>
     </footer>
-
-    <div id="product-modal" class="product-modal hidden">
-      <div class="modal-content">
-        <span id="close-modal" class="close-button">X</span>
-        <h2 id="modal-title"></h2>
-        <p id="modal-description"></p>
-        <p id="modal-category"></p>
-        <p id="modal-price"></p>
-      </div>
-    </div>
 
     <script type="module" src="./src/scripts/index.js"></script>
   </body>

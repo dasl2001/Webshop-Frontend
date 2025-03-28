@@ -1,22 +1,24 @@
 // Grundinstyling för typsnitt, margin/padding på body/html,
 
+@use "./variables";
+
 :root {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
+  color: variables.$text-color;
+  background-color: variables.$bg-color;
 }
 html,
 body {
+  color: variables.$text-color;
   margin: 0;
   padding: 0;
-
 }
 
-
-
-.main-content { 
+.main-content {
   flex: 1;
-  padding: 2rem; 
+  padding: 2rem;
   max-width: 1000px;
-  margin: auto; 
+  margin: auto;
   // border: orange 3px solid !important;
   // background-color: aqua !important;
 
@@ -25,6 +27,3 @@ body {
     margin-bottom: 1rem;
   }
 }
-
-
-  
