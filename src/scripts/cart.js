@@ -74,3 +74,7 @@ export function updateCartUI() {
   total.textContent = `${sum.toFixed(2).replace(".", ",")} kr`;
   count.textContent = `(${cart.length})`;
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  updateCartUI();
+});
