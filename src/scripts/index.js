@@ -1,6 +1,7 @@
 // Funktioner för att hämta produkter och kategorier
 import { fetchProducts } from "../utils/api.js";
 import { fetchCategories } from "../utils/api.js";
+import { addToCart } from "./cart.js";
 
 // Produkter vi får från servern sparas här
 // eslint-disable-next-line no-unused-vars
@@ -79,10 +80,8 @@ function createProductCard(product) {
   element
     .querySelector(".add-to-cart-btn")
     .addEventListener("click", (event) => {
-      event.stopPropagation();
-      alert(
-        `Lägger till ${product.name} i varukorgen\n(Funktionen är inte klar än)`,
-      );
+      event.stopPropagation(); // Så inte modal öppnas
+      addToCart(product); // 🛒 Lägg till produkt
     });
 
   return element;
