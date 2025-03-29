@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hakim Livs</title>
     <link rel="stylesheet" href="/public/css/main.css" />
-    <link rel="stylesheet" href="/src/scss/_searchbar.scss"/>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
   </head>
   <body>
     <div class="site-wrapper">
@@ -22,33 +20,34 @@
           </a>
 
           <!-- SEARCHBAR -->
-          <!-- <div class="search-container">
-          <input type="text" id="searchInput" placeholder="Sök produkter..." />
-            <button id="searchButton" class="search-button">Sök</button>
-          </div>
-                  
-          <main id="searchResults"></main> -->
-
-          <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-12 col-md-8 col-lg-6">
-                    <div class="search-container position-relative">
-                        <form class="d-flex align-items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                class="search-icon feather feather-search">
-                                <circle cx="11" cy="11" r="8"></circle>
-                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                            </svg>
-                            <input class="form-control search-input ps-5" type="search"
-                                   placeholder="Search anything..." aria-label="Search">
-                            <button class="btn btn-search ms-2" type="submit">Search</button>
-                        </form>
-                    </div>
-                </div>
+          <div class="custom-search-wrapper">
+            <div class="custom-search-container">
+              <form class="custom-search-form">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="search-icon"
+                >
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <input
+                  class="search-input"
+                  type="search"
+                  placeholder="Sök..."
+                  aria-label="Search"
+                />
+                <button class="search-button" type="submit">Sök</button>
+              </form>
             </div>
-        </div>
-          <!-- SEARCHBAR -->
+          </div>
 
           <ul class="nav-links">
             <li>
