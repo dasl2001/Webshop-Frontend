@@ -76,12 +76,11 @@ function createProductCard(product) {
     showProductModal(product);
   });
 
-  // När man klickar på knappen ska inte popup visas
   element
     .querySelector(".add-to-cart-btn")
     .addEventListener("click", (event) => {
-      event.stopPropagation(); // Så inte modal öppnas
-      addToCart(product); // 🛒 Lägg till produkt
+      event.stopPropagation();
+      addToCart(product);
     });
 
   return element;
