@@ -222,15 +222,37 @@ body {
 }
 .product-card .add-to-cart-btn {
   margin-top: 1rem;
-  background-color: #ccc;
+  background-color: #319a84;
   border: none;
-  border-radius: 4px;
+  border-radius: 5px;
   padding: 0.5rem 1rem;
   cursor: pointer;
   transition: background-color 0.2s ease;
 }
 .product-card .add-to-cart-btn:hover {
-  background-color: #aaa;
+  background-color: #267666;
+}
+
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+  gap: 0.5rem;
+}
+.pagination-container .pagination-button {
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: #e0e0e0;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.pagination-container .pagination-button.active {
+  background-color: #319a84;
+  color: white;
+  font-weight: bold;
+}
+.pagination-container .pagination-button:hover {
+  background-color: #267666;
 }
 
 .cart-offcanvas {

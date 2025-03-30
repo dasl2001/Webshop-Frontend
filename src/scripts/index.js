@@ -1,22 +1,21 @@
-// Funktioner för att hämta produkter och kategorier
 import { fetchProducts } from "../utils/api.js";
 import { fetchCategories } from "../utils/api.js";
 import { addToCart } from "./cart.js";
 
-// Produkter vi får från servern sparas här
+// Produktdata
 // eslint-disable-next-line no-unused-vars
 let allProducts = [];
+let filteredProducts = [];
+let currentPage = 1;
+const productsPerPage = 10;
 
-// När sidan laddas, körs dessa funktioner
 document.addEventListener("DOMContentLoaded", () => {
   loadProducts();
   loadCategories();
 });
 
-// Hämta och visa produkter
+// Ladda produkter och visa dem med paginering
 async function loadProducts(category = null) {
-  console.log("Vald kategori:", category);
-
   const productsContainer = document.getElementById("products");
   productsContainer.innerHTML = "<p>Laddar produkter...</p>";
 
@@ -24,14 +23,13 @@ async function loadProducts(category = null) {
     const products = await fetchProducts();
     allProducts = products;
 
-    // Om man klickat på en kategori, filtrera bara de som har den kategorin
     products.forEach((p) => {
       if (!p.category) {
         console.warn("Produkt utan kategori:", p.name);
       }
     });
 
-    let filteredProducts = category
+    filteredProducts = category
       ? products.filter(
           (product) =>
             product.category && product.category.name === category.name,
@@ -39,7 +37,9 @@ async function loadProducts(category = null) {
       : products;
 
     if (filteredProducts.length > 0) {
-      renderProducts(filteredProducts);
+      currentPage = 1;
+      renderPaginatedProducts(filteredProducts);
+      renderPagination(filteredProducts.length);
     } else {
       productsContainer.innerHTML = "<p>Inga produkter hittades.</p>";
     }
@@ -49,7 +49,18 @@ async function loadProducts(category = null) {
   }
 }
 
-// Visa produkter på sidan
+// Rendera produkter för aktuell sida
+function renderPaginatedProducts(products) {
+  document.getElementById("products").scrollIntoView({ behavior: "smooth" });
+
+  const start = (currentPage - 1) * productsPerPage;
+  const end = start + productsPerPage;
+  const currentProducts = products.slice(start, end);
+
+  renderProducts(currentProducts);
+}
+
+// Rendera produkterna på sidan
 function renderProducts(products) {
   const container = document.getElementById("products");
   container.innerHTML = "";
@@ -58,6 +69,59 @@ function renderProducts(products) {
     const card = createProductCard(product);
     container.appendChild(card);
   });
+}
+
+// Rendera pagineringsknappar
+function renderPagination(totalProducts) {
+  const paginationContainer = document.getElementById("pagination");
+  paginationContainer.innerHTML = "";
+
+  const totalPages = Math.ceil(totalProducts / productsPerPage);
+  if (totalPages <= 1) return;
+
+  // Föregående
+  const prevBtn = document.createElement("button");
+  prevBtn.textContent = "Föregående";
+  prevBtn.classList.add("pagination-button");
+  prevBtn.disabled = currentPage === 1;
+  prevBtn.addEventListener("click", () => {
+    if (currentPage > 1) {
+      currentPage--;
+      renderPaginatedProducts(filteredProducts);
+      renderPagination(filteredProducts.length);
+    }
+  });
+  paginationContainer.appendChild(prevBtn);
+
+  // Sidnummer
+  for (let i = 1; i <= totalPages; i++) {
+    const btn = document.createElement("button");
+    btn.textContent = i;
+    btn.classList.add("pagination-button");
+    if (i === currentPage) btn.classList.add("active");
+
+    btn.addEventListener("click", () => {
+      currentPage = i;
+      renderPaginatedProducts(filteredProducts);
+      renderPagination(filteredProducts.length);
+    });
+
+    paginationContainer.appendChild(btn);
+  }
+
+  // Nästa
+  const nextBtn = document.createElement("button");
+  nextBtn.textContent = "Nästa";
+  nextBtn.classList.add("pagination-button");
+  nextBtn.disabled = currentPage === totalPages;
+  nextBtn.addEventListener("click", () => {
+    if (currentPage < totalPages) {
+      currentPage++;
+      renderPaginatedProducts(filteredProducts);
+      renderPagination(filteredProducts.length);
+    }
+  });
+  paginationContainer.appendChild(nextBtn);
 }
 
 // Skapa ett produktkort
@@ -71,7 +135,6 @@ function createProductCard(product) {
     <button class="add-to-cart-btn">Lägg i varukorg</button>
   `;
 
-  // När man klickar på hela kortet, visas popup med mer info
   element.addEventListener("click", () => {
     showProductModal(product);
   });
@@ -86,7 +149,7 @@ function createProductCard(product) {
   return element;
 }
 
-// Visa popup med produktbeskrivning
+// Visa produkt i modal
 function showProductModal(product) {
   const description =
     product.description.length > 500
@@ -103,17 +166,15 @@ function showProductModal(product) {
   document.getElementById("product-modal").classList.remove("hidden");
 }
 
-// Stänger popup när man klickar på krysset
 document.getElementById("close-modal").addEventListener("click", () => {
   document.getElementById("product-modal").classList.add("hidden");
 });
 
-// Laddar kategorier och skapar klickfunktion för varje
+// Ladda kategorier
 async function loadCategories() {
   const categoriesContainer = document.getElementById("category-list");
   const categories = await fetchCategories();
 
-  // Skapa "Visa alla"-kategori högst upp
   const allCategoriesLi = document.createElement("li");
   allCategoriesLi.textContent = "Visa alla";
   allCategoriesLi.addEventListener("click", () => {
@@ -121,12 +182,10 @@ async function loadCategories() {
   });
   categoriesContainer.appendChild(allCategoriesLi);
 
-  // Skapa en kategori-knapp för varje kategori i databasen
   categories.forEach((cat) => {
     const categoryLi = document.createElement("li");
     categoryLi.textContent = cat.name;
 
-    // När man klickar på kategorin, filtreras produkterna
     categoryLi.addEventListener("click", () => {
       loadProducts(cat);
     });
