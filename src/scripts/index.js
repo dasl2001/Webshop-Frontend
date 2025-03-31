@@ -232,7 +232,7 @@ function initSearch() {
     } catch (error) {
       console.error("Sökningen misslyckades:", error);
       document.getElementById("products").innerHTML =
-        "<p>❌ Det gick inte att söka just nu.</p>";
+        "<p>Det gick inte att söka just nu.</p>";
     }
   });
 }
