@@ -24,6 +24,9 @@ async function loadProducts(category = null) {
     const products = await fetchProducts();
     allProducts = products;
 
+    console.log("Produkter:", allProducts);
+    allProducts.forEach((p) => console.log(`${p.name}: ${p.image}`));
+
     products.forEach((p) => {
       if (!p.category) {
         console.warn("Produkt utan kategori:", p.name);
@@ -131,10 +134,11 @@ function createProductCard(product) {
   element.className = "product-card";
 
   element.innerHTML = `
-    <h3>${product.name}</h3>
-    <p>${product.price.toFixed(2).replace(".", ",")} kr</p>
-    <button class="add-to-cart-btn">Lägg i varukorg</button>
-  `;
+  <img src="${product.imageUrl}" alt="${product.name}" class="product-image" />
+  <h3>${product.name}</h3>
+  <p>${product.price.toFixed(2).replace(".", ",")} kr</p>
+  <button class="add-to-cart-btn">Lägg i varukorg</button>
+`;
 
   element.addEventListener("click", () => {
     showProductModal(product);
@@ -163,6 +167,8 @@ function showProductModal(product) {
     `Kategori: ${product.category.name}`;
   document.getElementById("modal-price").textContent =
     `${product.price.toFixed(2).replace(".", ",")} kr`;
+  document.getElementById("modal-image").src = product.imageUrl;
+  document.getElementById("modal-image").alt = product.name;
 
   document.getElementById("product-modal").classList.remove("hidden");
 }
@@ -205,14 +211,12 @@ function initSearch() {
     const query = input.value.trim();
     if (!query) return;
 
-    // Skapa rätt endpoint
     const endpoint = `/api/products/search?q=${encodeURIComponent(query)}`;
 
     try {
       const response = await fetch(`${getBaseUrl()}${endpoint}`);
 
       if (!response.ok) {
-        // Hantera 404 (inga produkter)
         if (response.status === 404) {
           document.getElementById("products").innerHTML =
             "<p>Inga produkter hittades.</p>";
@@ -224,7 +228,6 @@ function initSearch() {
 
       const searchResults = await response.json();
 
-      // Visa resultaten med befintlig render-funktionalitet
       filteredProducts = searchResults;
       currentPage = 1;
       renderPaginatedProducts(filteredProducts);

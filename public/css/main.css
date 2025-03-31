@@ -181,7 +181,15 @@ body {
   max-height: 80vh;
   overflow-y: auto;
 }
-.modal .modal-content .close-button {
+.modal .modal-content .modal-image {
+  width: 100%;
+  max-height: 250px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+}
+.modal .close-button {
   position: absolute;
   top: 0.5rem;
   right: 1rem;
@@ -205,10 +213,22 @@ body {
   text-align: center;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .product-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+.product-card .product-image {
+  width: 100%;
+  max-height: 150px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  margin-bottom: 1rem;
+  border-radius: 6px;
+  background-color: transparent;
 }
 .product-card h3 {
   font-size: 1.2rem;
@@ -221,7 +241,7 @@ body {
   color: #444;
 }
 .product-card .add-to-cart-btn {
-  margin-top: 1rem;
+  margin-top: auto;
   background-color: #319a84;
   color: white;
   border: none;
