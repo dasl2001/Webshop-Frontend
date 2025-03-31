@@ -1,4 +1,4 @@
-import { fetchProducts } from "../utils/api.js";
+import { fetchProducts, getBaseUrl } from "../utils/api.js";
 import { fetchCategories } from "../utils/api.js";
 import { addToCart } from "./cart.js";
 
@@ -12,6 +12,7 @@ const productsPerPage = 10;
 document.addEventListener("DOMContentLoaded", () => {
   loadProducts();
   loadCategories();
+  initSearch();
 });
 
 // Ladda produkter och visa dem med paginering
@@ -191,5 +192,47 @@ async function loadCategories() {
     });
 
     categoriesContainer.appendChild(categoryLi);
+  });
+}
+
+function initSearch() {
+  const form = document.getElementById("search-form");
+  const input = document.getElementById("search-input");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const query = input.value.trim();
+    if (!query) return;
+
+    // Skapa rätt endpoint
+    const endpoint = `/api/products/search?q=${encodeURIComponent(query)}`;
+
+    try {
+      const response = await fetch(`${getBaseUrl()}${endpoint}`);
+
+      if (!response.ok) {
+        // Hantera 404 (inga produkter)
+        if (response.status === 404) {
+          document.getElementById("products").innerHTML =
+            "<p>Inga produkter hittades.</p>";
+          document.getElementById("pagination").innerHTML = "";
+          return;
+        }
+        throw new Error("Något gick fel vid hämtning av sökresultat");
+      }
+
+      const searchResults = await response.json();
+
+      // Visa resultaten med befintlig render-funktionalitet
+      filteredProducts = searchResults;
+      currentPage = 1;
+      renderPaginatedProducts(filteredProducts);
+      renderPagination(filteredProducts.length);
+    } catch (error) {
+      console.error("Sökningen misslyckades:", error);
+      document.getElementById("products").innerHTML =
+        "<p>Det gick inte att söka just nu.</p>";
+    }
   });
 }
