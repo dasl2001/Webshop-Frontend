@@ -31,7 +31,7 @@ function saveCart(cart) {
 // Lägg till en produkt i varukorgen
 export function addToCart(product) {
   const cart = getCart();
-  const existingProduct = cart.find((item) => item.id === product.id);
+  const existingProduct = cart.find((item) => item._id === product._id);
 
   if (existingProduct) {
     existingProduct.quantity += 1;
@@ -60,19 +60,25 @@ export function updateCartUI() {
   }
 
   let sum = 0;
+  let totalQuantity = 0;
+
   cart.forEach((item) => {
     sum += item.price * item.quantity;
+    totalQuantity += item.quantity;
 
     const el = document.createElement("div");
     el.className = "cart-item";
     el.innerHTML = `
-        <p>${item.name} (${item.quantity}) - ${item.price.toFixed(2).replace(".", ",")} kr</p>
-      `;
+      <p>${item.name} (${item.quantity}) - 
+         ${item.price.toFixed(2).replace(".", ",")} kr</p>
+    `;
     container.appendChild(el);
   });
 
   total.textContent = `${sum.toFixed(2).replace(".", ",")} kr`;
-  count.textContent = `(${cart.length})`;
+
+  // Byt alltså till totalQuantity i stället för cart.length
+  count.textContent = `(${totalQuantity})`;
 }
 
 document.addEventListener("DOMContentLoaded", () => {
