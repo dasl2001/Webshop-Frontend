@@ -154,6 +154,51 @@ body {
   color: #6c757d;
 }
 
+.button {
+  padding: 15px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.close-button {
+  position: absolute;
+  top: 0.5rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.add-to-cart-btn {
+  margin-top: auto;
+  background-color: #319a84;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.add-to-cart-btn:hover {
+  background-color: #267666;
+}
+
+.pagination-button {
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: #e0e0e0;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.pagination-button.active {
+  background-color: #319a84;
+  color: white;
+  font-weight: bold;
+}
+.pagination-button:hover {
+  background-color: #267666;
+}
+
 .modal {
   position: fixed;
   top: 0;
@@ -188,14 +233,6 @@ body {
      object-fit: contain;
   margin-bottom: 1rem;
   border-radius: 8px;
-}
-.modal .close-button {
-  position: absolute;
-  top: 0.5rem;
-  right: 1rem;
-  font-size: 1.5rem;
-  font-weight: bold;
-  cursor: pointer;
 }
 
 #products {
@@ -240,40 +277,12 @@ body {
   font-weight: bold;
   color: #444;
 }
-.product-card .add-to-cart-btn {
-  margin-top: auto;
-  background-color: #319a84;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-.product-card .add-to-cart-btn:hover {
-  background-color: #267666;
-}
 
 .pagination-container {
   display: flex;
   justify-content: center;
   margin: 2rem 0;
   gap: 0.5rem;
-}
-.pagination-container .pagination-button {
-  padding: 0.5rem 1rem;
-  border: none;
-  background-color: #e0e0e0;
-  cursor: pointer;
-  border-radius: 5px;
-}
-.pagination-container .pagination-button.active {
-  background-color: #319a84;
-  color: white;
-  font-weight: bold;
-}
-.pagination-container .pagination-button:hover {
-  background-color: #267666;
 }
 
 .cart-offcanvas {

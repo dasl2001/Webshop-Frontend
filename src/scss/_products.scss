@@ -37,18 +37,9 @@
       border-radius: 8px;
     }
   }
-
-  .close-button {
-    position: absolute;
-    top: 0.5rem;
-    right: 1rem;
-    font-size: 1.5rem;
-    font-weight: bold;
-    cursor: pointer;
-  }
 }
 
-// Produkt layout
+// Produktlayout
 #products {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -96,45 +87,12 @@
     font-weight: bold;
     color: #444;
   }
-
-  .add-to-cart-btn {
-    margin-top: auto;
-    background-color: #319a84;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-
-    &:hover {
-      background-color: #267666;
-    }
-  }
 }
 
-// Pagination
+// Pagination-container (layout)
 .pagination-container {
   display: flex;
   justify-content: center;
   margin: 2rem 0;
   gap: 0.5rem;
-
-  .pagination-button {
-    padding: 0.5rem 1rem;
-    border: none;
-    background-color: #e0e0e0;
-    cursor: pointer;
-    border-radius: 5px;
-
-    &.active {
-      background-color: #319a84;
-      color: white;
-      font-weight: bold;
-    }
-
-    &:hover {
-      background-color: #267666;
-    }
-  }
 }
