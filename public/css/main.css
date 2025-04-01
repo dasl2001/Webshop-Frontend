@@ -306,8 +306,64 @@ body {
   display: flex;
   flex-direction: column;
   height: 100%;
-  padding: 1.5rem;
+  padding-top: 1.5rem;
+  padding-right: 1.5rem;
+  padding-bottom: 1.5rem;
+  padding-left: 1.5rem;
   box-sizing: border-box;
+}
+.cart-offcanvas .cart-content h2 {
+  padding: 0 1.5rem;
+  margin-bottom: 1rem;
+}
+.cart-offcanvas .cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 1.5rem 16px 1.5rem;
+  border-bottom: 1px solid #eee;
+}
+.cart-offcanvas .cart-item .cart-item-info {
+  display: flex;
+  flex-direction: column;
+}
+.cart-offcanvas .cart-item .cart-item-info p:first-child {
+  font-size: 16px;
+  font-weight: 550;
+  margin: 0;
+}
+.cart-offcanvas .cart-item .cart-item-info p:last-child {
+  font-size: 14px;
+  color: #666;
+  margin: 0.2rem 0 0 0;
+}
+.cart-offcanvas .cart-item .cart-item-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.cart-offcanvas .cart-item .cart-item-actions button {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: #f4f4f4;
+  border: none;
+  font-size: 14px;
+  font-weight: normal;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.cart-offcanvas .cart-item .cart-item-actions button:hover {
+  background-color: #e0e0e0;
+}
+.cart-offcanvas .cart-item .cart-item-actions button.remove-item {
+  background-color: transparent;
+  font-size: 14px;
+}
+.cart-offcanvas .cart-item .cart-item-actions span {
+  font-size: 1rem;
+  min-width: 24px;
+  text-align: center;
 }
 .cart-offcanvas .cart-items-scroll {
   flex-grow: 1;
@@ -329,6 +385,7 @@ body {
   background-color: white;
   padding-top: 1rem;
   border-top: 1px solid #eee;
+  text-align: right;
 }
 .cart-offcanvas .cart-footer .checkout-btn {
   width: 100%;
