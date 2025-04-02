@@ -8,8 +8,8 @@ cartLink.addEventListener("click", (e) => {
   cartPanel.classList.remove("hidden");
 });
 
-// För att stänga varukorgen när man klickar utanför den
 document.addEventListener("click", (e) => {
+  if (e.target.closest(".cart-item-actions")) return;
   if (
     cartPanel.classList.contains("visible") &&
     !cartPanel.contains(e.target) &&
@@ -43,7 +43,7 @@ export function addToCart(product) {
   updateCartUI();
 }
 
-// Uppdaterar varukorgs-panelen
+// Uppdaterar varukorgen i offcanvas
 export function updateCartUI() {
   const cart = getCart();
   const container = document.getElementById("cart-items");
@@ -68,19 +68,74 @@ export function updateCartUI() {
 
     const el = document.createElement("div");
     el.className = "cart-item";
+
     el.innerHTML = `
-      <p>${item.name} (${item.quantity}) - 
-         ${item.price.toFixed(2).replace(".", ",")} kr</p>
-    `;
+  <div class="cart-item-info">
+    <p>${item.name}</p>
+    <p>${item.price.toFixed(2).replace(".", ",")} kr/st</p>
+  </div>
+  <div class="cart-item-actions">
+    <button class="decrease-qty" data-id="${item._id}">–</button>
+    <span>${item.quantity}</span>
+    <button class="increase-qty" data-id="${item._id}">+</button>
+    <button class="remove-item" data-id="${item._id}" title="Ta bort">🗑️</button>
+  </div>
+`;
+
     container.appendChild(el);
   });
 
   total.textContent = `${sum.toFixed(2).replace(".", ",")} kr`;
-
-  // Byt alltså till totalQuantity i stället för cart.length
   count.textContent = `(${totalQuantity})`;
+
+  setupCartButtonEvents();
 }
 
+function setupCartButtonEvents() {
+  // + knappar
+  document.querySelectorAll(".increase-qty").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const cart = getCart();
+      const product = cart.find((p) => p._id === btn.dataset.id);
+      if (product) {
+        product.quantity += 1;
+        saveCart(cart);
+        updateCartUI();
+      }
+    });
+  });
+
+  // – knappar
+  document.querySelectorAll(".decrease-qty").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const cart = getCart();
+      const product = cart.find((p) => p._id === btn.dataset.id);
+      if (product) {
+        if (product.quantity > 1) {
+          product.quantity -= 1;
+        } else {
+          const index = cart.findIndex((p) => p._id === btn.dataset.id);
+          if (index !== -1) cart.splice(index, 1);
+        }
+        saveCart(cart);
+        updateCartUI();
+      }
+    });
+  });
+
+  // Ta bort-knappar
+  document.querySelectorAll(".remove-item").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const cart = getCart();
+      const index = cart.findIndex((p) => p._id === btn.dataset.id);
+      if (index !== -1) {
+        cart.splice(index, 1);
+        saveCart(cart);
+        updateCartUI();
+      }
+    });
+  });
+}
 document.addEventListener("DOMContentLoaded", () => {
   updateCartUI();
 });

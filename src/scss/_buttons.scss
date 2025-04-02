@@ -1,11 +1,54 @@
 // Alla olika typer av knappar och deras lägen – t.ex. standard-knappar, cta-button hover/active-states osv.
 
 .button {
-    // background-color: $primary-color;
-    // color: ;
-    
-    padding: 15px 20px;
-    border: none;
-    cursor: pointer;
+  // background-color: $primary-color;
+  // color: ;
+
+  padding: 15px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+// Product-modal-buttons
+
+.close-button {
+  position: absolute;
+  top: 0.5rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.add-to-cart-btn {
+  margin-top: auto;
+  background-color: #319a84;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: #267666;
+  }
+}
+
+.pagination-button {
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: #e0e0e0;
+  cursor: pointer;
+  border-radius: 5px;
+
+  &.active {
+    background-color: #319a84;
+    color: white;
+    font-weight: bold;
   }
 
+  &:hover {
+    background-color: #267666;
+  }
+}

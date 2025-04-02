@@ -1,4 +1,4 @@
-import { fetchProducts } from "../utils/api.js";
+import { fetchProducts, getBaseUrl } from "../utils/api.js";
 import { fetchCategories } from "../utils/api.js";
 import { addToCart } from "./cart.js";
 
@@ -12,6 +12,7 @@ const productsPerPage = 10;
 document.addEventListener("DOMContentLoaded", () => {
   loadProducts();
   loadCategories();
+  initSearch();
 });
 
 // Ladda produkter och visa dem med paginering
@@ -22,6 +23,9 @@ async function loadProducts(category = null) {
   try {
     const products = await fetchProducts();
     allProducts = products;
+
+    console.log("Produkter:", allProducts);
+    allProducts.forEach((p) => console.log(`${p.name}: ${p.image}`));
 
     products.forEach((p) => {
       if (!p.category) {
@@ -130,10 +134,11 @@ function createProductCard(product) {
   element.className = "product-card";
 
   element.innerHTML = `
-    <h3>${product.name}</h3>
-    <p>${product.price.toFixed(2).replace(".", ",")} kr</p>
-    <button class="add-to-cart-btn">Lägg i varukorg</button>
-  `;
+  <img src="${product.imageUrl}" alt="${product.name}" class="product-image" />
+  <h3>${product.name}</h3>
+  <p>${product.price.toFixed(2).replace(".", ",")} kr</p>
+  <button class="add-to-cart-btn">Lägg i varukorg</button>
+`;
 
   element.addEventListener("click", () => {
     showProductModal(product);
@@ -162,6 +167,8 @@ function showProductModal(product) {
     `Kategori: ${product.category.name}`;
   document.getElementById("modal-price").textContent =
     `${product.price.toFixed(2).replace(".", ",")} kr`;
+  document.getElementById("modal-image").src = product.imageUrl;
+  document.getElementById("modal-image").alt = product.name;
 
   document.getElementById("product-modal").classList.remove("hidden");
 }
@@ -191,5 +198,44 @@ async function loadCategories() {
     });
 
     categoriesContainer.appendChild(categoryLi);
+  });
+}
+
+function initSearch() {
+  const form = document.getElementById("search-form");
+  const input = document.getElementById("search-input");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const query = input.value.trim();
+    if (!query) return;
+
+    const endpoint = `/api/products/search?q=${encodeURIComponent(query)}`;
+
+    try {
+      const response = await fetch(`${getBaseUrl()}${endpoint}`);
+
+      if (!response.ok) {
+        if (response.status === 404) {
+          document.getElementById("products").innerHTML =
+            "<p>Inga produkter hittades.</p>";
+          document.getElementById("pagination").innerHTML = "";
+          return;
+        }
+        throw new Error("Något gick fel vid hämtning av sökresultat");
+      }
+
+      const searchResults = await response.json();
+
+      filteredProducts = searchResults;
+      currentPage = 1;
+      renderPaginatedProducts(filteredProducts);
+      renderPagination(filteredProducts.length);
+    } catch (error) {
+      console.error("Sökningen misslyckades:", error);
+      document.getElementById("products").innerHTML =
+        "<p>Det gick inte att söka just nu.</p>";
+    }
   });
 }
