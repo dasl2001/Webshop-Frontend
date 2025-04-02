@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sv">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,47 +7,91 @@
     <link rel="stylesheet" href="/public/css/main.css" />
   </head>
   <body>
-
-  <div class="site-wrapper">
-      <!-- HEADER -->
+    <div class="site-wrapper">
       <header class="site-header">
-        <a href="/index.html">
         <nav>
-          <img
-            src="/src/assets/hakim-logo-color-319a84.png"
-            id="hakim-logo"
-            alt="Logotype for Hakim's Livs"
-          />
-          </nav>
-        </a>
+          <a href="index.html">
+            <img
+              src="/src/assets/hakim-logo-color-319a84.png"
+              id="hakim-logo"
+              alt="Logotype for Hakim's Livs"
+            />
+          </a>
+
+          <!-- SEARCHBAR -->
+          <div class="custom-search-wrapper">
+            <div class="custom-search-container">
+              <form class="custom-search-form">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="search-icon"
+                >
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <input
+                  class="search-input"
+                  type="search"
+                  placeholder="Sök..."
+                  aria-label="Search"
+                />
+                <button class="search-button" type="submit">Sök</button>
+              </form>
+            </div>
+          </div>
+
           <ul class="nav-links">
-            <li><a href="/pages/cart.html">Varukorg (0)</a></li>
+            <li>
+              <a href="/pages/cart.html">
+                Varukorg <span class="cart-count">(0)</span>
+              </a>
+            </li>
+
             <li><a href="/pages/login.html">Logga in</a></li>
           </ul>
         </nav>
       </header>
-  
-    
-    <!-- MAIN CONTENT -->
-    <main class="main-content">
-      <h1>Login</h1>
-      <div id="login-container">
-        <form id="loginForm" class="login-form">
-          <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" id="username" required />
-          </div>
-          <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" id="password" required />
-          </div>
-          <button type="submit">Login</button>
-        </form>
-      </div>
-    </main>
-  </div>
 
-    <!-- PAGE-SPECIFIC JAVASCRIPT -->
-    <script type="module" src="./src/scripts/login.js"></script>
+      <main class="main-content">
+        <h1>Login</h1>
+
+        <div id="login-container">
+          <div class="toggle-buttons">
+            <button id="adminBtn" class="active">Admin</button>
+            <button id="userBtn">Användare</button>
+          </div>
+
+          <div class="login-forms">
+
+            <form id="adminForm" class="form active">
+              <input type="email" id="admin-email" placeholder="E-postadress" required />
+              <input type="password" id="admin-password" placeholder="Lösenord" required />
+              <button class="login-btn">Logga in som admin</button>
+            </form>
+
+            <form id="userForm" class="form">
+              <input type="email" id="user-email" placeholder="E-postadress" required />
+              <input type="password" id="user-password" placeholder="Lösenord" required />
+              <button class="login-btn">Logga in som användare</button>
+            </form>
+            <div class="login-actions"><p>Glömt Lösenord?</p><p>Registrera dig</p></div>
+              
+
+
+            
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script type="module" src="../src/scripts/login.js"></script>
   </body>
 </html>
