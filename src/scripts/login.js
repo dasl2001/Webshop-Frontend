@@ -1,23 +1,38 @@
-document.addEventListener("DOMContentLoaded", initLogin);
+import { loginAdmin } from "../utils/api.js";
 
-function initLogin() {
-  const loginForm = document.getElementById("loginForm");
+document.addEventListener("DOMContentLoaded", () => {
+  const userBtn = document.getElementById("userBtn");
+  const adminBtn = document.getElementById("adminBtn");
+  const userForm = document.getElementById("userForm");
+  const adminForm = document.getElementById("adminForm");
 
-  loginForm.addEventListener("submit", (event) => {
-    event.preventDefault();
-    handleLogin();
+  userBtn.addEventListener("click", () => {
+    userBtn.classList.add("active");
+    adminBtn.classList.remove("active");
+    userForm.classList.add("active");
+    adminForm.classList.remove("active");
   });
-}
 
-function handleLogin() {
-  const username = document.getElementById("username").value;
-  const password = document.getElementById("password").value;
+  adminBtn.addEventListener("click", () => {
+    adminBtn.classList.add("active");
+    userBtn.classList.remove("active");
+    adminForm.classList.add("active");
+    userForm.classList.remove("active");
+  });
 
-  // Basic demo login - NOT SECURE
-  if (username === "admin" && password === "admin") {
-    window.location.href = "admin.html";
-  } else {
-    alert("Invalid credentials: LOGGING IN ANYWAY");
-    window.location.href = "admin.html";
-  }
-}
+  adminForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const adminID = document.getElementById("admin-email").value;
+    const adminPassword = document.getElementById("admin-password").value;
+
+    try {
+      const result = await loginAdmin(adminID, adminPassword);
+      console.log(result);
+      localStorage.setItem("token", result.token);
+      localStorage.setItem("user", JSON.stringify(result.user));
+      window.location.href = "/pages/admin-dashboard.html";
+    } catch (err) {
+      alert("Inloggning misslyckades. Kontrollera uppgifterna.");
+    }
+  });
+});
