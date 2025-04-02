@@ -26,7 +26,7 @@ export async function fetchCategories(endpoint = "/api/categories") {
 }
 
 export async function loginAdmin(email, password) {
-  const response = await fetch(`${getBaseUrl()}api/auth/login`, {
+  const response = await fetch(`${getBaseUrl()}/api/auth/login`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
