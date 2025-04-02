@@ -24,7 +24,6 @@ body {
 @media (max-width: 768px) {
   .main-content {
     padding: 1rem;
-    margin: 0;
   }
   .main-content h1 {
     font-size: 1.5rem;
@@ -658,6 +657,10 @@ body {
   margin-inline: auto;
 }
 
+.login-main-content {
+  margin-bottom: 140px;
+}
+
 .toggle-buttons {
   display: flex;
   justify-content: space-between;
@@ -764,6 +767,9 @@ body {
     background-color: white;
     border-radius: 10px 10px 20px 20px;
     box-shadow: 0 5px 15px rgba(216, 216, 216, 0.408);
+  }
+  .login-main-content {
+    margin-bottom: 0;
   }
   .toggle-buttons {
     flex-direction: row;

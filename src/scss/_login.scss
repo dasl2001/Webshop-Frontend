@@ -13,7 +13,9 @@
   max-width: 400px;
   margin-inline: auto;
 }
-
+  .login-main-content{
+    margin-bottom: 140px;
+  }
 .toggle-buttons {
   display: flex;
   justify-content: space-between;
@@ -131,9 +133,13 @@
     box-shadow: 0 5px 15px rgba(216, 216, 216, 0.408);
   }
 
+  .login-main-content{
+    margin-bottom: 0;
+  }
+
   .toggle-buttons {
     flex-direction: row;
-    
+
 
     button {
       font-size: 0.95rem;
@@ -142,7 +148,7 @@
   }
 
   // .login-main-content{
-  //   background-color: gold;    
+  //   background-color: gold;
   // }
 
   .login-forms {
