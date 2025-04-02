@@ -4,31 +4,23 @@
     gap: 30px;
     margin-top: 0;
     background-color: white;
-    border-radius: 50px;
+    border-radius: 10px 10px 20px 20px;
     box-shadow: 0 5px 15px rgba(216, 216, 216, 0.408);
-    padding: 50px;
+    // padding: 0 50px 50px 50px;
     border: none;
-    width: 100%;
+    // width: 100%;
+    width: 500px;
     max-width: 400px;
     margin-inline: auto;
   }
   
-  // .login-forms {
-  //   display: flex;
-  //   flex-direction: column;
-  //   align-items: center;
-  //   background-color: white;
-  //   border-radius: 50px;
-  //   box-shadow: 0 5px 15px rgba(216, 216, 216, 0.408);
-  //   padding: 50px;
-  //   border: none;
-  // }
   
   .toggle-buttons {
     display: flex;
     justify-content: space-between;
     flex-direction: row;
     margin-bottom: 1rem;
+  
   }
   
   .toggle-buttons button {
@@ -40,6 +32,7 @@
     font-weight: bold;
     border-radius: 20px;
     transition: background-color 0.2s ease;
+    
   }
   
   .toggle-buttons button.active {
@@ -47,6 +40,24 @@
     color: white;
   }
   
+
+    .login-forms {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      // background-color: white;
+      border-radius: 50px;
+      // box-shadow: 0 5px 15px rgba(216, 216, 216, 0.408);
+      width: 70%;
+      // padding: 0 50px;
+      padding: 0 50px 50px 50px;
+      border: none;
+  }
+
+
+  // .login-forms{
+  //   padding: 50px;
+  // }
   .form {
     display: none;
     flex-direction: column;
@@ -65,11 +76,11 @@
     background-color: white;
     border-radius: 50px;
     box-shadow: 0 5px 15px rgba(210, 210, 210, 0.1);
-    padding: 10px 20px;
+    padding: 5px 20px;
     border: 2px solid #f5f5f5b7;
     background: transparent;
     font-size: 1rem;
-    height: 40px;
+    height: 1.8rem;
     padding-left: 1.5rem;
   }
   
@@ -84,6 +95,7 @@
     background-color: #319a84;
     color: white;
     border-radius: 50px;
+    margin-top: 5px;
     padding: 0.5rem 1.2rem;
     border: none;
     cursor: pointer;
@@ -97,8 +109,9 @@
   .login-actions{
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
     width: 100%;
-    gap: 50px;
+    // margin: 0 20px;
+    gap: 110px;
     font-size: 11px;
   }

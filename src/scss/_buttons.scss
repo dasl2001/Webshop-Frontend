@@ -1,13 +1,10 @@
 // Alla olika typer av knappar och deras lägen – t.ex. standard-knappar, cta-button hover/active-states osv.
 
-.button {
-  // background-color: $primary-color;
-  // color: ;
-
-  padding: 15px 20px;
-  border: none;
-  cursor: pointer;
-}
+// .button {
+//   padding: 15px 20px;
+//   border: none;
+//   cursor: pointer;
+// }
 
 // Product-modal-buttons
 
@@ -52,3 +49,31 @@
     background-color: #267666;
   }
 }
+
+//login
+
+#userBtn{
+  border-radius: 0 10px 0 0;
+  padding: 13px 0;
+}
+#adminBtn{
+  border-radius: 10px 0 0 0 ;
+  padding: 10 0px;
+}
+
+//Admin-dashboard
+
+#logoutBtn{
+
+    background-color: #319a84;
+    color: white;
+    border-radius: 50px;
+    padding: 0.5rem 1.2rem;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  #logoutBtn:hover {
+    background-color: #267666;
+  }
