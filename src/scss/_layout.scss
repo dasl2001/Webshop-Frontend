@@ -1,14 +1,20 @@
 //Layoutstrukturen – t.ex. site-wrapper, content-container, grid/flex-uppdelning.
 
 .site-wrapper {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-  }
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 
-  .content-container {
-    display: flex;
-    flex: 1;
-    padding: 2rem;
-    gap: 2rem;
+.content-container {
+  display: flex;
+  flex: 1;
+  padding: 2rem;
+  gap: 2rem;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1rem;
   }
+}

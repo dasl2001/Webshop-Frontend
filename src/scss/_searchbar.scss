@@ -50,3 +50,33 @@
 .search-icon {
   color: #6c757d;
 }
+
+@media (max-width: 768px) {
+  .custom-search-wrapper {
+    padding: 0 1rem;
+    margin: 1rem 0;
+  }
+
+  .custom-search-container {
+    padding: 8px 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+
+  .custom-search-form {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+
+  .search-input {
+    padding-left: 1rem;
+    height: 36px;
+    font-size: 0.95rem;
+  }
+
+  .search-button {
+    width: 100%;
+    font-size: 0.95rem;
+    padding: 0.6rem 1rem;
+  }
+}

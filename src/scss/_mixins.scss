@@ -1,7 +1,6 @@
 // återanvändbara media queries eller flex-verktyg
 @mixin flex-center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

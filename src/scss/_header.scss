@@ -1,28 +1,47 @@
-//Headern och navigation (t.ex. .site-header, .nav-links)
+// Headern och navigation (t.ex. .site-header, .nav-links)
 
 .site-header {
-    padding: 1rem 2rem;
-    
+  padding: 1rem 2rem;
+  background-color: white;
+
+  @media (max-width: 768px) {
+    padding: 0.8rem 1rem;
   }
-  
-  .site-header nav {
+
+  nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap; // gör att rader bryts snyggt på mobil
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
   }
-  
-  .nav-links {
-    display: flex;
-    gap: 1.5rem;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .nav-links a {
-    text-decoration: none;
-    color: black;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
   }
 
-  
-  
+  a {
+    text-decoration: none;
+    color: black;
+    font-size: 1rem;
+
+    @media (max-width: 768px) {
+      font-size: 0.95rem;
+    }
+  }
+}

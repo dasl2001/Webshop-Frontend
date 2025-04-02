@@ -1,117 +1,163 @@
 #login-container {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    margin-top: 0;
-    background-color: white;
-    border-radius: 10px 10px 20px 20px;
-    box-shadow: 0 5px 15px rgba(216, 216, 216, 0.408);
-    // padding: 0 50px 50px 50px;
-    border: none;
-    // width: 100%;
-    width: 500px;
-    max-width: 400px;
-    margin-inline: auto;
-  }
-  
-  
-  .toggle-buttons {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-    margin-bottom: 1rem;
-  
-  }
-  
-  .toggle-buttons button {
-    flex: 1;
-    padding: 0.5rem;
-    background-color: #e0e0e0;
-    border: none;
-    cursor: pointer;
-    font-weight: bold;
-    border-radius: 20px;
-    transition: background-color 0.2s ease;
-    
-  }
-  
-  .toggle-buttons button.active {
-    background-color: #319a84;
-    color: white;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-top: 0;
+  background-color: white;
+  border-radius: 10px 10px 20px 20px;
+  box-shadow: 0 5px 15px rgba(216, 216, 216, 0.408);
+  // padding: 0 50px 50px 50px;
+  border: none;
+  // width: 100%;
+  width: 500px;
+  max-width: 400px;
+  margin-inline: auto;
+}
 
-    .login-forms {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      // background-color: white;
-      border-radius: 50px;
-      // box-shadow: 0 5px 15px rgba(216, 216, 216, 0.408);
-      width: 70%;
-      // padding: 0 50px;
-      padding: 0 50px 50px 50px;
-      border: none;
-  }
+.toggle-buttons {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  margin-bottom: 1rem;
+}
 
+.toggle-buttons button {
+  flex: 1;
+  padding: 0.5rem;
+  background-color: #e0e0e0;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 20px;
+  transition: background-color 0.2s ease;
+}
 
-  // .login-forms{
-  //   padding: 50px;
-  // }
-  .form {
-    display: none;
-    flex-direction: column;
-    gap: 10px;
-    width: 100%;
-  }
-  
-  .form.active {
-    display: flex;
-  }
-  
-  #admin-email, //ändrat från  #admin-id
+.toggle-buttons button.active {
+  background-color: #319a84;
+  color: white;
+}
+
+.login-forms {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  // background-color: white;
+  border-radius: 50px;
+  // box-shadow: 0 5px 15px rgba(216, 216, 216, 0.408);
+  width: 70%;
+  // padding: 0 50px;
+  padding: 0 50px 50px 50px;
+  border: none;
+}
+
+// .login-forms{
+//   padding: 50px;
+// }
+.form {
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.form.active {
+  display: flex;
+}
+
+#admin-email, //ändrat från  #admin-id
   #user-email, //user-id,
   #admin-password,
   #user-password {
-    background-color: white;
-    border-radius: 50px;
-    box-shadow: 0 5px 15px rgba(210, 210, 210, 0.1);
-    padding: 5px 20px;
-    border: 2px solid #f5f5f5b7;
-    background: transparent;
-    font-size: 1rem;
-    height: 1.8rem;
-    padding-left: 1.5rem;
-  }
-  
-  #admin-email:focus, 
-  #user-email:focus, 
-  #admin-password:focus,
-  #user-password:focus {
-    outline: none;
-  }
-  
-  .login-btn {
-    background-color: #319a84;
-    color: white;
-    border-radius: 50px;
-    margin-top: 5px;
-    padding: 0.5rem 1.2rem;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-  }
-  
-  .login-btn:hover {
-    background-color: #267666;
-  }
-  
-  .login-actions{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+  background-color: white;
+  border-radius: 50px;
+  box-shadow: 0 5px 15px rgba(210, 210, 210, 0.1);
+  padding: 5px 20px;
+  border: 2px solid #f5f5f5b7;
+  background: transparent;
+  font-size: 1rem;
+  height: 1.8rem;
+  padding-left: 1.5rem;
+}
+
+#admin-email:focus,
+#user-email:focus,
+#admin-password:focus,
+#user-password:focus {
+  outline: none;
+}
+
+.login-btn {
+  background-color: #319a84;
+  color: white;
+  border-radius: 50px;
+  margin-top: 5px;
+  padding: 0.5rem 1.2rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.login-btn:hover {
+  background-color: #267666;
+}
+
+.login-actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  // margin: 0 20px;
+  gap: 110px;
+  font-size: 11px;
+}
+
+@media (max-width: 768px) {
+  #login-container {
     width: 100%;
-    // margin: 0 20px;
-    gap: 110px;
-    font-size: 11px;
+    max-width: 95%;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: none;
   }
+
+  .toggle-buttons {
+    flex-direction: column;
+    gap: 0.5rem;
+
+    button {
+      font-size: 0.95rem;
+      padding: 0.6rem;
+    }
+  }
+
+  .login-forms {
+    width: 100%;
+    padding: 0 1rem 2rem 1rem;
+  }
+
+  .form {
+    gap: 0.75rem;
+  }
+
+  #admin-email,
+  #user-email,
+  #admin-password,
+  #user-password {
+    font-size: 1rem;
+    padding: 0.6rem 1rem;
+    height: auto;
+  }
+
+  .login-btn {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+  }
+
+  .login-actions {
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: center;
+    font-size: 0.85rem;
+  }
+}

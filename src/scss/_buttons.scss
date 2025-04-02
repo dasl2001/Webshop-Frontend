@@ -15,6 +15,8 @@
   font-size: 1.5rem;
   font-weight: bold;
   cursor: pointer;
+  background: none;
+  border: none;
 }
 
 .add-to-cart-btn {
@@ -30,6 +32,11 @@
   &:hover {
     background-color: #267666;
   }
+
+  @media (max-width: 768px) {
+    padding: 0.75rem 1.2rem;
+    font-size: 1rem;
+  }
 }
 
 .pagination-button {
@@ -38,6 +45,7 @@
   background-color: #e0e0e0;
   cursor: pointer;
   border-radius: 5px;
+  font-size: 1rem;
 
   &.active {
     background-color: #319a84;
@@ -48,32 +56,51 @@
   &:hover {
     background-color: #267666;
   }
+
+  @media (max-width: 768px) {
+    padding: 0.75rem;
+    font-size: 0.9rem;
+  }
 }
 
 //login
 
-#userBtn{
-  border-radius: 0 10px 0 0;
-  padding: 13px 0;
+#userBtn,
+#adminBtn {
+  padding: 0.8rem 1.2rem;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
 }
-#adminBtn{
-  border-radius: 10px 0 0 0 ;
-  padding: 10 0px;
+
+#userBtn {
+  border-radius: 0 10px 0 0;
+}
+
+#adminBtn {
+  border-radius: 10px 0 0 0;
 }
 
 //Admin-dashboard
 
-#logoutBtn{
+#logoutBtn {
+  background-color: #319a84;
+  color: white;
+  border-radius: 50px;
+  padding: 0.5rem 1.2rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  font-size: 1rem;
 
-    background-color: #319a84;
-    color: white;
-    border-radius: 50px;
-    padding: 0.5rem 1.2rem;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-  }
-  
   #logoutBtn:hover {
     background-color: #267666;
   }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    font-size: 1rem;
+    padding: 0.75rem 1rem;
+    text-align: center;
+  }
+}
