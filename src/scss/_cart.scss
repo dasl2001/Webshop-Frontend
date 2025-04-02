@@ -114,7 +114,25 @@
     background-color: white;
     padding-top: 1rem;
     border-top: 1px solid #eee;
-    text-align: right;
+
+    .cart-total-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+
+      .label {
+        font-weight: bold;
+        font-size: 1rem;
+        color: #333;
+      }
+
+      .value {
+        font-weight: bold;
+        font-size: 1rem;
+        color: #333;
+      }
+    }
 
     .checkout-btn {
       width: 100%;
