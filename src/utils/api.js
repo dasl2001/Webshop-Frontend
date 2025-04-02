@@ -24,3 +24,23 @@ export async function fetchCategories(endpoint = "api/categories") {
   }
   return [];
 }
+
+export async function loginAdmin(email, password) {
+  const response = await fetch(`${getBaseUrl()}api/auth/login`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      identifier: email,
+      password,
+    }),
+  });
+
+  if (!response.ok) {
+    throw new Error("Felaktiga inloggningsuppgifter");
+  }
+
+  const data = await response.json();
+  return data;
+}
