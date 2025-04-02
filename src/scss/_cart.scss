@@ -114,7 +114,25 @@
     background-color: white;
     padding-top: 1rem;
     border-top: 1px solid #eee;
-    text-align: right;
+
+    .cart-total-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+
+      .label {
+        font-weight: bold;
+        font-size: 1rem;
+        color: #333;
+      }
+
+      .value {
+        font-weight: bold;
+        font-size: 1rem;
+        color: #333;
+      }
+    }
 
     .checkout-btn {
       width: 100%;
@@ -130,6 +148,64 @@
       &:hover {
         background-color: #267666;
       }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .cart-offcanvas {
+    width: 100vw;
+    border-radius: 0;
+  }
+
+  .cart-content {
+    padding: 1rem;
+  }
+
+  .cart-item {
+    padding: 12px 1rem;
+
+    .cart-item-info {
+      p:first-child {
+        font-size: 15px;
+      }
+
+      p:last-child {
+        font-size: 13px;
+      }
+    }
+
+    .cart-item-actions {
+      gap: 0.4rem;
+
+      button {
+        width: 30px;
+        height: 30px;
+        font-size: 16px;
+      }
+
+      span {
+        font-size: 1rem;
+      }
+    }
+  }
+
+  .cart-footer {
+    padding: 1rem;
+
+    .cart-total-row {
+      flex-direction: column;
+      align-items: flex-start;
+
+      .label,
+      .value {
+        font-size: 1rem;
+      }
+    }
+
+    .checkout-btn {
+      padding: 0.9rem;
+      font-size: 1rem;
     }
   }
 }

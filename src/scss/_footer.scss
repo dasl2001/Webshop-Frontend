@@ -1,21 +1,35 @@
-//  Footern 
+// Footern
 
 .site-footer {
-    background-color: #f5f5f5;
-    text-align: center;
-    padding: 1rem 0;
-    margin-top: auto;
-  }
-  
-  .footer-links {
-    margin-top: 0.5rem;
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-  
-    a {
-      text-decoration: none;
-      color: black;
+  background-color: #f5f5f5;
+  text-align: center;
+  padding: 1rem 0;
+  margin-top: auto;
+
+  p {
+    margin: 0;
+    font-size: 1rem;
+
+    @media (max-width: 768px) {
+      font-size: 0.9rem;
     }
   }
-  
+}
+
+.footer-links {
+  margin-top: 0.5rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  a {
+    text-decoration: none;
+    color: black;
+    font-size: 1rem;
+
+    @media (max-width: 768px) {
+      font-size: 0.9rem;
+    }
+  }
+}

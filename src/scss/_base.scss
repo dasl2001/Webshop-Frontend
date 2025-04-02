@@ -19,11 +19,17 @@ body {
   padding: 2rem;
   max-width: 1000px;
   margin: auto;
-  // border: orange 3px solid !important;
-  // background-color: aqua !important;
 
   h1 {
     font-size: 2rem;
     margin-bottom: 1rem;
+  }
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+
+    h1 {
+      font-size: 1.5rem;
+    }
   }
 }
