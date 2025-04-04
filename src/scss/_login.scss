@@ -176,17 +176,23 @@
     flex-direction: row;
     justify-content: center;
     width: 100%;
+    margin-top: 12px;
     padding: 0.75rem;
     font-size: 1rem;
   }
+
+  #admin-login-btn{
+    margin-bottom: 15px;
+  }
+
 
   .login-actions {
     flex-direction: row;
     // gap: 0.75rem;
     justify-content: space-around;
-    margin-left: 25px;
     margin-right: 25px;
     font-size: 0.85rem;
     gap:80px !important;
+
   }
 }
