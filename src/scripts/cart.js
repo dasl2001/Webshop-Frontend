@@ -110,13 +110,8 @@ function setupCartButtonEvents() {
     btn.addEventListener("click", () => {
       const cart = getCart();
       const product = cart.find((p) => p._id === btn.dataset.id);
-      if (product) {
-        if (product.quantity > 1) {
-          product.quantity -= 1;
-        } else {
-          const index = cart.findIndex((p) => p._id === btn.dataset.id);
-          if (index !== -1) cart.splice(index, 1);
-        }
+      if (product && product.quantity > 1) {
+        product.quantity -= 1;
         saveCart(cart);
         updateCartUI();
       }
@@ -136,6 +131,7 @@ function setupCartButtonEvents() {
     });
   });
 }
+
 document.addEventListener("DOMContentLoaded", () => {
   updateCartUI();
 });
