@@ -15,9 +15,9 @@ body {
 }
 
 .main-content {
-  padding-top: 6rem;
   flex: 1;
   padding: 2rem;
+  padding-top: 0;
   max-width: 1000px;
   margin: auto;
 
@@ -34,3 +34,4 @@ body {
     }
   }
 }
+

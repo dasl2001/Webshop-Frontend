@@ -74,7 +74,19 @@
 
         <!-- MAIN -->
         <main class="main-content">
+          <div class="sort-dropdown-wrapper">
+            <button id="sort-toggle" class="sort-button">
+              Sortera
+              <span class="arrow">▾</span>
+            </button>
+            <ul id="sort-options" class="sort-options hidden">
+              <li data-value="asc">Pris: Lägst till högst</li>
+              <li data-value="desc">Pris: Högst till lägst</li>
+            </ul>
+          </div>
+
           <div id="products"></div>
+
           <div id="pagination" class="pagination-container"></div>
         </main>
       </div>

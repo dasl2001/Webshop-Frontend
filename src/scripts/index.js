@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
   loadProducts();
   loadCategories();
   initSearch();
+  initSort();
 });
 
 // Ladda produkter och visa dem med paginering
@@ -42,7 +43,7 @@ async function loadProducts(category = null) {
 
     if (filteredProducts.length > 0) {
       currentPage = 1;
-      renderPaginatedProducts(filteredProducts);
+      renderPaginatedProducts(filteredProducts, false);
       renderPagination(filteredProducts.length);
     } else {
       productsContainer.innerHTML = "<p>Inga produkter hittades.</p>";
@@ -54,8 +55,10 @@ async function loadProducts(category = null) {
 }
 
 // Rendera produkter för aktuell sida
-function renderPaginatedProducts(products) {
-  document.getElementById("products").scrollIntoView({ behavior: "smooth" });
+function renderPaginatedProducts(products, scrollToTop = true) {
+  if (scrollToTop) {
+    document.getElementById("products").scrollIntoView({ behavior: "smooth" });
+  }
 
   const start = (currentPage - 1) * productsPerPage;
   const end = start + productsPerPage;
@@ -91,7 +94,7 @@ function renderPagination(totalProducts) {
   prevBtn.addEventListener("click", () => {
     if (currentPage > 1) {
       currentPage--;
-      renderPaginatedProducts(filteredProducts);
+      renderPaginatedProducts(filteredProducts, true);
       renderPagination(filteredProducts.length);
     }
   });
@@ -106,7 +109,7 @@ function renderPagination(totalProducts) {
 
     btn.addEventListener("click", () => {
       currentPage = i;
-      renderPaginatedProducts(filteredProducts);
+      renderPaginatedProducts(filteredProducts, true);
       renderPagination(filteredProducts.length);
     });
 
@@ -121,7 +124,7 @@ function renderPagination(totalProducts) {
   nextBtn.addEventListener("click", () => {
     if (currentPage < totalPages) {
       currentPage++;
-      renderPaginatedProducts(filteredProducts);
+      renderPaginatedProducts(filteredProducts, true);
       renderPagination(filteredProducts.length);
     }
   });
@@ -230,12 +233,44 @@ function initSearch() {
 
       filteredProducts = searchResults;
       currentPage = 1;
-      renderPaginatedProducts(filteredProducts);
+      renderPaginatedProducts(filteredProducts, false);
       renderPagination(filteredProducts.length);
     } catch (error) {
       console.error("Sökningen misslyckades:", error);
       document.getElementById("products").innerHTML =
         "<p>Det gick inte att söka just nu.</p>";
+    }
+  });
+}
+
+function initSort() {
+  const sortToggle = document.getElementById("sort-toggle");
+  const sortOptions = document.getElementById("sort-options");
+
+  sortToggle.addEventListener("click", () => {
+    sortOptions.classList.toggle("hidden");
+  });
+
+  sortOptions.addEventListener("click", (e) => {
+    if (e.target.tagName === "LI") {
+      const value = e.target.dataset.value;
+      if (value === "asc") {
+        filteredProducts.sort((a, b) => a.price - b.price);
+      } else if (value === "desc") {
+        filteredProducts.sort((a, b) => b.price - a.price);
+      }
+
+      currentPage = 1;
+      renderPaginatedProducts(filteredProducts, false);
+      renderPagination(filteredProducts.length);
+      sortOptions.classList.add("hidden");
+    }
+  });
+
+  // Stäng dropdown om man klickar utanför
+  document.addEventListener("click", (e) => {
+    if (!sortToggle.contains(e.target) && !sortOptions.contains(e.target)) {
+      sortOptions.classList.add("hidden");
     }
   });
 }
