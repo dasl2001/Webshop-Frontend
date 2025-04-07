@@ -53,6 +53,7 @@
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 1rem;
+  min-height: 320px;
   text-align: center;
   transition:
     transform 0.2s ease,
@@ -69,10 +70,10 @@
 
   .product-image {
     width: 100%;
-    max-height: 150px;
+    height: 150px;
     object-fit: contain;
-    margin-bottom: 1rem;
-    border-radius: 6px;
+    display: block;
+    margin: 0 auto 1rem auto;
     background-color: transparent;
   }
 
@@ -105,9 +106,10 @@
 
   .product-card {
     padding: 0.75rem;
+    min-height: 280px;
 
     .product-image {
-      max-height: 120px;
+      height: 120px;
     }
 
     h3 {

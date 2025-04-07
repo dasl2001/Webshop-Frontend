@@ -404,6 +404,7 @@ body {
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 1rem;
+  min-height: 320px;
   text-align: center;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   cursor: pointer;
@@ -417,11 +418,11 @@ body {
 }
 .product-card .product-image {
   width: 100%;
-  max-height: 150px;
+  height: 150px;
   -o-object-fit: contain;
      object-fit: contain;
-  margin-bottom: 1rem;
-  border-radius: 6px;
+  display: block;
+  margin: 0 auto 1rem auto;
   background-color: transparent;
 }
 .product-card h3 {
@@ -449,9 +450,10 @@ body {
   }
   .product-card {
     padding: 0.75rem;
+    min-height: 280px;
   }
   .product-card .product-image {
-    max-height: 120px;
+    height: 120px;
   }
   .product-card h3 {
     font-size: 1rem;
