@@ -86,48 +86,74 @@ function renderPagination(totalProducts) {
   const totalPages = Math.ceil(totalProducts / productsPerPage);
   if (totalPages <= 1) return;
 
-  // Föregående
-  const prevBtn = document.createElement("button");
-  prevBtn.textContent = "Föregående";
-  prevBtn.classList.add("pagination-button");
-  prevBtn.disabled = currentPage === 1;
-  prevBtn.addEventListener("click", () => {
-    if (currentPage > 1) {
-      currentPage--;
-      renderPaginatedProducts(filteredProducts, true);
-      renderPagination(filteredProducts.length);
+  const createPageButton = (text, page = null, isActive = false) => {
+    const btn = document.createElement("button");
+    btn.textContent = text;
+    btn.classList.add("pagination-button");
+
+    if (isActive) btn.classList.add("active");
+
+    if (page !== null) {
+      btn.addEventListener("click", () => {
+        currentPage = page;
+        renderPaginatedProducts(filteredProducts);
+        renderPagination(filteredProducts.length);
+      });
+    } else {
+      btn.disabled = true;
     }
-  });
+
+    return btn;
+  };
+
+  // Föregående
+  const prevBtn = createPageButton(
+    "Föregående",
+    currentPage > 1 ? currentPage - 1 : null,
+  );
   paginationContainer.appendChild(prevBtn);
 
-  // Sidnummer
+  const maxVisible = 2;
+
+  const pages = [];
   for (let i = 1; i <= totalPages; i++) {
-    const btn = document.createElement("button");
-    btn.textContent = i;
-    btn.classList.add("pagination-button");
-    if (i === currentPage) btn.classList.add("active");
-
-    btn.addEventListener("click", () => {
-      currentPage = i;
-      renderPaginatedProducts(filteredProducts, true);
-      renderPagination(filteredProducts.length);
-    });
-
-    paginationContainer.appendChild(btn);
+    if (
+      i === 1 ||
+      i === totalPages ||
+      (i >= currentPage - maxVisible && i <= currentPage + maxVisible)
+    ) {
+      pages.push(i);
+    } else if (
+      (i === currentPage - maxVisible - 1 && i > 1) ||
+      (i === currentPage + maxVisible + 1 && i < totalPages)
+    ) {
+      pages.push("...");
+    }
   }
 
-  // Nästa
-  const nextBtn = document.createElement("button");
-  nextBtn.textContent = "Nästa";
-  nextBtn.classList.add("pagination-button");
-  nextBtn.disabled = currentPage === totalPages;
-  nextBtn.addEventListener("click", () => {
-    if (currentPage < totalPages) {
-      currentPage++;
-      renderPaginatedProducts(filteredProducts, true);
-      renderPagination(filteredProducts.length);
+  let prevWasEllipsis = false;
+  pages.forEach((page) => {
+    if (page === "...") {
+      if (!prevWasEllipsis) {
+        const ellipsis = document.createElement("span");
+        ellipsis.textContent = "...";
+        ellipsis.classList.add("pagination-ellipsis");
+        paginationContainer.appendChild(ellipsis);
+        prevWasEllipsis = true;
+      }
+    } else {
+      paginationContainer.appendChild(
+        createPageButton(page, page, page === currentPage),
+      );
+      prevWasEllipsis = false;
     }
   });
+
+  // Nästa
+  const nextBtn = createPageButton(
+    "Nästa",
+    currentPage < totalPages ? currentPage + 1 : null,
+  );
   paginationContainer.appendChild(nextBtn);
 }
 

@@ -3,7 +3,6 @@
 .sort-dropdown-wrapper {
   position: relative;
   display: inline-block;
-  
 
   .sort-button {
     background-color: white;
@@ -149,6 +148,11 @@
   justify-content: center;
   margin: 2rem 0;
   gap: 0.5rem;
+}
+
+.pagination-ellipsis {
+  padding: 0.5rem;
+  color: #888;
 }
 
 @media (max-width: 768px) {

@@ -490,6 +490,11 @@ body {
   gap: 0.5rem;
 }
 
+.pagination-ellipsis {
+  padding: 0.5rem;
+  color: #888;
+}
+
 @media (max-width: 768px) {
   #products {
     grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
