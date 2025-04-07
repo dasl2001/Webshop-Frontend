@@ -1,13 +1,6 @@
 // Alla olika typer av knappar och deras lägen – t.ex. standard-knappar, cta-button hover/active-states osv.
 
-// .button {
-//   padding: 15px 20px;
-//   border: none;
-//   cursor: pointer;
-// }
-
-// Product-modal-buttons
-
+// Product-modal stängknapp
 .close-button {
   position: absolute;
   top: 0.5rem;
@@ -19,6 +12,7 @@
   border: none;
 }
 
+// Lägg i varukorg-knapp
 .add-to-cart-btn {
   margin-top: auto;
   background-color: #319a84;
@@ -39,6 +33,60 @@
   }
 }
 
+// Sorteringsknapp (dropdown toggle)
+.sort-dropdown-wrapper {
+  position: relative;
+  display: inline-block;
+
+  .sort-button {
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 50px;
+    padding: 0.5rem 1rem;
+    font-weight: normal;
+    font-size: 0.9rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    .arrow {
+      font-size: 0.9rem;
+    }
+  }
+
+  .sort-options {
+    position: absolute;
+    top: 110%;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    list-style: none;
+    padding: 0;
+    margin: 0.3rem 0 0 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    z-index: 10;
+
+    li {
+      font-size: 0.9rem;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #f5f5f5;
+      }
+    }
+
+    &.hidden {
+      display: none;
+    }
+  }
+}
+
+// Pagination-knappar
 .pagination-button {
   padding: 0.5rem 1rem;
   border: none;
@@ -63,8 +111,13 @@
   }
 }
 
-//login
+// Pagination-ellips (…)
+.pagination-ellipsis {
+  padding: 0.5rem;
+  color: #888;
+}
 
+// Login toggle-knappar
 #userBtn,
 #adminBtn {
   padding: 0.8rem 1.2rem;
@@ -81,8 +134,7 @@
   border-radius: 10px 0 0 0;
 }
 
-//Admin-dashboard
-
+// Logout-knapp
 #logoutBtn {
   background-color: #319a84;
   color: white;
@@ -93,7 +145,7 @@
   transition: background-color 0.2s ease;
   font-size: 1rem;
 
-  #logoutBtn:hover {
+  &:hover {
     background-color: #267666;
   }
 
@@ -102,5 +154,49 @@
     font-size: 1rem;
     padding: 0.75rem 1rem;
     text-align: center;
+  }
+}
+
+// Cart-knappar (+/–/papperskorg)
+.cart-item-actions button {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: #f4f4f4;
+  border: none;
+  font-size: 14px;
+  font-weight: normal;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: #e0e0e0;
+  }
+
+  &.remove-item {
+    background-color: transparent;
+    font-size: 14px;
+  }
+}
+
+// Checkout-knapp
+.cart-footer .checkout-btn {
+  width: 100%;
+  padding: 1rem;
+  background-color: #319a84;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #267666;
+  }
+
+  @media (max-width: 768px) {
+    padding: 0.9rem;
+    font-size: 1rem;
   }
 }
