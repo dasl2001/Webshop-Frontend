@@ -1,4 +1,5 @@
 // Alla olika typer av knappar och deras lägen – t.ex. standard-knappar, cta-button hover/active-states osv.
+@use "./variables" as *;
 
 // Product-modal stängknapp
 .close-button {
@@ -15,7 +16,7 @@
 // Lägg i varukorg-knapp
 .add-to-cart-btn {
   margin-top: auto;
-  background-color: #319a84;
+  background-color: $primary-color;
   color: white;
   border: none;
   border-radius: 5px;
@@ -24,7 +25,7 @@
   transition: background-color 0.2s ease;
 
   &:hover {
-    background-color: #267666;
+    background-color: $button-hover;
   }
 
   @media (max-width: 768px) {
@@ -96,13 +97,13 @@
   font-size: 1rem;
 
   &.active {
-    background-color: #319a84;
+    background-color: $primary-color;
     color: white;
     font-weight: bold;
   }
 
   &:hover {
-    background-color: #267666;
+    background-color: $button-hover;
   }
 
   @media (max-width: 768px) {
@@ -136,7 +137,7 @@
 
 // Logout-knapp
 #logoutBtn {
-  background-color: #319a84;
+  background-color: $primary-color;
   color: white;
   border-radius: 50px;
   padding: 0.5rem 1.2rem;
@@ -146,7 +147,7 @@
   font-size: 1rem;
 
   &:hover {
-    background-color: #267666;
+    background-color: $button-hover;
   }
 
   @media (max-width: 768px) {
@@ -157,7 +158,7 @@
   }
 }
 
-// Cart-knappar (+/–/papperskorg)
+// OffCanvas Cart-knappar (+/–/papperskorg)
 .cart-item-actions button {
   width: 25px;
   height: 25px;
@@ -179,11 +180,11 @@
   }
 }
 
-// Checkout-knapp
+// Checkout-knapp "Till Kassan"
 .cart-footer .checkout-btn {
   width: 100%;
   padding: 1rem;
-  background-color: #319a84;
+  background-color: $primary-color;
   color: white;
   font-size: 15px;
   font-weight: bold;
@@ -192,7 +193,7 @@
   cursor: pointer;
 
   &:hover {
-    background-color: #267666;
+    background-color: $button-hover;
   }
 
   @media (max-width: 768px) {

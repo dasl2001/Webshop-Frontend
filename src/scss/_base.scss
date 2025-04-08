@@ -1,17 +1,21 @@
 // Grundinstyling för typsnitt, margin/padding på body/html,
 
-@use "./variables";
+@use "./variables" as*;
 
 :root {
   font-family: "Roboto", sans-serif;
-  color: variables.$text-color;
-  background-color: variables.$bg-color;
+  color: $text-color;
+  background-color: $bg-color;
 }
+
 html,
 body {
-  color: variables.$text-color;
+  color: $text-color;
+  background-color: $bg-color;
   margin: 0;
   padding: 0;
+  line-height: 1.6;
+  padding-bottom: 2rem;
 }
 
 .main-content {
@@ -34,4 +38,3 @@ body {
     }
   }
 }
-

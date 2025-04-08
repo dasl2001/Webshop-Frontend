@@ -1,4 +1,4 @@
-// Alla partials ska finnas här: 
+// Alla partials ska finnas här:
 @use "./variables" as *;
 @use "./mixins" as *;
 
@@ -12,6 +12,7 @@
 @use "./sidebar";
 @use "./components";
 @use "./searchbar";
+@use "./banner";
 
 // Buttons
 @use "./buttons";
@@ -22,4 +23,3 @@
 @use "./products";
 @use "./cart";
 @use "./login";
-

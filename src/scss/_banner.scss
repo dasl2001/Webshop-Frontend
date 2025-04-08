@@ -1,0 +1,23 @@
+@use "./variables" as *;
+
+.top-banner {
+  background-color: $primary-color;
+  color: white;
+  text-align: center;
+  padding: 0.5rem 1rem;
+  font-weight: normal;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  position: sticky;
+  top: 0;
+  z-index: 1100;
+
+  p {
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 0.85rem;
+    padding: 0.4rem;
+  }
+}

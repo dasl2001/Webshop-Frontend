@@ -1,4 +1,5 @@
 //Layoutstrukturen – t.ex. site-wrapper, content-container, grid/flex-uppdelning.
+@use "./variables" as *;
 
 .site-wrapper {
   display: flex;

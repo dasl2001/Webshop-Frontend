@@ -7,13 +7,17 @@
     <link rel="stylesheet" href="/public/css/main.css" />
   </head>
   <body>
+    <div class="top-banner">
+      <p>Erbjudande! Köp 3 betala för 2 på snacks! Gäller t.o.m. söndag!</p>
+    </div>
+
     <div class="site-wrapper">
       <!-- HEADER -->
       <header class="site-header">
         <nav>
           <a href="index.html">
             <img
-              src="/src/assets/hakim-logo-color-319a84.png"
+              src="src/assets/hakim-logo-black.png"
               id="hakim-logo"
               alt="Logotype for Hakim's Livs"
             />
@@ -50,14 +54,29 @@
             </div>
           </div>
 
-          <ul class="nav-links">
-            <li>
-              <a href="/pages/cart.html">
-                Varukorg <span class="cart-count">(0)</span>
+          <ul class="nav-actions">
+            <li class="nav-login">
+              <a href="/pages/login.html">
+                <img
+                  src="/src/assets/user-svgrepo-com.svg"
+                  alt="Logga in ikon"
+                  class="nav-icon"
+                />
+                Logga in
               </a>
             </li>
-
-            <li><a href="/pages/login.html">Logga in</a></li>
+            <li class="nav-cart">
+              <a href="/pages/cart.html">
+                <div class="cart-icon-wrapper">
+                  <img
+                    src="/src/assets/shopping-cart-01-svgrepo-com.svg"
+                    alt="Varukorg"
+                    class="nav-icon"
+                  />
+                  <span class="cart-count">0</span>
+                </div>
+              </a>
+            </li>
           </ul>
         </nav>
       </header>
@@ -68,6 +87,7 @@
         <aside>
           <section class="sidebar-section">
             <h2>Kategorier</h2>
+            <p class="sidebar-subheading">Utforska kategorier</p>
             <ul id="category-list" class="category-list"></ul>
           </section>
         </aside>

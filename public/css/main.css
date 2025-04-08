@@ -1,14 +1,17 @@
 :root {
   font-family: "Roboto", sans-serif;
-  color: #333;
-  background-color: #fff;
+  color: #2e2e2e;
+  background-color: rgba(249, 246, 243, 0.9568627451);
 }
 
 html,
 body {
-  color: #333;
+  color: #2e2e2e;
+  background-color: rgba(249, 246, 243, 0.9568627451);
   margin: 0;
   padding: 0;
+  line-height: 1.6;
+  padding-bottom: 2rem;
 }
 
 .main-content {
@@ -59,7 +62,7 @@ body {
   z-index: 1000;
   padding: 1rem 2rem;
   background-color: white;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  border-bottom: 2px solid #e30613;
 }
 @media (max-width: 768px) {
   .site-header {
@@ -79,28 +82,96 @@ body {
     gap: 1rem;
   }
 }
-
-.nav-links {
+.site-header nav a {
   display: flex;
+  align-items: center;
+}
+.site-header #hakim-logo {
+  max-height: 130px;
+  height: auto;
+  width: auto;
+}
+@media (max-width: 768px) {
+  .site-header #hakim-logo {
+    max-height: 50px;
+  }
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
   gap: 1.5rem;
   list-style: none;
   padding: 0;
   margin: 0;
 }
-@media (max-width: 768px) {
-  .nav-links {
-    flex-direction: column;
-    gap: 0.5rem;
-    width: 100%;
-  }
+.nav-actions li {
+  display: flex;
+  align-items: center;
 }
-.nav-links a {
+.nav-actions li a {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
   text-decoration: none;
-  color: black;
+  color: #2e2e2e;
   font-size: 1rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+.nav-actions li a:hover {
+  color: #e30613;
+}
+.nav-actions li a:hover .nav-icon {
+  filter: brightness(0) saturate(100%) invert(17%) sepia(95%) saturate(7484%) hue-rotate(352deg) brightness(95%) contrast(106%);
+}
+.nav-actions li a .nav-icon {
+  width: 20px;
+  height: 20px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  transition: filter 0.2s ease;
+}
+.nav-actions li a .cart-icon-wrapper {
+  position: relative;
+  background-color: #e30613;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.nav-actions li a .cart-icon-wrapper .nav-icon {
+  width: 24px;
+  height: 24px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+.nav-actions li a .cart-icon-wrapper:hover {
+  background-color: #b70010;
+}
+.nav-actions li a .cart-icon-wrapper .cart-count {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background-color: rgba(249, 246, 243, 0.9568627451);
+  color: #e30613;
+  font-size: 0.75rem;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 999px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  min-width: 20px;
+  text-align: center;
 }
 @media (max-width: 768px) {
-  .nav-links a {
+  .nav-actions {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .nav-actions li a {
     font-size: 0.95rem;
   }
 }
@@ -140,25 +211,48 @@ body {
 }
 
 .sidebar-section {
-  background-color: #f8f8f8;
-  padding: 1rem;
-  border-radius: 8px;
-  width: 200px;
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  width: 220px;
 }
 .sidebar-section h2 {
   font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: #2e2e2e;
+}
+.sidebar-section .sidebar-subheading {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #777;
   margin-bottom: 1rem;
+}
+.sidebar-section .category-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.sidebar-section .category-list li {
+  cursor: pointer;
+  padding: 0.4rem 0;
+  transition: color 0.2s ease;
+}
+.sidebar-section .category-list li:hover {
+  color: #e30613;
+  text-decoration: underline;
+}
+.sidebar-section .category-list li.active {
+  font-weight: bold;
+  color: #e30613;
 }
 
 @media (max-width: 768px) {
   .sidebar-section {
     width: 100%;
+    padding: 1rem;
+    border-radius: 8px;
     margin-bottom: 1rem;
-    padding: 0.75rem;
-    border-radius: 6px;
-  }
-  .sidebar-section h2 {
-    font-size: 1.1rem;
   }
 }
 #hakim-logo {
@@ -192,15 +286,17 @@ body {
 .custom-search-wrapper {
   display: flex;
   justify-content: center;
+  align-items: center;
   margin: 1rem auto;
-  max-width: 600px;
+  max-width: 700px;
   width: 100%;
 }
 
 .custom-search-container {
-  background-color: white;
+  background-color: rgba(249, 246, 243, 0.9568627451);
+  border: 1px solid #e30613;
   border-radius: 50px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   padding: 10px 20px;
   width: 100%;
 }
@@ -209,6 +305,7 @@ body {
   display: flex;
   align-items: center;
   gap: 1rem;
+  width: 100%;
 }
 
 .search-input {
@@ -217,14 +314,30 @@ body {
   font-size: 1rem;
   flex: 1;
   height: 40px;
-  padding-left: 1.5rem;
+  padding-left: 1.2rem;
+  color: #2e2e2e;
+}
+.search-input::-moz-placeholder {
+  color: #999;
+  opacity: 1;
+}
+.search-input::placeholder {
+  color: #999;
+  opacity: 1;
 }
 .search-input:focus {
   outline: none;
+  background-color: white;
+}
+.search-input:-webkit-autofill, .search-input:-webkit-autofill:hover, .search-input:-webkit-autofill:focus {
+  box-shadow: 0 0 0px 1000px white inset !important;
+  -webkit-text-fill-color: #2e2e2e;
+  -webkit-transition: background-color 5000s ease-in-out 0s;
+  transition: background-color 5000s ease-in-out 0s;
 }
 
 .search-button {
-  background-color: #319a84;
+  background-color: #e30613;
   color: white;
   border-radius: 50px;
   padding: 0.5rem 1.2rem;
@@ -233,11 +346,12 @@ body {
   transition: background-color 0.2s ease;
 }
 .search-button:hover {
-  background-color: #267666;
+  background-color: #b70010;
 }
 
 .search-icon {
-  color: #6c757d;
+  color: #999;
+  flex-shrink: 0;
 }
 
 @media (max-width: 768px) {
@@ -246,8 +360,9 @@ body {
     margin: 1rem 0;
   }
   .custom-search-container {
-    padding: 8px 16px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    padding: 10px 16px;
+    border-radius: 40px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
   }
   .custom-search-form {
     flex-direction: column;
@@ -256,7 +371,7 @@ body {
   }
   .search-input {
     padding-left: 1rem;
-    height: 36px;
+    height: 38px;
     font-size: 0.95rem;
   }
   .search-button {
@@ -265,6 +380,28 @@ body {
     padding: 0.6rem 1rem;
   }
 }
+.top-banner {
+  background-color: #e30613;
+  color: white;
+  text-align: center;
+  padding: 0.5rem 1rem;
+  font-weight: normal;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  position: sticky;
+  top: 0;
+  z-index: 1100;
+}
+.top-banner p {
+  margin: 0;
+}
+@media (max-width: 768px) {
+  .top-banner {
+    font-size: 0.85rem;
+    padding: 0.4rem;
+  }
+}
+
 .close-button {
   position: absolute;
   top: 0.5rem;
@@ -278,7 +415,7 @@ body {
 
 .add-to-cart-btn {
   margin-top: auto;
-  background-color: #319a84;
+  background-color: #e30613;
   color: white;
   border: none;
   border-radius: 5px;
@@ -287,7 +424,7 @@ body {
   transition: background-color 0.2s ease;
 }
 .add-to-cart-btn:hover {
-  background-color: #267666;
+  background-color: #b70010;
 }
 @media (max-width: 768px) {
   .add-to-cart-btn {
@@ -351,12 +488,12 @@ body {
   font-size: 1rem;
 }
 .pagination-button.active {
-  background-color: #319a84;
+  background-color: #e30613;
   color: white;
   font-weight: bold;
 }
 .pagination-button:hover {
-  background-color: #267666;
+  background-color: #b70010;
 }
 @media (max-width: 768px) {
   .pagination-button {
@@ -387,7 +524,7 @@ body {
 }
 
 #logoutBtn {
-  background-color: #319a84;
+  background-color: #e30613;
   color: white;
   border-radius: 50px;
   padding: 0.5rem 1.2rem;
@@ -397,7 +534,7 @@ body {
   font-size: 1rem;
 }
 #logoutBtn:hover {
-  background-color: #267666;
+  background-color: #b70010;
 }
 @media (max-width: 768px) {
   #logoutBtn {
@@ -430,7 +567,7 @@ body {
 .cart-footer .checkout-btn {
   width: 100%;
   padding: 1rem;
-  background-color: #319a84;
+  background-color: #e30613;
   color: white;
   font-size: 15px;
   font-weight: bold;
@@ -439,7 +576,7 @@ body {
   cursor: pointer;
 }
 .cart-footer .checkout-btn:hover {
-  background-color: #267666;
+  background-color: #b70010;
 }
 @media (max-width: 768px) {
   .cart-footer .checkout-btn {

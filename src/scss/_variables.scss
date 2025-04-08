@@ -1,14 +1,15 @@
 // Alla färger, typsnitt, breakpoints och andra variabler som används i hela projektet
 
-$primary-color: #319a84;
-$bg-color: #fff;
-$text-color: #333;
+//$primary-color: #319a84;
+//$bg-color: #fff;
+//$text-color: #333;
 
 // Om vi vill köra ica inspererat (färgmässigt)
-//$primary-color: #e30613;
-//$bg-color: #f8f8f8;
-//$text-color: #2e2e2e;
-//$button-hover: #b70010;
+$primary-color: #e30613;
+//$bg-color: #f8f8f8; Den ljusgråa vi hade innan
+$bg-color: #f9f6f3f4; 
+$text-color: #2e2e2e;
+$button-hover: #b70010;
 
 $breakpoint-sm: 576px;
 $breakpoint-md: 768px;

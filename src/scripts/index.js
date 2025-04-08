@@ -211,9 +211,12 @@ async function loadCategories() {
   const categoriesContainer = document.getElementById("category-list");
   const categories = await fetchCategories();
 
+  // Skapa "Visa alla"
   const allCategoriesLi = document.createElement("li");
   allCategoriesLi.textContent = "Visa alla";
+  allCategoriesLi.classList.add("category-item");
   allCategoriesLi.addEventListener("click", () => {
+    setActiveCategory(allCategoriesLi);
     loadProducts();
   });
   categoriesContainer.appendChild(allCategoriesLi);
@@ -221,13 +224,23 @@ async function loadCategories() {
   categories.forEach((cat) => {
     const categoryLi = document.createElement("li");
     categoryLi.textContent = cat.name;
+    categoryLi.classList.add("category-item");
 
     categoryLi.addEventListener("click", () => {
+      setActiveCategory(categoryLi);
       loadProducts(cat);
     });
 
     categoriesContainer.appendChild(categoryLi);
   });
+}
+
+// Funktion för att markera aktiv kategori visuellt
+function setActiveCategory(selectedLi) {
+  document.querySelectorAll("#category-list li").forEach((li) => {
+    li.classList.remove("active");
+  });
+  selectedLi.classList.add("active");
 }
 
 function initSearch() {
