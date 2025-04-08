@@ -1,71 +1,82 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/public/css/main.css" />
     <title>Admin Dashboard - Hakim Livs</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="site-wrapper">
-        <header class="site-header">
-          <nav>
-            <a href="index.html">
-              <img
-                src="/src/assets/hakim-logo-color-319a84.png"
-                id="hakim-logo"
-                alt="Logotype for Hakim's Livs"
-              />
-            </a>
-  
-            <!-- SEARCHBAR -->
-            <div class="custom-search-wrapper">
-              <div class="custom-search-container">
-                <form class="custom-search-form">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="search-icon"
-                  >
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                  </svg>
-                  <input
-                    class="search-input"
-                    type="search"
-                    placeholder="Sök..."
-                    aria-label="Search"
-                  />
-                  <button class="search-button" type="submit">Sök</button>
-                </form>
-              </div>
-            </div>
-  
-            <ul class="nav-links">
-              <li>
-                <a href="/pages/cart.html">
-                  Varukorg <span class="cart-count">(0)</span>
-                </a>
-              </li>
-  
-              <li><a href="/pages/login.html">Logga in</a></li>
-            </ul>
-          </nav>
-        </header>
-  
-        <main class="main-content">
-    <h1>Admin - Dashboard</h1>
-    <h2>Här kan du som admin hantera innehållet för Hakim Livs</h2>
-    <button id="logoutBtn">Logga ut</button>
-    </main>
+      <header class="site-header">
+        <nav class="admin-nav">
+          <a href="index.html">
+            <img
+              src="/src/assets/hakim-logo-black.png"
+              id="hakim-logo"
+              alt="Logotype for Hakim's Livs"
+            />
+          </a>
+          <button id="logoutBtn">Logga ut</button>
+        </nav>
+      </header>
+
+      <main class="main-content">
+        <h1>Admin - Dashboard</h1>
+        <h2>Här kan du som admin hantera innehållet för Hakim Livs</h2>
+
+        <!-- Sök + Lägg till -->
+        <section class="admin-controls">
+          <div class="admin-actions">
+            <input
+              type="text"
+              id="admin-search"
+              placeholder="Sök efter produkt..."
+            />
+            <button id="add-product-btn">Lägg till produkt</button>
+          </div>
+        </section>
+
+        <!-- Lägg till ny produkt (visas via knapp) -->
+        <section id="add-product-section" class="add-product hidden">
+          <h3>Lägg till ny produkt</h3>
+          <form id="add-product-form">
+            <input
+              type="text"
+              id="new-name"
+              placeholder="Produktnamn"
+              required
+            />
+            <input
+              type="number"
+              id="new-price"
+              placeholder="Pris"
+              step="0.01"
+              required
+            />
+            <input type="text" id="new-image" placeholder="Bild-URL" required />
+
+            <label for="new-category">Kategori</label>
+            <select id="new-category" required>
+              <option value="" disabled selected>Välj kategori</option>
+              <!-- Kategorier fylls i med JS -->
+            </select>
+
+            <button type="submit">Spara produkt</button>
+            <button type="button" id="cancel-edit-btn" class="cancel hidden">
+              Avbryt redigering
+            </button>
+          </form>
+        </section>
+
+        <!-- Produktlista -->
+        <section class="product-list-section">
+          <h3>Produktöversikt</h3>
+          <div id="admin-product-list" class="product-list"></div>
+        </section>
+      </main>
+    </div>
 
     <script type="module" src="../src/scripts/admin-dashboard.js"></script>
-</body>
+  </body>
 </html>

@@ -5,22 +5,32 @@ export function getBaseUrl() {
   return "https://webshop-2025-be-g10-five.vercel.app";
 }
 
+// Om backend kräver token:
 export async function fetchProducts(endpoint = "/api/products") {
   const url = `${getBaseUrl()}${endpoint}`;
-  const response = await fetch(url);
+  const response = await fetch(url, {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  });
   if (response.ok) {
-    const data = await response.json();
-    return data;
+    return await response.json();
   }
   return [];
 }
 
+// Om backend kräver token:
 export async function fetchCategories(endpoint = "/api/categories") {
   const url = `${getBaseUrl()}${endpoint}`;
-  const response = await fetch(url);
+  const response = await fetch(url, {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  });
   if (response.ok) {
-    const data = await response.json();
-    return data;
+    return await response.json();
   }
   return [];
 }
@@ -28,19 +38,30 @@ export async function fetchCategories(endpoint = "/api/categories") {
 export async function loginAdmin(email, password) {
   const response = await fetch(`${getBaseUrl()}/api/auth/login`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      identifier: email,
-      password,
-    }),
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ identifier: email, password }),
   });
 
   if (!response.ok) {
     throw new Error("Felaktiga inloggningsuppgifter");
   }
+  return await response.json();
+}
 
-  const data = await response.json();
-  return data;
+export async function createProduct(product) {
+  const url = `${getBaseUrl()}/api/products`;
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+    body: JSON.stringify(product),
+  });
+
+  if (!response.ok) {
+    const errorMessage = await response.text();
+    throw new Error(errorMessage);
+  }
+  return await response.json();
 }
