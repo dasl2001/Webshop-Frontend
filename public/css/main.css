@@ -181,6 +181,7 @@ body {
   padding: 2rem 1rem;
   margin-top: auto;
   border-top: 1px solid #e30613;
+  border-bottom: 1px solid #e30613;
 }
 .site-footer .footer-content {
   max-width: 1100px;
