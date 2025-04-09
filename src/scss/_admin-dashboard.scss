@@ -95,12 +95,14 @@
         object-fit: contain;
         display: block;
         margin: 0 auto 1rem auto;
+        margin-top: 1.5rem;
         background-color: transparent;
         aspect-ratio: 1 / 1;
       }
 
       h4 {
         font-size: 1.2rem;
+        margin-top: 0.5rem;
         margin-bottom: 0.5rem;
         color: #333;
       }
