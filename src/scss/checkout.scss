@@ -1,0 +1,152 @@
+@use "./variables" as *;
+
+.checkout-wrapper {
+  max-width: 600px;
+  margin: 4rem auto;
+  padding: 2rem;
+  background-color: white;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
+  border-radius: 1rem;
+  border: solid 1px $checkout-neutral;
+
+  // Rubrik (stylar endast den med klassen)
+  .checkout-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: $text-color;
+  }
+
+  // Formulär
+  .checkout-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+
+    label {
+      font-weight: 600;
+      color: $text-color;
+    }
+
+    input {
+      padding: 0.6rem;
+      font-size: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 0.5rem;
+
+      &:focus {
+        outline: none;
+        border-color: $primary-color;
+        box-shadow: 0 0 0 2px rgba(227, 6, 19, 0.2);
+      }
+    }
+
+    .checkout-summary {
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin-top: 1rem;
+      color: $text-color;
+
+      span {
+        color: $primary-color;
+      }
+    }
+
+    .checkout-submit {
+      margin-top: 1.5rem;
+      padding: 1rem;
+      background-color: $checkout-neutral;
+      color: white;
+      font-size: 1.1rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      transition:
+        background-color 0.2s ease,
+        transform 0.1s ease,
+        box-shadow 0.2s;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+
+      &:hover {
+        background-color: $checkout-neutral-hover;
+        transform: scale(1.02);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+    }
+  }
+
+  // Popup vid bekräftelse
+  .confirmation-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: grid;
+    place-items: center;
+    z-index: 1002;
+
+    &.hidden {
+      display: none;
+    }
+
+    .popup-content {
+      background-color: white;
+      padding: 2rem;
+      border-radius: 1rem;
+      text-align: center;
+      max-width: 400px;
+
+      p {
+        margin-bottom: 1.5rem;
+        font-size: 1.1rem;
+      }
+
+      button {
+        padding: 0.6rem 1.2rem;
+        background-color: rgb(13, 125, 13);
+        color: white;
+        border: none;
+        border-radius: 0.5rem;
+        font-size: 1rem;
+        cursor: pointer;
+
+        &:hover {
+          background-color: rgba(14, 146, 14, 0.813);
+        }
+      }
+    }
+  }
+}
+
+// Mobilanpassning
+@media (max-width: 600px) {
+  .checkout-wrapper {
+    margin: 2rem 1rem;
+    padding: 1.5rem;
+  }
+
+  .checkout-title {
+    font-size: 1.5rem;
+  }
+
+  .checkout-form input,
+  .checkout-submit {
+    font-size: 0.95rem;
+  }
+
+  .confirmation-popup .popup-content {
+    padding: 1.5rem;
+    font-size: 0.95rem;
+  }
+}
+
+.checkout-wrapper h1.checkout-title {
+  color: #2e2e2e !important;
+}

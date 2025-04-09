@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="/public/css/main.css" />
     <title>Admin Dashboard - Hakim Livs</title>
   </head>
-  <body>
+  <body class="admin">
     <div class="site-wrapper">
       <header class="site-header">
         <nav>
@@ -18,8 +18,6 @@
             />
           </a>
 
-
-
           <div class="nav-links">
             <button id="logoutBtn">Logga ut</button>
           </div>
@@ -29,36 +27,31 @@
       <main class="main-content">
         <h1>Admin - Dashboard</h1>
         <h2>Här kan du som admin hantera innehållet för Hakim Livs</h2>
-        
-                <!-- Lägg till/redigera produkt-formulär -->
-                <section id="add-product-section" class="add-product hidden">
-                  <h3>Lägg till ny produkt</h3>
-                  <form id="add-product-form">
-                    <input
-                      type="text"
-                      id="new-name"
-                      placeholder="Produktnamn"
-                      required
-                    />
-                    <input
-                      type="text"
-                      id="new-price"
-                      placeholder="Pris (t.ex. 19,90)"
-                      required
-                    />
-                    <input
-                      type="text"
-                      id="new-image"
-                      placeholder="Bild-URL"
-                      required
-                    />
-                    <select id="new-category" required></select>
-                    <button type="submit">Spara</button>
-                    <button type="button" id="cancel-edit-btn" class="hidden">
-                      Avbryt
-                    </button>
-                  </form>
-                </section>
+
+        <!-- Lägg till/redigera produkt-formulär -->
+        <section id="add-product-section" class="add-product hidden">
+          <h3>Lägg till ny produkt</h3>
+          <form id="add-product-form">
+            <input
+              type="text"
+              id="new-name"
+              placeholder="Produktnamn"
+              required
+            />
+            <input
+              type="text"
+              id="new-price"
+              placeholder="Pris (t.ex. 19,90)"
+              required
+            />
+            <input type="text" id="new-image" placeholder="Bild-URL" required />
+            <select id="new-category" required></select>
+            <button type="submit">Spara</button>
+            <button type="button" id="cancel-edit-btn" class="hidden">
+              Avbryt
+            </button>
+          </form>
+        </section>
 
         <!-- Admin Controls + Produkter -->
         <section class="product-list-section">
@@ -76,8 +69,6 @@
           <h3>Produktöversikt</h3>
           <div id="admin-product-list" class="product-list"></div>
         </section>
-
-
       </main>
 
       <!-- FOOTER -->
@@ -103,9 +94,7 @@
             </div>
             <p>📞 08-123 456 78</p>
             <p>
-              <a
-                href="mailto:someone@example.com"
-                class="send-email"
+              <a href="mailto:someone@example.com" class="send-email"
                 >✉️ kontakt@hakimlivs.se</a
               >
             </p>

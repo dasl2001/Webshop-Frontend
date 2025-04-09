@@ -182,8 +182,10 @@
 
 // Checkout-knapp "Till Kassan"
 .cart-footer .checkout-btn {
+  display: inline-block;
   width: 100%;
   padding: 1rem;
+  text-align: center;
   background-color: $primary-color;
   color: white;
   font-size: 15px;
@@ -191,6 +193,8 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s;
 
   &:hover {
     background-color: $button-hover;
