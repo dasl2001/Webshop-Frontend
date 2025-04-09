@@ -5,7 +5,6 @@ export function getBaseUrl() {
   return "https://webshop-2025-be-g10-five.vercel.app";
 }
 
-// Om backend kräver token:
 export async function fetchProducts(endpoint = "/api/products") {
   const url = `${getBaseUrl()}${endpoint}`;
   const response = await fetch(url, {
@@ -20,7 +19,6 @@ export async function fetchProducts(endpoint = "/api/products") {
   return [];
 }
 
-// Om backend kräver token:
 export async function fetchCategories(endpoint = "/api/categories") {
   const url = `${getBaseUrl()}${endpoint}`;
   const response = await fetch(url, {

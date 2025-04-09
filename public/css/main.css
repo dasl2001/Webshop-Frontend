@@ -1033,6 +1033,7 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
+  width: 100%;
 }
 .main-content h1,
 .main-content h2 {
@@ -1063,7 +1064,7 @@ body {
   outline: none;
 }
 .admin-controls .admin-actions button {
-  background-color: #e30613;
+  background-color: #2a2d2f;
   color: white;
   padding: 0.75rem 1rem;
   border: none;
@@ -1072,7 +1073,7 @@ body {
   font-size: 0.8rem;
 }
 .admin-controls .admin-actions button:hover {
-  background-color: #b70010;
+  background-color: rgba(108, 117, 125, 0.5647058824);
 }
 
 .product-list-section h3 {
@@ -1080,37 +1081,57 @@ body {
   font-size: 1.4rem;
   font-weight: bold;
   color: #2e2e2e;
+  width: 100%;
 }
 .product-list-section .product-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 2rem;
+  padding: 1rem 0;
+  width: 100%;
 }
 .product-list-section .product-list .product-card {
-  font-weight: 600;
-  color: #2e2e2e;
   background-color: white;
   border: 1px solid #ddd;
+  border-radius: 8px;
   padding: 1rem;
-  border-radius: 10px;
+  min-height: 320px;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  justify-content: space-between;
+}
+.product-list-section .product-list .product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 .product-list-section .product-list .product-card img {
-  max-width: 100%;
-  height: auto;
+  width: 100%;
+  height: 150px;
   -o-object-fit: contain;
      object-fit: contain;
+  display: block;
+  margin: 0 auto 1rem auto;
+  background-color: transparent;
+  aspect-ratio: 1/1;
 }
 .product-list-section .product-list .product-card h4 {
-  font-size: 1.1rem;
-  margin: 0;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+.product-list-section .product-list .product-card p {
+  margin: 0.5rem 0;
+  font-weight: bold;
+  color: #444;
 }
 .product-list-section .product-list .product-card .actions {
   display: flex;
   justify-content: space-between;
   gap: 0.5rem;
+  margin-top: 1rem;
 }
 .product-list-section .product-list .product-card .actions button {
   flex: 1;
@@ -1121,7 +1142,7 @@ body {
   cursor: pointer;
 }
 .product-list-section .product-list .product-card .actions button.edit {
-  background-color: #319a84;
+  background-color: #2a2d2f;
   color: white;
 }
 .product-list-section .product-list .product-card .actions button.delete {
@@ -1179,7 +1200,7 @@ body {
 }
 .add-product form button {
   align-self: flex-start;
-  background-color: #e30613;
+  background-color: #2a2d2f;
   color: white;
   padding: 0.75rem 1.2rem;
   border-radius: 8px;
@@ -1187,9 +1208,36 @@ body {
   cursor: pointer;
 }
 .add-product form button:hover {
-  background-color: #b70010;
+  background-color: rgba(42, 45, 47, 0.5647058824);
 }
 
 .hidden {
   display: none !important;
+}
+
+#admin-pagination {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+  gap: 0.5rem;
+}
+#admin-pagination .pagination-button {
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: #e0e0e0;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+#admin-pagination .pagination-button.active {
+  background-color: #e30613;
+  color: white;
+  font-weight: bold;
+}
+#admin-pagination .pagination-button:hover {
+  background-color: #b70010;
+}
+#admin-pagination .pagination-ellipsis {
+  padding: 0.5rem;
+  color: #888;
 }

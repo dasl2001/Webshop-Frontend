@@ -1,5 +1,9 @@
 import { fetchProducts, createProduct, fetchCategories } from "../utils/api.js";
 
+const productsPerPage = 10;
+let currentPage = 1;
+let allProducts = [];
+
 document.addEventListener("DOMContentLoaded", () => {
   const user = JSON.parse(localStorage.getItem("user"));
   if (!user || !user.admin) {
@@ -15,7 +19,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("add-product-form");
   const cancelBtn = document.getElementById("cancel-edit-btn");
 
-  // Visa/dölj formulär för att lägga till produkt
   document.getElementById("add-product-btn")?.addEventListener("click", () => {
     document.getElementById("add-product-section").classList.toggle("hidden");
     formTitle("Lägg till ny produkt");
@@ -24,6 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
     form.reset();
   });
 
+  // Avbryt redigering
   cancelBtn.addEventListener("click", () => {
     form.reset();
     form.removeAttribute("data-editing-id");
@@ -32,107 +36,191 @@ document.addEventListener("DOMContentLoaded", () => {
     cancelBtn.classList.add("hidden");
   });
 
-  // Sökfunktionen
+  // Sökfunktion
   document.getElementById("admin-search")?.addEventListener("input", (e) => {
     const query = e.target.value.toLowerCase();
-    document.querySelectorAll(".product-card").forEach((card) => {
-      const name = card.querySelector("h4").textContent.toLowerCase();
-      card.style.display = name.includes(query) ? "block" : "none";
-    });
+    const filtered = allProducts.filter((product) =>
+      product.name.toLowerCase().includes(query),
+    );
+    currentPage = 1;
+    renderPaginatedProducts(filtered);
+    renderPagination(filtered.length);
   });
 
-  loadAdminProducts();
-  loadCategories();
-
+  // Formuläret - spara (ny eller redigering)
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const name = document.getElementById("new-name").value.trim();
-    let priceString = document
-      .getElementById("new-price")
-      .value.trim()
-      .replace(",", ".");
-    const price = parseFloat(priceString);
+
+    let price = parseFloat(
+      document.getElementById("new-price").value.replace(",", "."),
+    );
     const imageUrl = document.getElementById("new-image").value.trim();
     const category = document.getElementById("new-category").value;
 
     if (!name || isNaN(price) || !imageUrl || !category) {
-      alert("Fyll i alla fält korrekt. T ex ett giltigt pris (ex 18,00).");
+      alert("Fyll i alla fält korrekt. T.ex. pris 12,00.");
       return;
     }
 
     const productData = { name, price, imageUrl, category };
     const editingId = form.dataset.editingId;
-    console.log(
-      "Skickar till backend:",
-      editingId ? "UPPDATERA" : "SKAPA",
-      productData,
-    );
 
     try {
       if (editingId) {
-        // PUT - uppdatera
-        const url = `https://webshop-2025-be-g10-five.vercel.app/api/products/${editingId}`;
-        const res = await fetch(url, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
+        // PUT: uppdatera befintlig produkt
+        const res = await fetch(
+          `https://webshop-2025-be-g10-five.vercel.app/api/products/${editingId}`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+            body: JSON.stringify(productData),
           },
-          body: JSON.stringify(productData),
-        });
-
-        console.log("Svar från server (PUT):", res.status);
-
-        if (!res.ok) {
-          const errText = await res.text();
-          console.error("PUT-fel:", errText);
-          throw new Error("Uppdatering misslyckades.");
-        }
-
+        );
+        if (!res.ok) throw new Error("Uppdatering misslyckades");
         await loadAdminProducts();
       } else {
-        // POST - skapa ny
-        const createdProduct = await createProduct(productData);
-        console.log("Skapad produkt:", createdProduct);
-
-        const container = document.getElementById("admin-product-list");
-        const card = createAdminProductCard(createdProduct);
-        container.appendChild(card);
+        // POST: skapa ny produkt
+        const created = await createProduct(productData);
+        allProducts.push(created);
+        renderPaginatedProducts(allProducts);
+        renderPagination(allProducts.length);
       }
-      // Nollställ
+
       form.reset();
       form.removeAttribute("data-editing-id");
-      formTitle("Lägg till ny produkt");
       cancelBtn.classList.add("hidden");
+      formTitle("Lägg till ny produkt");
       document.getElementById("add-product-section").classList.add("hidden");
-    } catch (error) {
-      console.error("Fel vid sparande av produkt:", error);
-      alert("Något gick fel när vi skulle spara. Kolla konsolen.");
+    } catch (err) {
+      console.error("Fel vid sparande:", err);
+      alert("Det gick inte att spara ändringarna.");
     }
   });
+
+  loadAdminProducts();
+  loadCategories();
 });
 
+// Hämtar och renderar produkter
 async function loadAdminProducts() {
   const container = document.getElementById("admin-product-list");
   container.innerHTML = "<p>Laddar produkter...</p>";
 
   try {
-    const products = await fetchProducts();
-    if (!products.length) {
-      container.innerHTML = "<p>Inga produkter hittades.</p>";
-      return;
-    }
-    container.innerHTML = "";
-    products.forEach((prod) => {
-      container.appendChild(createAdminProductCard(prod));
-    });
-    addEditListeners();
-    addDeleteListeners();
+    allProducts = await fetchProducts();
+    currentPage = 1;
+    renderPaginatedProducts(allProducts);
+    renderPagination(allProducts.length);
   } catch (error) {
     console.error("Kunde inte ladda produkter:", error);
     container.innerHTML = "<p>Kunde inte ladda produkter.</p>";
   }
+}
+
+function renderPaginatedProducts(products) {
+  const container = document.getElementById("admin-product-list");
+  container.innerHTML = "";
+
+  const start = (currentPage - 1) * productsPerPage;
+  const end = start + productsPerPage;
+  const pageProducts = products.slice(start, end);
+
+  pageProducts.forEach((prod) => {
+    container.appendChild(createAdminProductCard(prod));
+  });
+
+  addEditListeners();
+  addDeleteListeners();
+}
+
+function renderPagination(totalProducts) {
+  const paginationContainer =
+    document.getElementById("pagination") || createPaginationContainer();
+  paginationContainer.innerHTML = "";
+
+  const totalPages = Math.ceil(totalProducts / productsPerPage);
+  if (totalPages <= 1) return;
+
+  const createPageButton = (text, page = null, isActive = false) => {
+    const btn = document.createElement("button");
+    btn.textContent = text;
+    btn.classList.add("pagination-button");
+    if (isActive) btn.classList.add("active");
+
+    if (page !== null) {
+      btn.addEventListener("click", () => {
+        currentPage = page;
+        renderPaginatedProducts(allProducts);
+        renderPagination(allProducts.length);
+      });
+    } else {
+      btn.disabled = true;
+    }
+
+    return btn;
+  };
+
+  // Skapa "Föregående"-knapp
+  paginationContainer.appendChild(
+    createPageButton("Föregående", currentPage > 1 ? currentPage - 1 : null),
+  );
+
+  const maxVisible = 2;
+  const pages = [];
+
+  for (let i = 1; i <= totalPages; i++) {
+    if (
+      i === 1 ||
+      i === totalPages ||
+      (i >= currentPage - maxVisible && i <= currentPage + maxVisible)
+    ) {
+      pages.push(i);
+    } else if (
+      (i === currentPage - maxVisible - 1 && i > 1) ||
+      (i === currentPage + maxVisible + 1 && i < totalPages)
+    ) {
+      pages.push("...");
+    }
+  }
+
+  let prevWasEllipsis = false;
+  pages.forEach((page) => {
+    if (page === "...") {
+      if (!prevWasEllipsis) {
+        const ellipsis = document.createElement("span");
+        ellipsis.textContent = "...";
+        ellipsis.classList.add("pagination-ellipsis");
+        paginationContainer.appendChild(ellipsis);
+        prevWasEllipsis = true;
+      }
+    } else {
+      paginationContainer.appendChild(
+        createPageButton(page, page, page === currentPage),
+      );
+      prevWasEllipsis = false;
+    }
+  });
+
+  paginationContainer.appendChild(
+    createPageButton(
+      "Nästa",
+      currentPage < totalPages ? currentPage + 1 : null,
+    ),
+  );
+}
+
+function createPaginationContainer() {
+  const section = document.querySelector(".product-list-section");
+  const pagination = document.createElement("div");
+  pagination.id = "pagination";
+  pagination.className = "pagination-container";
+  section.appendChild(pagination);
+  return pagination;
 }
 
 async function loadCategories() {
@@ -146,10 +234,9 @@ async function loadCategories() {
       option.textContent = cat.name;
       select.appendChild(option);
     });
-
     window._categories = cats;
-  } catch (error) {
-    console.error("Kunde inte ladda kategorier:", error);
+  } catch (err) {
+    console.error("Kunde inte ladda kategorier:", err);
   }
 }
 
@@ -157,28 +244,22 @@ function createAdminProductCard(product) {
   const card = document.createElement("div");
   card.className = "product-card";
 
-  const priceStr = product.price.toFixed(2).replace(".", ",");
+  // Visa pris med komma
+  const price = product.price.toFixed(2).replace(".", ",");
 
-  let catName = "Ingen kategori";
-
-  if (typeof product.category === "object" && product.category.name) {
-    catName = product.category.name;
+  let cat = "Ingen kategori";
+  if (product.category?.name) {
+    cat = product.category.name;
   } else if (typeof product.category === "string") {
-    const foundCat = (window._categories || []).find(
-      (cat) => cat._id === product.category,
-    );
-    if (foundCat) {
-      catName = foundCat.name;
-    } else {
-      catName = product.category;
-    }
+    const found = window._categories?.find((c) => c._id === product.category);
+    if (found) cat = found.name;
   }
 
   card.innerHTML = `
     <img src="${product.imageUrl}" alt="${product.name}">
     <h4>${product.name}</h4>
-    <p>${priceStr} kr</p>
-    <p><strong>${catName}</strong></p>
+    <p>${price} kr</p>
+    <p><strong>${cat}</strong></p>
     <div class="actions">
       <button class="edit" data-id="${product._id}">Redigera</button>
       <button class="delete" data-id="${product._id}">Ta bort</button>
@@ -187,63 +268,60 @@ function createAdminProductCard(product) {
   return card;
 }
 
-// Edit-knappar
+function formTitle(text) {
+  document.querySelector("#add-product-section h3").textContent = text;
+}
+
+function getCategoryIdByName(name) {
+  return (
+    window._categories?.find((c) => c.name.toLowerCase() === name.toLowerCase())
+      ?._id || ""
+  );
+}
+
 function addEditListeners() {
   const editButtons = document.querySelectorAll(".edit");
   editButtons.forEach((btn) => {
     btn.addEventListener("click", () => {
       const card = btn.closest(".product-card");
-      const productId = btn.dataset.id;
-
+      const id = btn.dataset.id;
       const name = card.querySelector("h4").textContent;
-      const priceText = card.querySelector("p").textContent.replace(" kr", "");
-      const price = parseFloat(priceText.replace(",", "."));
-
+      const price = parseFloat(
+        card
+          .querySelector("p")
+          .textContent.replace(" kr", "")
+          .replace(",", "."),
+      );
       const image = card.querySelector("img").src;
       const categoryName = card.querySelector("strong").textContent;
       const categoryId = getCategoryIdByName(categoryName);
 
       document.getElementById("add-product-section").classList.remove("hidden");
       formTitle("Redigera produkt");
-      document
-        .getElementById("add-product-section")
-        .scrollIntoView({ behavior: "smooth" });
       document.getElementById("new-name").value = name;
       document.getElementById("new-price").value = price;
       document.getElementById("new-image").value = image;
       document.getElementById("new-category").value = categoryId;
 
-      const form = document.getElementById("add-product-form");
-      form.dataset.editingId = productId;
+      document.getElementById("add-product-form").dataset.editingId = id;
+      document.getElementById("cancel-edit-btn").classList.remove("hidden");
 
-      const cancelBtn = document.getElementById("cancel-edit-btn");
-      cancelBtn.classList.remove("hidden");
+      document
+        .getElementById("add-product-section")
+        .scrollIntoView({ behavior: "smooth" });
     });
   });
 }
 
-function getCategoryIdByName(name) {
-  if (!window._categories) return "";
-  const found = window._categories.find(
-    (cat) => cat.name.toLowerCase() === name.toLowerCase(),
-  );
-  return found?._id || "";
-}
-
-function formTitle(text) {
-  document.querySelector("#add-product-section h3").textContent = text;
-}
-
 function addDeleteListeners() {
   const buttons = document.querySelectorAll(".delete");
-
   buttons.forEach((btn) => {
     btn.addEventListener("click", async () => {
       const productId = btn.dataset.id;
-      const confirmDelete = confirm(
+      const confirmed = confirm(
         "Är du säker på att du vill radera denna produkt?",
       );
-      if (!confirmDelete) return;
+      if (!confirmed) return;
 
       try {
         const response = await fetch(
@@ -256,8 +334,7 @@ function addDeleteListeners() {
           },
         );
 
-        if (!response.ok) throw new Error("Misslyckades att radera produkt");
-
+        if (!response.ok) throw new Error("Radering misslyckades");
         await loadAdminProducts();
       } catch (err) {
         console.error("Fel vid radering:", err);
