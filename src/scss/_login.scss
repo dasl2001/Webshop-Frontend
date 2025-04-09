@@ -28,8 +28,8 @@
 .toggle-buttons button {
   flex: 1;
   padding: 0.5rem;
-  background-color: #e0e0e0;
-  border: none;
+  // background-color: #e0e0e0;
+  border: $primary-color 1px solid;
   cursor: pointer;
   font-weight: bold;
   border-radius: 20px;
@@ -37,7 +37,7 @@
 }
 
 .toggle-buttons button.active {
-  background-color: #319a84;
+  background-color: $primary-color;
   color: white;
 }
 
@@ -91,7 +91,7 @@
 }
 
 .login-btn {
-  background-color: #319a84;
+  background-color: $primary-color;
   color: white;
   border-radius: 50px;
   margin-top: 5px;
@@ -102,7 +102,7 @@
 }
 
 .login-btn:hover {
-  background-color: #267666;
+  background-color: $button-hover;
 }
 
 .login-actions {
