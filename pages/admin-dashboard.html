@@ -8,98 +8,125 @@
   </head>
   <body>
     <div class="site-wrapper">
-        <header class="site-header">
-          <nav>
-            <a href="/index.html">
-              <img
+      <header class="site-header">
+        <nav>
+          <a href="/index.html">
+            <img
               src="/src/assets/hakim-logo-616161.png"
               id="hakim-logo"
-                alt="Logotype for Hakim's Livs"
-              />
-            </a>
-  
-            <!-- SEARCHBAR -->
-            <div class="custom-search-wrapper">
-              <div class="custom-search-container">
-                <form class="custom-search-form">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="search-icon"
-                  >
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                  </svg>
-                  <input
-                    class="search-input"
-                    type="search"
-                    placeholder="Sök..."
-                    aria-label="Search"
-                  />
-                  <button class="search-button" type="submit">Sök</button>
-                </form>
-              </div>
-            </div>
-  
-            <div class="nav-links">
-             <button id="logoutBtn">Logga ut</button>
-            </div>
-          </nav>
-        </header>
-  
-        <main class="main-content">
-    <h1>Admin - Dashboard</h1>
-    <h2>Här kan du som admin hantera innehållet för Hakim Livs</h2>
-    </main>
+              alt="Logotype for Hakim's Livs"
+            />
+          </a>
 
 
-    <!-- FOOTER -->
-    <footer>
-      <div class="footer-container">
-        <div class="footer-section brand-section">
-          <img src="/src/assets/hakim-logo-616161.png" alt="Hakim Livs logotyp" class="footer-logo">
-          <p>Din lokala matbutik med hjärta för kvalitet och service.</p>
-        </div>
-        
-        <div class="footer-section">
-          <h4>Kontakt</h4>
-          <div class="contact-info">
-          <p>📍 Livsmedelsvägen 12<br><span class="postal">123 45 Stockholm</span></p>
+
+          <div class="nav-links">
+            <button id="logoutBtn">Logga ut</button>
           </div>
-          <p>📞 08-123 456 78</p>
-          <p><a href="mailto:someone@example.com" class="send-email">✉️ kontakt@hakimlivs.se</a></p>
+        </nav>
+      </header>
 
-        </div>
+      <main class="main-content">
+        <h1>Admin - Dashboard</h1>
+        <h2>Här kan du som admin hantera innehållet för Hakim Livs</h2>
         
-        <!-- Ändra till detta om vi inte ska ha satta tider och ta bort footer-sectorn under:
-         <div class="footer-section">
-          <h4>Öppettider</h4>
-          <p>Våra öppettider kommer snart!</p>
-          <p>Håll utkik här eller på våra sociala medier.</p>
+                <!-- Lägg till/redigera produkt-formulär -->
+                <section id="add-product-section" class="add-product hidden">
+                  <h3>Lägg till ny produkt</h3>
+                  <form id="add-product-form">
+                    <input
+                      type="text"
+                      id="new-name"
+                      placeholder="Produktnamn"
+                      required
+                    />
+                    <input
+                      type="text"
+                      id="new-price"
+                      placeholder="Pris (t.ex. 19,90)"
+                      required
+                    />
+                    <input
+                      type="text"
+                      id="new-image"
+                      placeholder="Bild-URL"
+                      required
+                    />
+                    <select id="new-category" required></select>
+                    <button type="submit">Spara</button>
+                    <button type="button" id="cancel-edit-btn" class="hidden">
+                      Avbryt
+                    </button>
+                  </form>
+                </section>
+
+        <!-- Admin Controls + Produkter -->
+        <section class="product-list-section">
+          <div class="admin-controls">
+            <div class="admin-actions">
+              <input
+                type="text"
+                id="admin-search"
+                placeholder="Sök efter produkt..."
+              />
+              <button id="add-product-btn">Lägg till produkt</button>
+            </div>
+          </div>
+
+          <h3>Produktöversikt</h3>
+          <div id="admin-product-list" class="product-list"></div>
+        </section>
+
+
+      </main>
+
+      <!-- FOOTER -->
+      <footer>
+        <div class="footer-container">
+          <div class="footer-section brand-section">
+            <img
+              src="/src/assets/hakim-logo-616161.png"
+              alt="Hakim Livs logotyp"
+              class="footer-logo"
+            />
+            <p>Din lokala matbutik med hjärta för kvalitet och service.</p>
+          </div>
+
+          <div class="footer-section">
+            <h4>Kontakt</h4>
+            <div class="contact-info">
+              <p>
+                📍 Livsmedelsvägen 12<br /><span class="postal"
+                  >123 45 Stockholm</span
+                >
+              </p>
+            </div>
+            <p>📞 08-123 456 78</p>
+            <p>
+              <a
+                href="mailto:someone@example.com"
+                class="send-email"
+                >✉️ kontakt@hakimlivs.se</a
+              >
+            </p>
+          </div>
+
+          <div class="footer-section">
+            <h4>Öppettider</h4>
+            <p>Mån–Fre: 08:00 – 20:00</p>
+            <p>Lör: 10:00 – 18:00</p>
+            <p>Sön: 11:00 – 17:00</p>
+          </div>
+
+          <div class="footer-section">
+            <h4>Följ oss</h4>
+          </div>
         </div>
-        -->
-        <div class="footer-section">
-          <h4>Öppettider</h4>
-          <p>Mån–Fre: 08:00 – 20:00</p>
-          <p>Lör: 10:00 – 18:00</p>
-          <p>Sön: 11:00 – 17:00</p>
+        <div class="footer-bottom">
+          <p>&copy; 2025 Hakim Livs. Alla rättigheter reserverade.</p>
         </div>
-        <div class="footer-section">
-          <h4>Följ oss</h4>
-          <!-- <p>Facebook | Instagram | Twitter</p> -->
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>&copy; 2025 Hakim Livs. Alla rättigheter reserverade.</p>
-      </div>
-    </footer>
+      </footer>
+    </div>
 
     <script type="module" src="../src/scripts/admin-dashboard.js"></script>
   </body>
