@@ -1,58 +1,105 @@
 // Footern
 @use "./variables" as *;
 
-.site-footer {
-  background-color: white; // Mjukare än #f5f5f5
+footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  // color: #ffffff;
+  color: #616161;
   padding: 2rem 1rem;
+  padding-bottom:0 ;
+  font-family: Arial, sans-serif;
   margin-top: auto;
   border-top: 1px solid $primary-color;
 
-  .footer-content {
+  .footer-container {
     max-width: 1100px;
-    margin: 0 auto;
+    // margin: 0 auto;
+    margin: auto 3rem ;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     flex-wrap: wrap;
-    gap: 1rem;
-    text-align: center;
+    gap: 6rem;
+    text-align: left;
 
     @media (max-width: 768px) {
       flex-direction: column;
-      gap: 0.5rem;
+      align-items: center;
+      text-align: center;
+      gap: 1rem;
     }
   }
 
-  p {
-    margin: 0;
-    font-size: 0.95rem;
-    color: #555;
+  .footer-section {
+    flex: 1 1 00px;
+
+    h3, h4 {
+      margin-bottom: 0.5rem;
+      color: #616161;
+    }
+
+    p {
+      margin: 0.3rem 0;
+      font-size: 0.95rem;
+      color: #616161;
+      
+
+
+      @media (max-width: 768px) {
+        font-size: 0.85rem;
+      }
+    }
+  }
+
+  .brand-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    .footer-logo {
+      width: 100px;
+      margin-bottom: 0rem;
+
+      @media (max-width: 768px) {
+        margin: 0 auto 1rem;
+      }
+    }
 
     @media (max-width: 768px) {
-      font-size: 0.85rem;
+      align-items: center;
     }
+  }
+
+
+  .footer-bottom {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #aaaaaa;
   }
 }
 
-.footer-links {
-  display: flex;
-  gap: 1.5rem;
-  justify-content: center;
-  flex-wrap: wrap;
+.send-email{
+  text-decoration: none;
+  color: #616161;
 
-  a {
-    text-decoration: none;
-    color: $text-color;
-    font-weight: 500;
-    font-size: 0.95rem;
-    transition: color 0.2s;
+}
 
-    &:hover {
-      color: $primary-color;
-    }
+a:hover { color: $primary-color; }
+.send-email, a:visited { text-decoration: none; }
 
-    @media (max-width: 768px) {
-      font-size: 0.85rem;
+.contact-info {
+  p {
+    margin: 0;
+    color: white;
+
+    .postal {
+      display: inline-block;
+      padding-left: 1.3em; 
     }
   }
 }

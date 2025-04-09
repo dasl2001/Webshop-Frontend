@@ -15,5 +15,6 @@
     "/style.scss",
     "/jonatan.scss"
   ],
-  "liveSassCompile.settings.watchOnLaunch": true
+  "liveSassCompile.settings.watchOnLaunch": true,
+  "liveServer.settings.port": 5509
 }
