@@ -333,3 +333,79 @@
 .hidden {
   display: none !important;
 }
+
+// KATEGORI-HANTERING
+.category-management-section {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    margin-top: 2rem;
+  
+    // Formuläret för att lägga till ny kategori
+    form {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+  
+    // Inputfältet i formuläret
+    input[type="text"] {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      border: 1px solid $primary-color;
+    }
+  
+    // Lägg till-knappen i formuläret
+    button {
+      background-color: #2a2d2f;
+      color: white;
+      padding: 0.75rem 1.2rem;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+    }
+  
+    // Lista med befintliga kategorier
+    .admin-category-list {
+      list-style: none;
+      padding: 0;
+  
+      li {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid #eee;
+  
+        // Redigeringsfält för kategori
+        input[type="text"] {
+          flex: 1;
+          padding: 0.5rem;
+          border-radius: 5px;
+          border: 1px solid #ccc;
+          margin-right: 1rem;
+        }
+  
+        // Knappar: redigera & ta bort
+        button {
+          padding: 0.4rem 0.8rem;
+          border-radius: 5px;
+          border: none;
+          cursor: pointer;
+          font-size: 0.9rem;
+  
+          &.edit {
+            background-color: #2a2d2f;
+            color: white;
+          }
+  
+          &.delete {
+            background-color: $primary-color;
+            color: white;
+          }
+        }
+      }
+    }
+  }
