@@ -2,7 +2,7 @@
 
 .site-header {
   position: sticky;
-  top: 0;
+  top: 2.5rem;
   z-index: 1000;
   padding: 1rem 2rem;
   background-color: white;
@@ -126,5 +126,11 @@
     li a {
       font-size: 0.95rem;
     }
+  }
+}
+
+body.admin {
+  .site-header {
+    top: 0 !important; // headern ska ligga allra överst utan banner
   }
 }

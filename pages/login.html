@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="sv">
   <head>
     <meta charset="UTF-8" />
@@ -8,7 +8,7 @@
   </head>
   <body>
     <!-- <div class="login-site-wrapper"> -->
-      <!-- <header class="site-header">
+    <!-- <header class="site-header">
         <nav>
           <a href="/index.html">
             <img
@@ -58,83 +58,81 @@
           </ul>
         </nav>
       </header> -->
-      <div class="top-banner">
-        <p>Erbjudande! Köp 3 betala för 2 på snacks! Gäller t.o.m. söndag!</p>
-      </div>
-      <div class="site-wrapper">
-        <!-- HEADER -->
-        <header class="site-header">
-          <nav>
-            <a href="/index.html">
-              <img
-                src="/src/assets/hakim-logo-616161.png"
-                id="hakim-logo"
-                alt="Logotype for Hakim's Livs"
-              />
-            </a>
-  
-            <!-- SEARCHBAR -->
-            <div class="custom-search-wrapper">
-              <div class="custom-search-container">
-                <form class="custom-search-form" id="search-form">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="search-icon"
-                  >
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                  </svg>
-                  <input
-                    class="search-input"
-                    type="search"
-                    placeholder="Sök..."
-                    aria-label="Search"
-                    id="search-input"
-                  />
-                  <button class="search-button" type="submit">Sök</button>
-                </form>
-              </div>
+    <div class="top-banner">
+      <p>Erbjudande! Köp 3 betala för 2 på snacks! Gäller t.o.m. söndag!</p>
+    </div>
+    <div class="site-wrapper">
+      <!-- HEADER -->
+      <header class="site-header">
+        <nav>
+          <a href="/index.html">
+            <img
+              src="/src/assets/hakim-logo-616161.png"
+              id="hakim-logo"
+              alt="Logotype for Hakim's Livs"
+            />
+          </a>
+
+          <!-- SEARCHBAR -->
+          <div class="custom-search-wrapper">
+            <div class="custom-search-container">
+              <form class="custom-search-form" id="search-form">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="search-icon"
+                >
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <input
+                  class="search-input"
+                  type="search"
+                  placeholder="Sök..."
+                  aria-label="Search"
+                  id="search-input"
+                />
+                <button class="search-button" type="submit">Sök</button>
+              </form>
             </div>
-  
-            <ul class="nav-actions">
-              <li class="nav-login">
-                <a href="/pages/login.html">
+          </div>
+
+          <ul class="nav-actions">
+            <li class="nav-login">
+              <a href="/pages/login.html">
+                <img
+                  src="/src/assets/user-svgrepo-com.svg"
+                  alt="Logga in ikon"
+                  class="nav-icon"
+                />
+                Logga in
+              </a>
+            </li>
+            <li class="nav-cart">
+              <a href="/pages/login.html">
+                <div class="cart-icon-wrapper">
                   <img
-                    src="/src/assets/user-svgrepo-com.svg"
-                    alt="Logga in ikon"
+                    src="/src/assets/shopping-cart-01-svgrepo-com.svg"
+                    alt="Varukorg"
                     class="nav-icon"
                   />
-                  Logga in
-                </a>
-              </li>
-              <li class="nav-cart">
-                <a href="/pages/login.html">
-                  <div class="cart-icon-wrapper">
-                    <img
-                      src="/src/assets/shopping-cart-01-svgrepo-com.svg"
-                      alt="Varukorg"
-                      class="nav-icon"
-                    />
-                    <span class="cart-count">0</span>
-                  </div>
-                </a>
-              </li>
-            </ul>
-          </nav>
-        </header>
+                  <span class="cart-count">0</span>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </header>
 
-      
       <main class="login-main-content">
-
-        <h1>Login</h1>
+        <h1></h1>
 
         <div id="login-container">
           <div class="toggle-buttons">
@@ -143,46 +141,79 @@
           </div>
 
           <div class="login-forms">
-
             <form id="adminForm" class="form active">
-              <input type="email" id="admin-email" placeholder="E-postadress" required />
-              <input type="password" id="admin-password" placeholder="Lösenord" required />
-              <button id="admin-login-btn" class="login-btn">Logga in som admin</button>
-              
+              <input
+                type="email"
+                id="admin-email"
+                placeholder="E-postadress"
+                required
+              />
+              <input
+                type="password"
+                id="admin-password"
+                placeholder="Lösenord"
+                required
+              />
+              <button id="admin-login-btn" class="login-btn">
+                Logga in som admin
+              </button>
             </form>
 
             <form id="userForm" class="form">
-              <input type="email" id="user-email" placeholder="E-postadress" required />
-              <input type="password" id="user-password" placeholder="Lösenord" required />
+              <input
+                type="email"
+                id="user-email"
+                placeholder="E-postadress"
+                required
+              />
+              <input
+                type="password"
+                id="user-password"
+                placeholder="Lösenord"
+                required
+              />
               <button class="login-btn">Logga in som användare</button>
-              <div class="login-actions"><p>Glömt Lösenord?</p><p>Registrera dig</p></div>
-
+              <div class="login-actions">
+                <p>Glömt Lösenord?</p>
+                <p>Registrera dig</p>
+              </div>
             </form>
             <!-- <div class="login-actions"><p>Glömt Lösenord?</p><p>Registrera dig</p></div> -->
           </div>
-
         </div>
-      </main>  
-    </div> <!-- site-wrapper div -->
+      </main>
+    </div>
+    <!-- site-wrapper div -->
 
     <!-- FOOTER -->
     <footer>
       <div class="footer-container">
         <div class="footer-section brand-section">
-          <img src="/src/assets/hakim-logo-616161.png" alt="Hakim Livs logotyp" class="footer-logo">
+          <img
+            src="/src/assets/hakim-logo-616161.png"
+            alt="Hakim Livs logotyp"
+            class="footer-logo"
+          />
           <p>Din lokala matbutik med hjärta för kvalitet och service.</p>
         </div>
-        
+
         <div class="footer-section">
           <h4>Kontakt</h4>
           <div class="contact-info">
-          <p>📍 Livsmedelsvägen 12<br><span class="postal">123 45 Stockholm</span></p>
+            <p>
+              📍 Livsmedelsvägen 12<br /><span class="postal"
+                >123 45 Stockholm</span
+              >
+            </p>
           </div>
           <p>📞 08-123 456 78</p>
-          <p><a href="mailto:someone@example.com" class="send-email">✉️ kontakt@hakimlivs.se</a></p>
-
+          <p>
+            <a href="mailto:someone@example.com" class="send-email"
+              >✉️ kontakt@hakimlivs.se</a
+            >
+          </p>
         </div>
-        
+
         <!-- Ändra till detta om vi inte ska ha satta tider och ta bort footer-sectorn under:
          <div class="footer-section">
           <h4>Öppettider</h4>

@@ -104,6 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   loadAdminProducts();
   loadCategories();
+  loadOrders();
 });
 
 // Hämtar och renderar produkter
@@ -238,6 +239,139 @@ async function loadCategories() {
   } catch (err) {
     console.error("Kunde inte ladda kategorier:", err);
   }
+}
+
+// Orderlistan som kommit in via API
+async function loadOrders() {
+  const container = document.getElementById("order-list");
+  container.innerHTML = "<p>Laddar beställningar...</p>";
+
+  try {
+    const res = await fetch(
+      "https://webshop-2025-be-g10-five.vercel.app/api/orders",
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      },
+    );
+
+    if (!res.ok) throw new Error("Kunde inte hämta beställningar");
+
+    const orders = await res.json();
+
+    renderOrderList(orders);
+  } catch (err) {
+    console.error("Fel vid hämtning av orders:", err);
+    container.innerHTML = "<p>Kunde inte ladda beställningar.</p>";
+  }
+}
+
+// Renderar orderlistan
+function renderOrderList(orders) {
+  const container = document.getElementById("order-list");
+  container.innerHTML = "";
+
+  if (!orders.length) {
+    container.innerHTML = "<p>Inga beställningar ännu.</p>";
+    return;
+  }
+
+  orders
+    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+    .forEach((order) => {
+      const el = document.createElement("div");
+      el.className = "order-card";
+
+      el.innerHTML = `
+        <div class="order-summary">
+          <p><strong>Beställnings-ID:</strong> ${order._id}</p>
+          <p><strong>Kund:</strong> ${order.name}</p>
+          <button class="toggle-details">Visa detaljer</button>
+        </div>
+        <div class="order-details hidden">
+          <p><strong>Telefon:</strong> ${order.phone || "Saknas"}</p>
+          <p><strong>Adress:</strong> ${order.address}</p>
+          <h4>Produkter:</h4>
+          <ul>
+             ${order.items
+               .map(
+                 (item) => `
+        <li>
+          ${item.product.name} – 
+          ${item.product.price.toFixed(2).replace(".", ",")} kr/st – 
+          ${item.quantity} st – 
+          ${(item.product.price * item.quantity).toFixed(2).replace(".", ",")} kr
+        </li>
+      `,
+               )
+               .join("")}
+          </ul>
+          <p><strong>Totalpris:</strong> ${order.total.toFixed(2).replace(".", ",")} kr</p>
+          <p><strong>Status:</strong></p>
+          <select data-id="${order._id}" class="order-status-select">
+            <option value="mottagen" ${order.status === "mottagen" ? "selected" : ""}>Mottagen</option>
+            <option value="under behandling" ${order.status === "under behandling" ? "selected" : ""}>Under behandling</option>
+            <option value="skickad" ${order.status === "skickad" ? "selected" : ""}>Skickad</option>
+            <option value="levererad" ${order.status === "levererad" ? "selected" : ""}>Levererad</option>
+          </select>
+
+          <button class="print-order">Skriv ut plocklista</button>
+        </div>
+      `;
+
+      container.appendChild(el);
+    });
+
+  // Toggle visa/dölj detaljer
+  container.querySelectorAll(".toggle-details").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      btn.parentElement.nextElementSibling.classList.toggle("hidden");
+    });
+  });
+
+  // Ändra status
+  container.querySelectorAll(".order-status-select").forEach((select) => {
+    select.addEventListener("change", async () => {
+      const orderId = select.dataset.id;
+      const newStatus = select.value;
+
+      try {
+        const res = await fetch(
+          `https://webshop-2025-be-g10-five.vercel.app/api/orders/admin/${orderId}/status`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+            body: JSON.stringify({ status: newStatus }),
+          },
+        );
+
+        if (!res.ok) throw new Error("Kunde inte uppdatera status");
+
+        alert("Status uppdaterad!");
+      } catch (error) {
+        console.error("Fel vid statusuppdatering:", error);
+        alert("Det gick inte att uppdatera status.");
+      }
+    });
+  });
+
+  // Skriv ut plocklista
+  container.querySelectorAll(".print-order").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const orderCard = btn.closest(".order-card");
+      const printContent = orderCard.innerHTML;
+      const originalContent = document.body.innerHTML;
+
+      document.body.innerHTML = printContent;
+      window.print();
+      document.body.innerHTML = originalContent;
+      location.reload();
+    });
+  });
 }
 
 function createAdminProductCard(product) {

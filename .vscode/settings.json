@@ -10,11 +10,13 @@
   ],
   "liveSassCompile.settings.generateMap": false,
   "liveSassCompile.settings.excludeList": [
-    "/node_modules/**",
-    "/.vscode/**",
-    "/style.scss",
-    "/jonatan.scss"
+    "**/node_modules/**",
+    "**/.vscode/**",
+    "**/style.scss",
+    "**/jonatan.scss",
+    "**/checkout.scss"
   ],
+
   "liveSassCompile.settings.watchOnLaunch": true,
   "liveServer.settings.port": 5509
 }
