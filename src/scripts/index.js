@@ -247,6 +247,20 @@ document.getElementById("close-modal").addEventListener("click", () => {
   document.getElementById("product-modal").classList.add("hidden");
 });
 
+// Stäng modal om man klickar utanför innehållet
+document.getElementById("product-modal").addEventListener("click", (e) => {
+  if (e.target === document.getElementById("product-modal")) {
+    document.getElementById("product-modal").classList.add("hidden");
+  }
+});
+
+// Stäng modal med ESC-tangent
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    document.getElementById("product-modal").classList.add("hidden");
+  }
+});
+
 async function loadCategories() {
   const categoriesContainer = document.getElementById("category-list");
   const categories = await fetchCategories();
