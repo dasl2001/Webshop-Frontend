@@ -185,7 +185,7 @@ function showProductModal(product) {
     document.getElementById("modal-title").textContent = product.name;
     document.getElementById("modal-description").textContent = description;
     document.getElementById("modal-category").textContent =
-      `Kategori: ${product.category?.name || "Okänd"}`;
+      ` ${product.category?.name || "Okänd"}`;
     document.getElementById("modal-price").textContent =
       `${product.price?.toFixed(2).replace(".", ",")} kr`;
     document.getElementById("modal-image").src = product.imageUrl;
