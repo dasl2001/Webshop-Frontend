@@ -1,28 +1,25 @@
-// Hantera offcanvas-visning
 const cartLink = document.querySelector('a[href="/pages/cart.html"]');
 const cartPanel = document.getElementById("cart-offcanvas");
 
-if (cartLink && cartPanel) {
-  cartLink.addEventListener("click", (e) => {
-    e.preventDefault();
-    cartPanel.classList.add("visible");
-    cartPanel.classList.remove("hidden");
-  });
+cartLink.addEventListener("click", (e) => {
+  e.preventDefault();
+  cartPanel.classList.add("visible");
+  cartPanel.classList.remove("hidden");
+});
 
-  document.addEventListener("click", (e) => {
-    if (e.target.closest(".cart-item-actions")) return;
-    if (
-      cartPanel.classList.contains("visible") &&
-      !cartPanel.contains(e.target) &&
-      !cartLink.contains(e.target)
-    ) {
-      cartPanel.classList.remove("visible");
-      cartPanel.classList.add("hidden");
-    }
-  });
-}
+document.addEventListener("click", (e) => {
+  if (e.target.closest(".cart-item-actions")) return;
+  if (
+    cartPanel.classList.contains("visible") &&
+    !cartPanel.contains(e.target) &&
+    !cartLink.contains(e.target)
+  ) {
+    cartPanel.classList.remove("visible");
+    cartPanel.classList.add("hidden");
+  }
+});
 
-export function getCart() {
+function getCart() {
   return JSON.parse(localStorage.getItem("cart")) || [];
 }
 
@@ -45,14 +42,11 @@ export function addToCart(product) {
 }
 
 export function updateCartUI() {
+  const cart = getCart();
   const container = document.getElementById("cart-items");
   const total = document.getElementById("cart-total");
   const count = document.querySelector(".cart-count");
 
-  // Stoppar om vi inte har element
-  if (!container || !total || !count) return;
-
-  const cart = getCart();
   container.innerHTML = "";
 
   if (cart.length === 0) {
@@ -71,9 +65,10 @@ export function updateCartUI() {
 
     const el = document.createElement("div");
     el.className = "cart-item";
+
     el.innerHTML = `
       <div class="cart-item-info">
-        <p>${item.name}</p>
+        <p class="cart-item-name" data-id="${item._id}" style="cursor:pointer;color:#e30613;">${item.name}</p>
         <p>${item.price.toFixed(2).replace(".", ",")} kr/st</p>
       </div>
       <div class="cart-item-actions">
@@ -91,6 +86,26 @@ export function updateCartUI() {
   count.textContent = `(${totalQuantity})`;
 
   setupCartButtonEvents();
+
+  // ➕ Öppna modal vid klick på produktnamn i carten
+  document.querySelectorAll(".cart-item-name").forEach((nameEl) => {
+    nameEl.addEventListener("click", () => {
+      const productId = nameEl.dataset.id;
+      const allProducts = JSON.parse(
+        localStorage.getItem("allProducts") || "[]",
+      );
+      const product = allProducts.find((p) => p._id === productId);
+      if (product) {
+        import("./index.js").then((module) => {
+          module.showProductModal(product);
+          cartPanel.classList.remove("visible");
+          cartPanel.classList.add("hidden");
+        });
+      } else {
+        console.warn("Produktdata saknas för ID:", productId);
+      }
+    });
+  });
 }
 
 function setupCartButtonEvents() {
@@ -129,10 +144,6 @@ function setupCartButtonEvents() {
       }
     });
   });
-}
-
-export function calculateTotal(cart) {
-  return cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
