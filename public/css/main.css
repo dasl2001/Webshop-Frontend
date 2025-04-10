@@ -1129,7 +1129,7 @@ a:hover {
   font-size: 0.8rem;
 }
 .admin-controls .admin-actions button:hover {
-  background-color: rgba(108, 117, 125, 0.5647058824);
+  opacity: 0.9;
 }
 
 .product-list-section h3 {
@@ -1266,7 +1266,7 @@ a:hover {
   cursor: pointer;
 }
 .add-product form button:hover {
-  background-color: rgba(42, 45, 47, 0.5647058824);
+  opacity: 0.9;
 }
 
 .hidden {
@@ -1298,6 +1298,72 @@ a:hover {
 #admin-pagination .pagination-ellipsis {
   padding: 0.5rem;
   color: #888;
+}
+
+.order-list-section {
+  margin-top: 4rem;
+}
+.order-list-section h3 {
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #2e2e2e;
+}
+.order-list-section #order-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.order-details.hidden {
+  display: none;
+}
+
+.order-summary {
+  background-color: #f8f8f8;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  border: 1px solid lightgray;
+  border-radius: 4px;
+}
+
+.toggle-details {
+  margin-top: 0.5rem;
+  background-color: #444;
+  color: #fff;
+  padding: 0.4rem 1rem;
+  border: none;
+  cursor: pointer;
+}
+
+.toggle-details:hover {
+  opacity: 0.9;
+}
+
+.order-card {
+  border: 1px solid #ddd;
+  padding: 1rem;
+  background: white;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.order-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.order-details {
+  margin-top: 1rem;
+}
+.order-details ul {
+  margin-top: 0.5rem;
+  padding-left: 1.2rem;
+  list-style: disc;
+}
+.order-details ul li {
+  margin-bottom: 0.3rem;
 }
 
 .checkout-wrapper {
