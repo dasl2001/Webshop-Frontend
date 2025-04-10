@@ -1,8 +1,7 @@
 // All styling för produkt-element och produktkort etc
 @use "./variables" as *;
 
-// Modal-styling
-.modal {
+#product-modal.modal {
   position: fixed;
   top: 0;
   left: 0;
@@ -19,28 +18,128 @@
   }
 
   .modal-content {
+    display: flex;
+    flex-direction: column;
     background-color: white;
     padding: 2rem;
     border-radius: 8px;
-    max-width: 400px;
+    max-width: 600px;
     width: 90%;
-    text-align: center;
+    font-family: $primary-font;
+    text-align: left;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
     position: relative;
     max-height: 80vh;
     overflow-y: auto;
 
+    .close-button {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
     .modal-image {
-      width: 100%;
+      width: fit-content;
+      max-width: 250px;
       max-height: 250px;
       object-fit: contain;
       margin-bottom: 1rem;
       border-radius: 8px;
     }
+
+    #modal-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    #product-wrapper {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      padding: 4px;
+      width: 100%;
+
+      p {
+        margin: 0;
+      }
+    }
+
+    #product-info {
+      display: flex;
+      flex-direction: column;
+
+      h2 {
+        margin: 0;
+      }
+    }
+
+    #modal-category {
+      color: $text-color-faded;
+      text-align: left;
+      font-size: 12px;
+      margin-top: 0;
+      margin-bottom: 20px;
+    }
+
+    #modal-price {
+      font-family: "Nunito", Arial, sans-serif;
+      font-size: 30px;
+      font-weight: 800;
+      color: #dc0000;
+      margin: 1rem 0 0.5rem;
+    }
+
+    #modal-description {
+      color: $text-color-faded;
+      text-align: left;
+      font-size: 14px;
+    }
+
+    #modal-compare-price {
+      font-size: 12px;
+      color: $text-color-faded;
+      margin-top: 0.25rem;
+      margin-bottom: 1.5rem;
+    }
+
+    #modal-add-to-cart-btn {
+      margin-top: 0.5rem;
+    }
+
+    .modal-section {
+      border-top: 1px solid #ddd;
+      padding-top: 1rem;
+      margin-top: 1rem;
+
+      h3 {
+        font-size: 1.1rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+      }
+
+      p {
+        font-size: 0.95rem;
+        color: #333;
+        margin-bottom: 0.25rem;
+      }
+    }
+
+    #modal-info-attributes,
+    #modal-content-attributes {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .attribute-label {
+      font-weight: 700;
+      color: #111;
+    }
   }
 }
 
-// Produktlayout
+// 🔓 Vanlig produkt-grid, påverkar INTE modalen
 #products {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -48,7 +147,6 @@
   padding: 1rem 0;
 }
 
-// Produktkort
 .product-card {
   background-color: white;
   border: 1px solid #ddd;
@@ -56,9 +154,7 @@
   padding: 1rem;
   min-height: 320px;
   text-align: center;
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -77,8 +173,6 @@
     margin: 0 auto 1rem auto;
     padding-top: 1.5rem;
     background-color: transparent;
-    
-    
   }
 
   h3 {
@@ -94,7 +188,7 @@
   }
 }
 
-// Pagination-container (layout)
+// Pagination
 .pagination-container {
   display: flex;
   justify-content: center;
@@ -102,6 +196,7 @@
   gap: 0.5rem;
 }
 
+// Responsiv justering
 @media (max-width: 768px) {
   #products {
     grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
@@ -125,7 +220,7 @@
     }
   }
 
-  .modal-content {
+  #product-modal .modal-content {
     padding: 1.5rem;
     max-width: 90%;
     font-size: 0.95rem;
