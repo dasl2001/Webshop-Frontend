@@ -292,43 +292,45 @@ function renderOrderList(orders) {
       el.className = "order-card";
 
       el.innerHTML = `
-        <div class="order-summary">
-          <p><strong>Beställnings-ID:</strong> ${order._id}</p>
-          <p><strong>Kund:</strong> ${order.name}</p>
-          <button class="toggle-details">Visa detaljer</button>
-        </div>
-        <div class="order-details hidden">
-          <p><strong>Telefon:</strong> ${order.phone || "Saknas"}</p>
-          <p><strong>Adress:</strong> ${order.address}</p>
-          <h4>Produkter:</h4>
-          <ul>
-             ${order.items
-               .map(
-                 (item) => `
-        <li>
-          ${item.product.name} –
-          ${item.product.price.toFixed(2).replace(".", ",")} kr/st –
-          ${item.quantity} st –
-          ${(item.product.price * item.quantity).toFixed(2).replace(".", ",")} kr
-        </li>
-      `,
-               )
-               .join("")}
-          </ul>
-          <p><strong>Status:</strong> <span class="order-status ${order.status.replace(" ", "-")}">${order.status}</span></p>
-
-<select data-id="${order._id}" class="order-status-select hidden">
-  <option value="mottagen" ${order.status === "mottagen" ? "selected" : ""}>Mottagen</option>
-  <option value="under behandling" ${order.status === "under behandling" ? "selected" : ""}>Under behandling</option>
-  <option value="skickad" ${order.status === "skickad" ? "selected" : ""}>Skickad</option>
-  <option value="levererad" ${order.status === "levererad" ? "selected" : ""}>Levererad</option>
-</select>
-
-<button class="change-status-btn">Ändra status</button>
-<button class="print-order">Skriv ut plocklista</button>
-
-        </div>
-        `;
+      <div class="order-summary">
+        <p><strong>Beställnings-ID:</strong> ${order._id}</p>
+        <p><strong>Kund:</strong> ${order.name}</p>
+        <button class="toggle-details">Visa detaljer</button>
+      </div>
+      <div class="order-details hidden">
+        <p><strong>Telefon:</strong> ${order.phone || "Saknas"}</p>
+        <p><strong>Adress:</strong> ${order.address}</p>
+        <h4>Produkter:</h4>
+        <ul>
+          ${order.items
+            .map(
+              (item) => `
+          <li>
+            ${item.product.name} – 
+            ${item.product.price.toFixed(2).replace(".", ",")} kr/st – 
+            ${item.quantity} st – 
+            ${(item.product.price * item.quantity).toFixed(2).replace(".", ",")} kr
+          </li>
+        `,
+            )
+            .join("")}
+        </ul>
+    
+        <p><strong>Totalpris:</strong> ${order.total.toFixed(2).replace(".", ",")} kr</p>
+    
+        <p><strong>Status:</strong> <span class="order-status ${order.status.replace(" ", "-")}" data-id="${order._id}">${order.status}</span></p>
+    
+        <select data-id="${order._id}" class="order-status-select hidden">
+          <option value="mottagen" ${order.status === "mottagen" ? "selected" : ""}>Mottagen</option>
+          <option value="under behandling" ${order.status === "under behandling" ? "selected" : ""}>Under behandling</option>
+          <option value="skickad" ${order.status === "skickad" ? "selected" : ""}>Skickad</option>
+          <option value="levererad" ${order.status === "levererad" ? "selected" : ""}>Levererad</option>
+        </select>
+    
+        <button class="change-status-btn">Ändra status</button>
+        <button class="print-order">Skriv ut plocklista</button>
+      </div>
+    `;
 
       container.appendChild(el);
     });
@@ -372,8 +374,10 @@ function renderOrderList(orders) {
         alert("Status uppdaterad!");
 
         // Uppdatera färg + text direkt utan att ladda om
-        const statusSpan =
-          select.previousElementSibling.querySelector(".order-status");
+        const statusSpan = container.querySelector(
+          `.order-status[data-id="${orderId}"]`,
+        );
+
         statusSpan.textContent = newStatus;
         statusSpan.className = `order-status ${newStatus.replace(" ", "-")}`;
       } catch (error) {
