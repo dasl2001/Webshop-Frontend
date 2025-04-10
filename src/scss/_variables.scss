@@ -9,6 +9,7 @@ $primary-color: #e30613;
 //$bg-color: #f8f8f8; Den ljusgråa vi hade innan
 $bg-color: #f9f6f3f4; 
 $text-color: #2e2e2e;
+$text-color-faded: #616161;
 $button-hover: #b70010;
 $checkout-neutral: #444; // mörkgrå
 $checkout-neutral-hover: #333;
@@ -18,3 +19,6 @@ $checkout-neutral-hover: #333;
 $breakpoint-sm: 576px;
 $breakpoint-md: 768px;
 $breakpoint-lg: 1024px;
+
+$primary-font: "Avenir", Arial, sans-serif;
+$price-font: "Nunito", Arial, sans-serif;
