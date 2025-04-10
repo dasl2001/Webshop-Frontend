@@ -1,10 +1,15 @@
-import { fetchProducts, createProduct, fetchCategories } from "../utils/api.js";
+import {
+  fetchProducts,
+  createProduct,
+  fetchCategories,
+  getBaseUrl,
+} from "../utils/api.js";
 
 const productsPerPage = 10;
 let currentPage = 1;
 let allProducts = [];
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
   const user = JSON.parse(localStorage.getItem("user"));
   if (!user || !user.admin) {
     window.location.href = "/pages/login.html";
@@ -105,6 +110,9 @@ document.addEventListener("DOMContentLoaded", () => {
   loadAdminProducts();
   loadCategories();
   loadOrders();
+  await loadCategories();
+  renderCategoryList();
+  setupCategoryListeners();
 });
 
 // Hämtar och renderar produkter
@@ -298,9 +306,9 @@ function renderOrderList(orders) {
                .map(
                  (item) => `
         <li>
-          ${item.product.name} – 
-          ${item.product.price.toFixed(2).replace(".", ",")} kr/st – 
-          ${item.quantity} st – 
+          ${item.product.name} –
+          ${item.product.price.toFixed(2).replace(".", ",")} kr/st –
+          ${item.quantity} st –
           ${(item.product.price * item.quantity).toFixed(2).replace(".", ",")} kr
         </li>
       `,
@@ -491,5 +499,212 @@ function addDeleteListeners() {
         alert("Produkten kunde inte raderas.");
       }
     });
+  });
+}
+function setupCategoryListeners() {
+  const form = document.getElementById("add-category-form");
+  const list = document.getElementById("admin-category-list");
+
+  if (!form || !list) return;
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const input = document.getElementById("new-category-name");
+    const name = input.value.trim();
+
+    if (!name) return;
+
+    try {
+      const res = await fetch(`${getBaseUrl()}/api/categories`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        body: JSON.stringify({ name }),
+      });
+
+      if (!res.ok) throw new Error("Kunde inte lägga till kategori");
+
+      input.value = "";
+      await loadCategories();
+      renderCategoryList();
+    } catch (err) {
+      console.error("Fel vid skapandet av kategori", err);
+      alert("Kategorin kunde inte skapas.");
+    }
+  });
+
+  renderCategoryList();
+}
+
+// function renderCategoryList(){
+//   const list  = document.getElementById("admin-category-list");
+//   list.innerHTML ="";
+
+//   if (!window._categories || !Array.isArray(window._categories)) return;
+
+//   window._categories.forEach((cat) => {
+//     const li = document.createElement("li");
+//     const input = document.createElement("input");
+//     input.type = "text";
+//     input.value = cat.name;
+
+//     const editBtn = document.createElement("button");
+//     editBtn.textContent = "Spara";
+//     editBtn.classList.add("edit");
+
+//     const deleteBtn = document.createElement("button");
+//     deleteBtn.textContent = "Ta bort";
+//     deleteBtn.classList.add("delete");
+
+//     Uppdaterar kategori
+//     editBtn.addEventListener("click", async () => {
+//       const newName = input.value.trim();
+//       if (!newName ||newName === cat.name) return;
+
+//       try {
+//         const res = await fetch(`${getBaseUrl()}/api/categories/${cat._id}`, {
+//           method: "PUT",
+//           headers: {
+//             "Content-Type": "applications/json",
+//             Authorization: `Bearer ${localStorage.getItem("token")}`,
+//           },
+//           body: JSON.stringify({ name: newName}),
+//         });
+
+//         if (!res.ok) throw new Error("Uppdatering misslyckades");
+//         await loadCategories();
+//         renderCategoryList();
+//       } catch (err) {
+//         console.error("Fel vid uppdatering:", err);
+//         alert("Kategorin kunde inte uppdateras.");
+//       }
+//     });
+
+//     deleteBtn.addEventListener("click", async () =>{
+//       const confirmed = confirm("Är du säker på att du vill ta bort kategorin?");
+//       if (!confirmed) return;
+
+//       try {
+//         const res = await fetch(`${getBaseUrl()}/api/categories/${cat._id}`, {
+//           method: "DELETE",
+//           headers: {
+//             Authorization: `Bearer ${localStorage.getItem("token")}`,
+//           },
+//         });
+
+//         if (!res.ok) throw new Error("Radering misslyckades");
+//         await loadCategories();
+//         renderCategoryList();
+//       } catch (err) {
+//         console.error("Fel vid radering:", err);
+//         alert("Kategorin kunde inte raderas");
+//       }
+//     });
+//     li.appendChild(input);
+//     li.appendChild(editBtn);
+//     li.appendChild(deleteBtn);
+//     list.appendChild(li);
+
+//   });
+
+// }
+
+function renderCategoryList() {
+  const list = document.getElementById("admin-category-list");
+  list.innerHTML = "";
+
+  if (!window._categories || !Array.isArray(window._categories)) return;
+
+  let currentlyEditing = null;
+
+  window._categories.forEach((cat) => {
+    const li = document.createElement("li");
+
+    const input = document.createElement("input");
+    input.type = "text";
+    input.value = cat.name;
+    input.disabled = true;
+
+    const editBtn = document.createElement("button");
+    editBtn.textContent = "Redigera";
+    editBtn.classList.add("edit");
+
+    const deleteBtn = document.createElement("button");
+    deleteBtn.textContent = "Ta bort";
+    deleteBtn.classList.add("delete");
+
+    // REDIGERA/SPARA-knappen
+    editBtn.addEventListener("click", async () => {
+      if (currentlyEditing && currentlyEditing !== input) {
+        currentlyEditing.disabled = true;
+        currentlyEditing.nextSibling.textContent = "Redigera";
+      }
+
+      if (!input.disabled) {
+        const newName = input.value.trim();
+        if (!newName || newName === cat.name) {
+          input.disabled = true;
+          editBtn.textContent = "Redigera";
+          currentlyEditing = null;
+          return;
+        }
+
+        try {
+          const res = await fetch(`${getBaseUrl()}/api/categories/${cat._id}`, {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+            body: JSON.stringify({ name: newName }),
+          });
+
+          if (!res.ok) throw new Error("Uppdatering misslyckades");
+
+          await loadCategories();
+          renderCategoryList();
+        } catch (err) {
+          console.error("Fel vid uppdatering:", err);
+          alert("Kategorin kunde inte uppdateras.");
+        }
+      } else {
+        input.disabled = false;
+        input.focus();
+        editBtn.textContent = "Spara";
+        currentlyEditing = input;
+      }
+    });
+
+    // TA BORT-knappen
+    deleteBtn.addEventListener("click", async () => {
+      const confirmed = confirm(
+        "Är du säker på att du vill ta bort kategorin?",
+      );
+      if (!confirmed) return;
+
+      try {
+        const res = await fetch(`${getBaseUrl()}/api/categories/${cat._id}`, {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        });
+
+        if (!res.ok) throw new Error("Radering misslyckades");
+
+        await loadCategories();
+        renderCategoryList(); // ✅ MÅSTE vara kvar här
+      } catch (err) {
+        console.error("Fel vid radering:", err);
+        alert("Kategorin kunde inte raderas");
+      }
+    });
+
+    li.appendChild(input);
+    li.appendChild(editBtn);
+    li.appendChild(deleteBtn);
+    list.appendChild(li);
   });
 }
