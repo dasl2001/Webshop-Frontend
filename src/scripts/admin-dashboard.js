@@ -111,7 +111,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   loadCategories();
   loadOrders();
   await loadCategories();
-  renderCategoryList();
+  // renderCategoryList();
   setupCategoryListeners();
 });
 
@@ -538,79 +538,6 @@ function setupCategoryListeners() {
   renderCategoryList();
 }
 
-// function renderCategoryList(){
-//   const list  = document.getElementById("admin-category-list");
-//   list.innerHTML ="";
-
-//   if (!window._categories || !Array.isArray(window._categories)) return;
-
-//   window._categories.forEach((cat) => {
-//     const li = document.createElement("li");
-//     const input = document.createElement("input");
-//     input.type = "text";
-//     input.value = cat.name;
-
-//     const editBtn = document.createElement("button");
-//     editBtn.textContent = "Spara";
-//     editBtn.classList.add("edit");
-
-//     const deleteBtn = document.createElement("button");
-//     deleteBtn.textContent = "Ta bort";
-//     deleteBtn.classList.add("delete");
-
-//     Uppdaterar kategori
-//     editBtn.addEventListener("click", async () => {
-//       const newName = input.value.trim();
-//       if (!newName ||newName === cat.name) return;
-
-//       try {
-//         const res = await fetch(`${getBaseUrl()}/api/categories/${cat._id}`, {
-//           method: "PUT",
-//           headers: {
-//             "Content-Type": "applications/json",
-//             Authorization: `Bearer ${localStorage.getItem("token")}`,
-//           },
-//           body: JSON.stringify({ name: newName}),
-//         });
-
-//         if (!res.ok) throw new Error("Uppdatering misslyckades");
-//         await loadCategories();
-//         renderCategoryList();
-//       } catch (err) {
-//         console.error("Fel vid uppdatering:", err);
-//         alert("Kategorin kunde inte uppdateras.");
-//       }
-//     });
-
-//     deleteBtn.addEventListener("click", async () =>{
-//       const confirmed = confirm("Är du säker på att du vill ta bort kategorin?");
-//       if (!confirmed) return;
-
-//       try {
-//         const res = await fetch(`${getBaseUrl()}/api/categories/${cat._id}`, {
-//           method: "DELETE",
-//           headers: {
-//             Authorization: `Bearer ${localStorage.getItem("token")}`,
-//           },
-//         });
-
-//         if (!res.ok) throw new Error("Radering misslyckades");
-//         await loadCategories();
-//         renderCategoryList();
-//       } catch (err) {
-//         console.error("Fel vid radering:", err);
-//         alert("Kategorin kunde inte raderas");
-//       }
-//     });
-//     li.appendChild(input);
-//     li.appendChild(editBtn);
-//     li.appendChild(deleteBtn);
-//     list.appendChild(li);
-
-//   });
-
-// }
-
 function renderCategoryList() {
   const list = document.getElementById("admin-category-list");
   list.innerHTML = "";
@@ -677,7 +604,6 @@ function renderCategoryList() {
       }
     });
 
-    // TA BORT-knappen
     deleteBtn.addEventListener("click", async () => {
       const confirmed = confirm(
         "Är du säker på att du vill ta bort kategorin?",
@@ -688,17 +614,26 @@ function renderCategoryList() {
         const res = await fetch(`${getBaseUrl()}/api/categories/${cat._id}`, {
           method: "DELETE",
           headers: {
+            "Content-Type": "application/json",
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         });
 
-        if (!res.ok) throw new Error("Radering misslyckades");
+        if (!res.ok) {
+          const errorText = await res.text();
+          if (errorText.includes("products") || errorText.includes("kopplad")) {
+            alert(" Du kan inte ta bort en kategori som innehåller produkter.");
+          } else {
+            throw new Error("Radering misslyckades");
+          }
+          return;
+        }
 
         await loadCategories();
-        renderCategoryList(); // ✅ MÅSTE vara kvar här
+        renderCategoryList();
       } catch (err) {
         console.error("Fel vid radering:", err);
-        alert("Kategorin kunde inte raderas");
+        alert("Kategorin kunde inte raderas.");
       }
     });
 
