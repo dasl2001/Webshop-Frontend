@@ -199,7 +199,6 @@ footer {
   font-family: Arial, sans-serif;
   margin-top: auto;
   border-top: 1px solid #e30613;
-  border-bottom: 1px solid #e30613;
 }
 footer .footer-container {
   max-width: 1100px;
@@ -678,11 +677,17 @@ a:hover {
 #product-modal.modal.hidden {
   display: none;
 }
+#product-modal.modal p {
+  margin: 3px;
+}
 #product-modal.modal .modal-content {
   display: flex;
   flex-direction: column;
   background-color: white;
-  padding: 2rem;
+  padding-top: 2rem;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-bottom: 50px;
   border-radius: 8px;
   max-width: 600px;
   width: 90%;
@@ -718,7 +723,7 @@ a:hover {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  padding: 4px;
+  padding-top: 18px;
   width: 100%;
 }
 #product-modal.modal .modal-content #product-wrapper p {
@@ -734,7 +739,7 @@ a:hover {
 #product-modal.modal .modal-content #modal-category {
   color: #616161;
   text-align: left;
-  font-size: 12px;
+  font-size: 13px;
   margin-top: 0;
   margin-bottom: 20px;
 }
@@ -767,6 +772,7 @@ a:hover {
 #product-modal.modal .modal-content .modal-section h3 {
   font-size: 1.1rem;
   font-weight: 700;
+  margin-top: 0;
   margin-bottom: 0.5rem;
 }
 #product-modal.modal .modal-content .modal-section p {
@@ -778,6 +784,10 @@ a:hover {
 #product-modal.modal .modal-content #modal-content-attributes {
   display: flex;
   flex-direction: column;
+}
+#product-modal.modal .modal-content #modal-info-attributes p,
+#product-modal.modal .modal-content #modal-content-attributes p {
+  margin: 0;
 }
 #product-modal.modal .modal-content .attribute-label {
   font-weight: 700;
