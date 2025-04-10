@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hakim Livs</title>
     <link rel="stylesheet" href="/public/css/main.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+
   </head>
   <body>
     <div class="top-banner">
@@ -112,17 +114,44 @@
     </div>
     <!-- site-wrapper -->
 
-    <!-- Modal -->
-    <div id="product-modal" class="modal hidden">
-      <div class="modal-content">
+<div id="product-modal" class="modal hidden">
+  <div class="modal-content">
+    <div id="modal-info">
+      <span id="close-modal" class="close-button">&times;</span>
+      <p id="modal-category"></p>
+
+      <div id="product-wrapper">
         <img id="modal-image" class="modal-image" />
-        <span id="close-modal" class="close-button">&times;</span>
-        <h2 id="modal-title"></h2>
-        <p id="modal-description"></p>
-        <p id="modal-category"></p>
-        <p id="modal-price"></p>
+
+        <div id="product-info">
+          <h2 id="modal-title"></h2>
+          <p id="modal-price"></p>
+          <p id="modal-description"></p>
+
+          <!-- Jämförpris direkt under pris -->
+          <div id="modal-compare-price"></div>
+
+          <button id="modal-add-to-cart-btn" class="add-to-cart-btn">Lägg i varukorg</button>
+        </div>
+      </div>
+
+      <!-- Produktinformation (leverantör, ursprungsland, varumärke) -->
+      <div id="modal-product-info" class="modal-section">
+        <h3>Produktinformation</h3>
+        <div id="modal-info-attributes"></div>
+      </div>
+
+      <!-- Innehåll och näringsvärde -->
+      <div id="modal-details" class="modal-section">
+        <div id="modal-content-attributes"></div>
       </div>
     </div>
+  </div>
+</div>
+
+
+
+    
 
     <!-- Offcanvas-varukorg -->
     <div id="cart-offcanvas" class="cart-offcanvas hidden">
@@ -179,7 +208,8 @@
         <p>&copy; 2025 Hakim Livs. Alla rättigheter reserverade.</p>
       </div>
     </footer>
-    
+
+
 
     <script type="module" src="./src/scripts/index.js"></script>
     <script type="module" src="./src/scripts/cart.js"></script>
