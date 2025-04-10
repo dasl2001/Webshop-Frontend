@@ -307,18 +307,20 @@ function renderOrderList(orders) {
                )
                .join("")}
           </ul>
-          <p><strong>Totalpris:</strong> ${order.total.toFixed(2).replace(".", ",")} kr</p>
-          <p><strong>Status:</strong></p>
-          <select data-id="${order._id}" class="order-status-select">
-            <option value="mottagen" ${order.status === "mottagen" ? "selected" : ""}>Mottagen</option>
-            <option value="under behandling" ${order.status === "under behandling" ? "selected" : ""}>Under behandling</option>
-            <option value="skickad" ${order.status === "skickad" ? "selected" : ""}>Skickad</option>
-            <option value="levererad" ${order.status === "levererad" ? "selected" : ""}>Levererad</option>
-          </select>
+          <p><strong>Status:</strong> <span class="order-status ${order.status.replace(" ", "-")}">${order.status}</span></p>
 
-          <button class="print-order">Skriv ut plocklista</button>
+<select data-id="${order._id}" class="order-status-select hidden">
+  <option value="mottagen" ${order.status === "mottagen" ? "selected" : ""}>Mottagen</option>
+  <option value="under behandling" ${order.status === "under behandling" ? "selected" : ""}>Under behandling</option>
+  <option value="skickad" ${order.status === "skickad" ? "selected" : ""}>Skickad</option>
+  <option value="levererad" ${order.status === "levererad" ? "selected" : ""}>Levererad</option>
+</select>
+
+<button class="change-status-btn">Ändra status</button>
+<button class="print-order">Skriv ut plocklista</button>
+
         </div>
-      `;
+        `;
 
       container.appendChild(el);
     });
@@ -327,6 +329,14 @@ function renderOrderList(orders) {
   container.querySelectorAll(".toggle-details").forEach((btn) => {
     btn.addEventListener("click", () => {
       btn.parentElement.nextElementSibling.classList.toggle("hidden");
+    });
+  });
+
+  // Visa/dölj select när man klickar på "Ändra status"
+  container.querySelectorAll(".change-status-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const select = btn.previousElementSibling; // Select ligger före knappen
+      select.classList.toggle("hidden");
     });
   });
 
@@ -352,6 +362,12 @@ function renderOrderList(orders) {
         if (!res.ok) throw new Error("Kunde inte uppdatera status");
 
         alert("Status uppdaterad!");
+
+        // Uppdatera färg + text direkt utan att ladda om
+        const statusSpan =
+          select.previousElementSibling.querySelector(".order-status");
+        statusSpan.textContent = newStatus;
+        statusSpan.className = `order-status ${newStatus.replace(" ", "-")}`;
       } catch (error) {
         console.error("Fel vid statusuppdatering:", error);
         alert("Det gick inte att uppdatera status.");
