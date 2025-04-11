@@ -1,4 +1,5 @@
-//import { formatPrice } from '../utils/utils.js';
+import { formatPrice } from "../utils/utils.js";
+
 const cartLink = document.querySelector('a[href="/pages/cart.html"]');
 const cartPanel = document.getElementById("cart-offcanvas");
 
@@ -63,7 +64,11 @@ export function updateCartUI() {
   let totalQuantity = 0;
 
   cart.forEach((item) => {
-    sum += item.price * item.quantity;
+    const price = parseFloat(item.price);
+    if (!isNaN(price)) {
+      sum += price * item.quantity;
+    }
+
     totalQuantity += item.quantity;
 
     const el = document.createElement("div");
@@ -72,7 +77,7 @@ export function updateCartUI() {
     el.innerHTML = `
       <div class="cart-item-info">
         <p class="cart-item-name" data-id="${item._id}" style="cursor:pointer;color:#e30613;">${item.name}</p>
-        <p>${item.price.toFixed(2).replace(".", ",")} kr/st</p>
+        <p>${formatPrice(price)} /st</p>
       </div>
       <div class="cart-item-actions">
         <button class="decrease-qty" data-id="${item._id}">–</button>
@@ -85,7 +90,7 @@ export function updateCartUI() {
     container.appendChild(el);
   });
 
-  total.textContent = `${sum.toFixed(2).replace(".", ",")} kr`;
+  total.textContent = formatPrice(sum);
   count.textContent = `(${totalQuantity})`;
 
   setupCartButtonEvents();
@@ -154,5 +159,8 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 export function calculateTotal(cart) {
-  return cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  return cart.reduce((sum, item) => {
+    const price = parseFloat(item.price);
+    return !isNaN(price) ? sum + price * item.quantity : sum;
+  }, 0);
 }
