@@ -1,3 +1,4 @@
+//import { formatPrice } from '../utils/utils.js';
 const cartLink = document.querySelector('a[href="/pages/cart.html"]');
 const cartPanel = document.getElementById("cart-offcanvas");
 
