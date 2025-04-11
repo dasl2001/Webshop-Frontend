@@ -2,8 +2,14 @@ import { getCart, calculateTotal } from "./cart.js";
 import { getBaseUrl } from "../utils/api.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-  const totalDisplay = document.getElementById("checkout-total");
   const cart = getCart();
+
+  if (!cart.length) {
+    alert("Din varukorg är tom! Lägg till produkter innan du går till kassan.");
+    window.location.href = "/pages/cart.html";
+  }
+
+  const totalDisplay = document.getElementById("checkout-total");
   const initialTotal = calculateTotal(cart);
 
   totalDisplay.textContent = `${initialTotal.toFixed(2).replace(".", ",")} kr`;
