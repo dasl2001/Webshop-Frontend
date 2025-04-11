@@ -1,3 +1,4 @@
+//import { formatPrice } from '../utils/utils.js';
 // Hantera offcanvas-visning
 const cartLink = document.querySelector('a[href="/pages/cart.html"]');
 const cartPanel = document.getElementById("cart-offcanvas");

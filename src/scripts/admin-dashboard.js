@@ -4,6 +4,7 @@ import {
   fetchCategories,
   getBaseUrl,
 } from "../utils/api.js";
+//import { formatPrice } from '../utils/utils.js';
 
 const productsPerPage = 10;
 let currentPage = 1;

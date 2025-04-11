@@ -1,5 +1,6 @@
 import { getCart, calculateTotal } from "./cart.js";
 import { getBaseUrl } from "../utils/api.js";
+//import { formatPrice } from '../utils/utils.js';
 
 document.addEventListener("DOMContentLoaded", () => {
   const totalDisplay = document.getElementById("checkout-total");

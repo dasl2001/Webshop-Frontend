@@ -1,4 +1,5 @@
 import { loginAdmin } from "../utils/api.js";
+//import { formatPrice } from '../utils/utils.js';
 
 document.addEventListener("DOMContentLoaded", () => {
   const userBtn = document.getElementById("userBtn");

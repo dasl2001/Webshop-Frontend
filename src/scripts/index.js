@@ -1,6 +1,7 @@
 import { fetchProducts, getBaseUrl } from "../utils/api.js";
 import { fetchCategories } from "../utils/api.js";
 import { addToCart } from "./cart.js";
+import { formatPrice } from "../utils/utils.js";
 
 let allProducts = [];
 let filteredProducts = [];
@@ -156,7 +157,7 @@ function createProductCard(product) {
   element.innerHTML = `
     <img src="${product.imageUrl}" alt="${product.name}" class="product-image" />
     <h3>${product.name}</h3>
-    <p>${product.price.toFixed(2).replace(".", ",")} kr</p>
+    <p>${formatPrice(product.price)}</p>
     <button class="add-to-cart-btn">Lägg i varukorg</button>
   `;
 
