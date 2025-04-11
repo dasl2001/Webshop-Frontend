@@ -4,7 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/public/css/main.css" />
-    <link rel="icon" type="image/png" href="src/assets/hakim_favicon_io/favicon-16x16.png">
+    <link
+      rel="icon"
+      type="image/png"
+      href="src/assets/hakim_favicon_io/favicon-16x16.png"
+    />
 
     <title>Admin Dashboard - Hakim Livs</title>
   </head>
@@ -48,6 +52,50 @@
             />
             <input type="text" id="new-image" placeholder="Bild-URL" required />
             <select id="new-category" required></select>
+
+            <input
+              type="text"
+              id="new-description"
+              placeholder="Beskrivning"
+              required
+            />
+            <input
+              type="text"
+              id="new-brand"
+              placeholder="Varumärke"
+              required
+            />
+            <input
+              type="text"
+              id="new-comparisonPrice"
+              placeholder="Jämförpris (t.ex. 140 kr/kg)"
+              required
+            />
+            <input
+              type="text"
+              id="new-originCountry"
+              placeholder="Ursprungsland"
+              required
+            />
+            <input
+              type="text"
+              id="new-supplier"
+              placeholder="Leverantör"
+              required
+            />
+            <input
+              type="text"
+              id="new-ingredients"
+              placeholder="Innehållsförteckning"
+              required
+            />
+            <input
+              type="text"
+              id="new-nutrition"
+              placeholder="Näringsvärde"
+              required
+            />
+
             <button type="submit">Spara</button>
             <button type="button" id="cancel-edit-btn" class="hidden">
               Avbryt
@@ -57,15 +105,19 @@
 
         <section class="category-management-section">
           <h3>Kategorihantering</h3>
-        
+
           <form id="add-category-form">
-            <input type="text" id="new-category-name" placeholder="Ny kategori..." required />
+            <input
+              type="text"
+              id="new-category-name"
+              placeholder="Ny kategori..."
+              required
+            />
             <button type="submit">Lägg till kategori</button>
           </form>
-        
+
           <ul id="admin-category-list" class="admin-category-list"></ul>
         </section>
-        
 
         <!-- Admin Controls + Produkter + Inkommande beställningar -->
         <section class="order-list-section">

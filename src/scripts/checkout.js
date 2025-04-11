@@ -52,7 +52,10 @@ document.addEventListener("DOMContentLoaded", () => {
       items: products,
     };
 
-    console.log("Data som skickas till backend:", orderData);
+    console.log(
+      "Data som skickas till backend:",
+      JSON.stringify(orderData, null, 2),
+    );
 
     try {
       const res = await fetch(`${getBaseUrl()}/api/orders`, {

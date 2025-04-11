@@ -64,13 +64,33 @@ document.addEventListener("DOMContentLoaded", async () => {
     );
     const imageUrl = document.getElementById("new-image").value.trim();
     const category = document.getElementById("new-category").value;
+    const description = document.getElementById("new-description").value.trim();
+    const brand = document.getElementById("new-brand").value.trim();
+    const comparePrice = document
+      .getElementById("new-comparisonPrice")
+      .value.trim();
 
-    if (!name || isNaN(price) || !imageUrl || !category) {
-      alert("Fyll i alla fält korrekt. T.ex. pris 12,00.");
-      return;
-    }
+    const originCountry = document
+      .getElementById("new-originCountry")
+      .value.trim();
+    const supplier = document.getElementById("new-supplier").value.trim();
+    const ingredients = document.getElementById("new-ingredients").value.trim();
+    const nutrition = document.getElementById("new-nutrition").value.trim();
 
-    const productData = { name, price, imageUrl, category };
+    const productData = {
+      name,
+      price,
+      imageUrl,
+      category,
+      description,
+      brand,
+      comparePrice,
+      originCountry,
+      supplier,
+      ingredients,
+      nutrition,
+    };
+
     const editingId = form.dataset.editingId;
 
     try {
@@ -475,6 +495,20 @@ function addEditListeners() {
       document.getElementById("new-price").value = price;
       document.getElementById("new-image").value = image;
       document.getElementById("new-category").value = categoryId;
+
+      const product = allProducts.find((p) => p._id === id);
+      document.getElementById("new-description").value =
+        product.description || "";
+      document.getElementById("new-brand").value = product.brand || "";
+      document.getElementById("new-comparisonPrice").value =
+        product.comparePrice || "";
+
+      document.getElementById("new-originCountry").value =
+        product.originCountry || "";
+      document.getElementById("new-supplier").value = product.supplier || "";
+      document.getElementById("new-ingredients").value =
+        product.ingredients || "";
+      document.getElementById("new-nutrition").value = product.nutrition || "";
 
       document.getElementById("add-product-form").dataset.editingId = id;
       document.getElementById("cancel-edit-btn").classList.remove("hidden");
