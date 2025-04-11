@@ -1,6 +1,6 @@
 import { getCart, calculateTotal } from "./cart.js";
 import { getBaseUrl } from "../utils/api.js";
-//import { formatPrice } from '../utils/utils.js';
+import { formatPrice } from "../utils/utils.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   const cart = getCart();
@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const totalDisplay = document.getElementById("checkout-total");
   const initialTotal = calculateTotal(cart);
 
-  totalDisplay.textContent = `${initialTotal.toFixed(2).replace(".", ",")} kr`;
+  totalDisplay.textContent = `${formatPrice(initialTotal)}`;
 
   const form = document.getElementById("checkout-form");
   const popup = document.getElementById("confirmation-popup");
@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       message.innerHTML = `
         Beställningen är mottagen!<br>
-        Vänligen swisha <strong>${currentTotal.toFixed(2).replace(".", ",")} kr</strong> till <strong>123 456 676</strong>.<br>
+        Vänligen swisha <strong>${formatPrice(currentTotal)}</strong> till <strong>123 456 676</strong>.<br>
         Vi sms:ar när vi är på väg.
       `;
 
