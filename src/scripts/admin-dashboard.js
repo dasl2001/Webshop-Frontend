@@ -4,7 +4,7 @@ import {
   fetchCategories,
   getBaseUrl,
 } from "../utils/api.js";
-//import { formatPrice } from '../utils/utils.js';
+import { formatPrice } from "../utils/utils.js";
 
 const productsPerPage = 10;
 let currentPage = 1;
@@ -319,16 +319,17 @@ function renderOrderList(orders) {
               return `
                 <li>
                   ${item.product.name} – 
-                  ${item.product.price.toFixed(2).replace(".", ",")} kr/st – 
+                  ${formatPrice(item.product.price)} /st– 
                   ${item.quantity} st – 
-                  ${(item.product.price * item.quantity).toFixed(2).replace(".", ",")} kr
+                  ${formatPrice(item.product.price * item.quantity)}
                 </li>
               `;
             })
             .join("")}
         </ul>
 
-        <p><strong>Totalpris:</strong> ${order.total.toFixed(2).replace(".", ",")} kr</p>
+        <p><strong>Totalpris:</strong> ${formatPrice(order.total)}</p>
+
 
         <p><strong>Status:</strong> <span class="order-status ${order.status.replace(" ", "-")}" data-id="${order._id}">${order.status}</span></p>
 
@@ -417,7 +418,7 @@ function createAdminProductCard(product) {
   card.className = "product-card";
 
   // Visa pris med komma
-  const price = product.price.toFixed(2).replace(".", ",");
+  const price = formatPrice(product.price);
 
   let cat = "Ingen kategori";
   if (product.category?.name) {
