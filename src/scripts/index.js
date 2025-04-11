@@ -187,8 +187,9 @@ function showProductModal(product) {
     document.getElementById("modal-description").textContent = description;
     document.getElementById("modal-category").textContent =
       ` ${product.category?.name || "Okänd"}`;
-    document.getElementById("modal-price").textContent =
-      `${product.price?.toFixed(2).replace(".", ",")} kr`;
+    document.getElementById("modal-price").textContent = formatPrice(
+      product.price,
+    );
     document.getElementById("modal-image").src = product.imageUrl;
     document.getElementById("modal-image").alt = product.name;
 
