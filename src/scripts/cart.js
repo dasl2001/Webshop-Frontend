@@ -1,25 +1,27 @@
 const cartLink = document.querySelector('a[href="/pages/cart.html"]');
 const cartPanel = document.getElementById("cart-offcanvas");
 
-cartLink.addEventListener("click", (e) => {
-  e.preventDefault();
-  cartPanel.classList.add("visible");
-  cartPanel.classList.remove("hidden");
-});
+if (cartLink && cartPanel) {
+  cartLink.addEventListener("click", (e) => {
+    e.preventDefault();
+    cartPanel.classList.add("visible");
+    cartPanel.classList.remove("hidden");
+  });
 
-document.addEventListener("click", (e) => {
-  if (e.target.closest(".cart-item-actions")) return;
-  if (
-    cartPanel.classList.contains("visible") &&
-    !cartPanel.contains(e.target) &&
-    !cartLink.contains(e.target)
-  ) {
-    cartPanel.classList.remove("visible");
-    cartPanel.classList.add("hidden");
-  }
-});
+  document.addEventListener("click", (e) => {
+    if (e.target.closest(".cart-item-actions")) return;
+    if (
+      cartPanel.classList.contains("visible") &&
+      !cartPanel.contains(e.target) &&
+      !cartLink.contains(e.target)
+    ) {
+      cartPanel.classList.remove("visible");
+      cartPanel.classList.add("hidden");
+    }
+  });
+}
 
-function getCart() {
+export function getCart() {
   return JSON.parse(localStorage.getItem("cart")) || [];
 }
 
@@ -149,3 +151,7 @@ function setupCartButtonEvents() {
 document.addEventListener("DOMContentLoaded", () => {
   updateCartUI();
 });
+
+export function calculateTotal(cart) {
+  return cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+}
