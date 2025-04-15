@@ -470,7 +470,7 @@ function createAdminProductCard(product) {
   card.innerHTML = `
     <img src="${product.imageUrl}" alt="${product.name}">
     <h4>${product.name}</h4>
-    <p>${price} kr</p>
+    <p>${price}</p>
     <p><strong>${cat}</strong></p>
     <div class="actions">
       <button class="edit" data-id="${product._id}">Redigera</button>
