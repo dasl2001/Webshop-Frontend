@@ -9,6 +9,7 @@ import { formatPrice } from "../utils/utils.js";
 const productsPerPage = 10;
 let currentPage = 1;
 let allProducts = [];
+let allOrders = [];
 
 document.addEventListener("DOMContentLoaded", async () => {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -24,6 +25,23 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const form = document.getElementById("add-product-form");
   const cancelBtn = document.getElementById("cancel-edit-btn");
+  const tabs = document.querySelectorAll(".tabs button");
+  const tabContents = document.querySelectorAll(".tab-content");
+
+  tabContents.forEach((section) => section.classList.remove("active"));
+  tabs[0].classList.add("active");
+  tabContents[0].classList.add("active");
+
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      tabs.forEach((btn) => btn.classList.remove("active"));
+      tabContents.forEach((section) => section.classList.remove("active"));
+
+      tab.classList.add("active");
+      const target = tab.dataset.tab;
+      document.getElementById(target).classList.add("active");
+    });
+  });
 
   document.getElementById("add-product-btn")?.addEventListener("click", () => {
     document.getElementById("add-product-section").classList.toggle("hidden");
@@ -288,8 +306,8 @@ async function loadOrders() {
     if (!res.ok) throw new Error("Kunde inte hämta beställningar");
 
     const orders = await res.json();
-
-    renderOrderList(orders);
+    allOrders = orders;
+    renderOrderList(allOrders);
   } catch (err) {
     console.error("Fel vid hämtning av orders:", err);
     container.innerHTML = "<p>Kunde inte ladda beställningar.</p>";
@@ -433,6 +451,7 @@ function renderOrderList(orders) {
     });
   });
 }
+
 function createAdminProductCard(product) {
   const card = document.createElement("div");
   card.className = "product-card";

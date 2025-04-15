@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="sv">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,21 +9,14 @@
       type="image/png"
       href="src/assets/hakim_favicon_io/favicon-16x16.png"
     />
-
     <title>Admin Dashboard - Hakim Livs</title>
   </head>
+
   <body class="admin">
     <div class="site-wrapper">
       <header class="site-header">
         <nav>
-          <a href="/index.html">
-            <img
-              src="/src/assets/hakim-logo-616161.png"
-              id="hakim-logo"
-              alt="Logotype for Hakim's Livs"
-            />
-          </a>
-
+          <h1>Admin Dashboard</h1>
           <div class="nav-links">
             <button id="logoutBtn">Logga ut</button>
           </div>
@@ -31,103 +24,17 @@
       </header>
 
       <main class="main-content">
-        <h1>Admin - Dashboard</h1>
-        <h2>Här kan du som admin hantera innehållet för Hakim Livs</h2>
+        <h1>Här kan du som admin hantera innehållet för Hakim Livs</h1>
 
-        <!-- Lägg till/redigera produkt-formulär -->
-        <section id="add-product-section" class="add-product hidden">
-          <h3>Lägg till ny produkt</h3>
-          <form id="add-product-form">
-            <input
-              type="text"
-              id="new-name"
-              placeholder="Produktnamn"
-              required
-            />
-            <input
-              type="text"
-              id="new-price"
-              placeholder="Pris (t.ex. 19,90)"
-              required
-            />
-            <input type="text" id="new-image" placeholder="Bild-URL" required />
-            <select id="new-category" required></select>
+        <!-- Tabs -->
+        <div class="tabs">
+          <button data-tab="products-tab" class="active">Produkter</button>
+          <button data-tab="categories-tab">Kategorier</button>
+          <button data-tab="orders-tab">Ordrar</button>
+        </div>
 
-            <input
-              type="text"
-              id="new-description"
-              placeholder="Beskrivning"
-              required
-            />
-            <input
-              type="text"
-              id="new-brand"
-              placeholder="Varumärke"
-              required
-            />
-            <input
-              type="text"
-              id="new-comparisonPrice"
-              placeholder="Jämförpris (t.ex. 140 kr/kg)"
-              required
-            />
-            <input
-              type="text"
-              id="new-originCountry"
-              placeholder="Ursprungsland"
-              required
-            />
-            <input
-              type="text"
-              id="new-supplier"
-              placeholder="Leverantör"
-              required
-            />
-            <input
-              type="text"
-              id="new-ingredients"
-              placeholder="Innehållsförteckning"
-              required
-            />
-            <input
-              type="text"
-              id="new-nutrition"
-              placeholder="Näringsvärde"
-              required
-            />
-
-            <button type="submit">Spara</button>
-            <button type="button" id="cancel-edit-btn" class="hidden">
-              Avbryt
-            </button>
-          </form>
-        </section>
-
-        <section class="category-management-section">
-          <h3>Kategorihantering</h3>
-
-          <form id="add-category-form">
-            <input
-              type="text"
-              id="new-category-name"
-              placeholder="Ny kategori..."
-              required
-            />
-            <button type="submit">Lägg till kategori</button>
-          </form>
-
-          <ul id="admin-category-list" class="admin-category-list"></ul>
-        </section>
-
-        <!-- Admin Controls + Produkter + Inkommande beställningar -->
-        <section class="order-list-section">
-          <h3>Inkommande beställningar</h3>
-          <div id="order-list">
-            <p>Kunde inte ladda beställningar.</p>
-          </div>
-        </section>
-
-        <section class="product-list-section">
+        <!-- PRODUKTER -->
+        <section id="products-tab" class="tab-content active">
           <div class="admin-controls">
             <div class="admin-actions">
               <input
@@ -139,53 +46,105 @@
             </div>
           </div>
 
+          <section id="add-product-section" class="add-product hidden">
+            <h3>Lägg till ny produkt</h3>
+            <form id="add-product-form">
+              <input
+                type="text"
+                id="new-name"
+                placeholder="Produktnamn"
+                required
+              />
+              <input type="text" id="new-price" placeholder="Pris" required />
+              <input
+                type="text"
+                id="new-image"
+                placeholder="Bild-URL"
+                required
+              />
+              <select id="new-category" required></select>
+              <input
+                type="text"
+                id="new-description"
+                placeholder="Beskrivning"
+                required
+              />
+              <input
+                type="text"
+                id="new-brand"
+                placeholder="Varumärke"
+                required
+              />
+              <input
+                type="text"
+                id="new-comparisonPrice"
+                placeholder="Jämförpris"
+                required
+              />
+              <input
+                type="text"
+                id="new-originCountry"
+                placeholder="Ursprungsland"
+                required
+              />
+              <input
+                type="text"
+                id="new-supplier"
+                placeholder="Leverantör"
+                required
+              />
+              <input
+                type="text"
+                id="new-ingredients"
+                placeholder="Innehållsförteckning"
+                required
+              />
+              <input
+                type="text"
+                id="new-nutrition"
+                placeholder="Näringsvärde"
+                required
+              />
+              <button type="submit">Spara</button>
+              <button type="button" id="cancel-edit-btn" class="hidden">
+                Avbryt
+              </button>
+            </form>
+          </section>
+
           <h3>Produktöversikt</h3>
-          <div id="admin-product-list" class="product-list"></div>
+          <div class="product-list-section">
+            <div id="admin-product-list" class="product-list"></div>
+          </div>
+        </section>
+
+        <!-- KATEGORIER -->
+        <section id="categories-tab" class="tab-content">
+          <h3>Kategorihantering</h3>
+          <form id="add-category-form">
+            <input
+              type="text"
+              id="new-category-name"
+              placeholder="Ny kategori..."
+              required
+            />
+            <button type="submit">Lägg till kategori</button>
+          </form>
+          <ul id="admin-category-list"></ul>
+        </section>
+
+        <!-- ORDRAR -->
+        <section id="orders-tab" class="tab-content">
+          <h3>Inkommande beställningar</h3>
+          <div id="order-list">
+            <p>Kunde inte ladda beställningar.</p>
+          </div>
         </section>
       </main>
 
-      <!-- FOOTER -->
       <footer>
         <div class="footer-container">
-          <div class="footer-section brand-section">
-            <img
-              src="/src/assets/hakim-logo-616161.png"
-              alt="Hakim Livs logotyp"
-              class="footer-logo"
-            />
-            <p>Din lokala matbutik med hjärta för kvalitet och service.</p>
-          </div>
-
-          <div class="footer-section">
-            <h4>Kontakt</h4>
-            <div class="contact-info">
-              <p>
-                📍 Livsmedelsvägen 12<br /><span class="postal"
-                  >123 45 Stockholm</span
-                >
-              </p>
-            </div>
-            <p>📞 08-123 456 78</p>
-            <p>
-              <a href="mailto:someone@example.com" class="send-email"
-                >✉️ kontakt@hakimlivs.se</a
-              >
-            </p>
-          </div>
-
-          <div class="footer-section">
-            <h4>Öppettider</h4>
-            <p>Mån–Fre: 08:00 – 20:00</p>
-            <p>Lör: 10:00 – 18:00</p>
-            <p>Sön: 11:00 – 17:00</p>
-          </div>
-
-          <div class="footer-section">
-            <h4>Följ oss</h4>
-          </div>
-        </div>
-        <div class="footer-bottom">
-          <p>&copy; 2025 Hakim Livs. Alla rättigheter reserverade.</p>
+          <!-- Din footer här -->
         </div>
       </footer>
     </div>

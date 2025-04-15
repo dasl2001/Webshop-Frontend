@@ -336,76 +336,198 @@
 
 // KATEGORI-HANTERING
 .category-management-section {
-    background-color: white;
-    padding: 1.5rem;
-    border-radius: 10px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-    margin-top: 2rem;
-  
-    // Formuläret för att lägga till ny kategori
-    form {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  margin-top: 2rem;
+
+  // Formuläret för att lägga till ny kategori
+  form {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  // Inputfältet i formuläret
+  input[type="text"] {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    border: 1px solid $primary-color;
+  }
+
+  // Lägg till-knappen i formuläret
+  button {
+    background-color: #2a2d2f;
+    color: white;
+    padding: 0.75rem 1.2rem;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+  }
+
+  // Lista med befintliga kategorier
+  .admin-category-list {
+    list-style: none;
+    padding: 0;
+
+    li {
       display: flex;
-      gap: 1rem;
-      margin-bottom: 1rem;
-    }
-  
-    // Inputfältet i formuläret
-    input[type="text"] {
-      flex: 1;
-      padding: 0.75rem 1rem;
-      border-radius: 8px;
-      border: 1px solid $primary-color;
-    }
-  
-    // Lägg till-knappen i formuläret
-    button {
-      background-color: #2a2d2f;
-      color: white;
-      padding: 0.75rem 1.2rem;
-      border-radius: 8px;
-      border: none;
-      cursor: pointer;
-    }
-  
-    // Lista med befintliga kategorier
-    .admin-category-list {
-      list-style: none;
-      padding: 0;
-  
-      li {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0.5rem 0;
-        border-bottom: 1px solid #eee;
-  
-        // Redigeringsfält för kategori
-        input[type="text"] {
-          flex: 1;
-          padding: 0.5rem;
-          border-radius: 5px;
-          border: 1px solid #ccc;
-          margin-right: 1rem;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #eee;
+
+      // Redigeringsfält för kategori
+      input[type="text"] {
+        flex: 1;
+        padding: 0.5rem;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        margin-right: 1rem;
+      }
+
+      // Knappar: redigera & ta bort
+      button {
+        padding: 0.4rem 0.8rem;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+        font-size: 0.9rem;
+
+        &.edit {
+          background-color: #2a2d2f;
+          color: white;
         }
-  
-        // Knappar: redigera & ta bort
-        button {
-          padding: 0.4rem 0.8rem;
-          border-radius: 5px;
-          border: none;
-          cursor: pointer;
-          font-size: 0.9rem;
-  
-          &.edit {
-            background-color: #2a2d2f;
-            color: white;
-          }
-  
-          &.delete {
-            background-color: $primary-color;
-            color: white;
-          }
+
+        &.delete {
+          background-color: $primary-color;
+          color: white;
         }
       }
     }
   }
+}
+
+// TABBAR - Visa bara aktiv tab
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+// TABBAR - DESIGN
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2rem 0;
+
+  button {
+    padding: 0.7rem 1.5rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: white;
+    color: $text-color;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+
+    &:hover {
+      background-color: #f5f5f5;
+    }
+
+    &.active {
+      background-color: $primary-color;
+      color: white;
+      border-color: $primary-color;
+    }
+  }
+}
+
+// KATEGORI-HANTERING - STYLING
+#categories-tab {
+  form {
+    display: flex;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    margin: 1rem 0;
+
+    input[type="text"] {
+      width: 250px;
+      padding: 0.5rem 0.75rem;
+      font-size: 0.85rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+
+      &:focus {
+        border-color: $primary-color;
+        outline: none;
+      }
+    }
+
+    button {
+      background-color: #2a2d2f;
+      color: white;
+      padding: 0.5rem 1rem;
+      font-size: 0.85rem;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+
+      &:hover {
+        opacity: 0.9;
+      }
+    }
+  }
+}
+
+#admin-category-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 1rem;
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #eee;
+
+    input[type="text"] {
+      flex: 1;
+      padding: 0.6rem 1rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+
+      &:focus {
+        border-color: $primary-color;
+      }
+    }
+
+    button {
+      padding: 0.5rem 0.9rem;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.85rem;
+
+      &.edit {
+        background-color: #2a2d2f;
+        color: white;
+      }
+
+      &.delete {
+        background-color: $primary-color;
+        color: white;
+      }
+
+      &:hover {
+        opacity: 0.9;
+      }
+    }
+  }
+}

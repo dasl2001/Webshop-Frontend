@@ -1520,6 +1520,109 @@ a:hover {
   color: white;
 }
 
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+.tabs button {
+  padding: 0.7rem 1.5rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: white;
+  color: #2e2e2e;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+.tabs button:hover {
+  background-color: #f5f5f5;
+}
+.tabs button.active {
+  background-color: #e30613;
+  color: white;
+  border-color: #e30613;
+}
+
+#categories-tab form {
+  display: flex;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+#categories-tab form input[type=text] {
+  width: 250px;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.85rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+#categories-tab form input[type=text]:focus {
+  border-color: #e30613;
+  outline: none;
+}
+#categories-tab form button {
+  background-color: #2a2d2f;
+  color: white;
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+#categories-tab form button:hover {
+  opacity: 0.9;
+}
+
+#admin-category-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 1rem;
+}
+#admin-category-list li {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #eee;
+}
+#admin-category-list li input[type=text] {
+  flex: 1;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+#admin-category-list li input[type=text]:focus {
+  border-color: #e30613;
+}
+#admin-category-list li button {
+  padding: 0.5rem 0.9rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+#admin-category-list li button.edit {
+  background-color: #2a2d2f;
+  color: white;
+}
+#admin-category-list li button.delete {
+  background-color: #e30613;
+  color: white;
+}
+#admin-category-list li button:hover {
+  opacity: 0.9;
+}
+
 .checkout-wrapper {
   max-width: 600px;
   margin: 4rem auto;
