@@ -4,6 +4,7 @@ import { formatPrice } from "../utils/utils.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   const cart = getCart();
+  const submitBtn = document.querySelector('button[type="submit"]');
 
   if (!cart.length) {
     alert("Din varukorg är tom! Lägg till produkter innan du går till kassan.");
@@ -30,6 +31,9 @@ document.addEventListener("DOMContentLoaded", () => {
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Skickar beställning...";
+
     const name = form.name.value.trim();
     const address = form.address.value.trim();
     const phone = form.phone.value.trim();
@@ -37,6 +41,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!name || !address) {
       alert("Fyll i både namn och adress.");
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Beställ";
       return;
     }
 
@@ -81,6 +87,8 @@ document.addEventListener("DOMContentLoaded", () => {
     } catch (error) {
       console.error("Fel vid beställning:", error);
       alert("Kunde inte skicka beställningen, försök igen.");
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Beställ";
     }
   });
 
