@@ -541,6 +541,7 @@ function addEditListeners() {
 
 function addDeleteListeners() {
   const buttons = document.querySelectorAll(".delete");
+
   buttons.forEach((btn) => {
     btn.addEventListener("click", async () => {
       const productId = btn.dataset.id;
@@ -560,15 +561,23 @@ function addDeleteListeners() {
           },
         );
 
-        if (!response.ok) throw new Error("Radering misslyckades");
+        const data = await response.json();
+
+        if (!response.ok) {
+          // Visa backendens felmeddelande om produkten finns i order
+          alert(data.error || "Produkten kunde inte raderas.");
+          return;
+        }
+
         await loadAdminProducts();
       } catch (err) {
         console.error("Fel vid radering:", err);
-        alert("Produkten kunde inte raderas.");
+        alert("Något gick fel vid radering.");
       }
     });
   });
 }
+
 function setupCategoryListeners() {
   const form = document.getElementById("add-category-form");
   const list = document.getElementById("admin-category-list");
