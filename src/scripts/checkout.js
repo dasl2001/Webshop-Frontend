@@ -13,7 +13,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const totalDisplay = document.getElementById("checkout-total");
   const initialTotal = calculateTotal(cart);
-
   totalDisplay.textContent = `${formatPrice(initialTotal)}`;
 
   const form = document.getElementById("checkout-form");
@@ -28,6 +27,20 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // Förhindra siffror i namn, efternamn och postort
+  ["name", "lastname", "city"].forEach((id) => {
+    const input = document.getElementById(id);
+    input.addEventListener("input", () => {
+      input.value = input.value.replace(/[0-9]/g, "");
+    });
+  });
+
+  // Förhindra bokstäver i postnummer
+  const zipInput = document.getElementById("zipcode");
+  zipInput.addEventListener("input", () => {
+    zipInput.value = zipInput.value.replace(/\D/g, "");
+  });
+
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
@@ -35,12 +48,14 @@ document.addEventListener("DOMContentLoaded", () => {
     submitBtn.textContent = "Skickar beställning...";
 
     const name = form.name.value.trim();
+    const lastname = form.lastname.value.trim();
     const address = form.address.value.trim();
+    const zipcode = form.zipcode.value.trim();
+    const city = form.city.value.trim();
     const phone = form.phone.value.trim();
-    const cart = getCart();
 
-    if (!name || !address) {
-      alert("Fyll i både namn och adress.");
+    if (!name || !lastname || !address || !zipcode || !city) {
+      alert("Fyll i alla obligatoriska fält.");
       submitBtn.disabled = false;
       submitBtn.textContent = "Beställ";
       return;
@@ -52,8 +67,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }));
 
     const orderData = {
-      name,
-      address,
+      name: `${name} ${lastname}`,
+      address: `${address}, ${zipcode} ${city}`,
       phone,
       items: products,
     };
@@ -75,7 +90,6 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!res.ok) throw new Error("Kunde inte skicka beställningen");
 
       const currentTotal = calculateTotal(cart);
-
       message.innerHTML = `
         Beställningen är mottagen!<br>
         Vänligen swisha <strong>${formatPrice(currentTotal)}</strong> till <strong>123 456 676</strong>.<br>
