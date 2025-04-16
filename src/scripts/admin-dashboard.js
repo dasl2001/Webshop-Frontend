@@ -61,14 +61,20 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   // Sökfunktion
-  document.getElementById("admin-search")?.addEventListener("input", (e) => {
-    const query = e.target.value.toLowerCase();
-    const filtered = allProducts.filter((product) =>
-      product.name.toLowerCase().includes(query),
-    );
-    currentPage = 1;
-    renderPaginatedProducts(filtered);
-    renderPagination(filtered.length);
+  const searchInput = document.getElementById("admin-search");
+
+  searchInput?.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      const query = searchInput.value.toLowerCase();
+      const filtered = allProducts.filter((product) =>
+        product.name.toLowerCase().includes(query),
+      );
+      currentPage = 1;
+      renderPaginatedProducts(filtered);
+      renderPagination(filtered.length);
+      searchInput.value = "";
+    }
   });
 
   // Formuläret - spara (ny eller redigering)
