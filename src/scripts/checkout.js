@@ -98,6 +98,7 @@ import { formatPrice } from "../utils/utils.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   const cart = getCart();
+  const submitBtn = document.querySelector('button[type="submit"]');
 
   if (!cart.length) {
     alert("Din varukorg är tom! Lägg till produkter innan du går till kassan.");
@@ -107,7 +108,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const totalDisplay = document.getElementById("checkout-total");
   const initialTotal = calculateTotal(cart);
-
   totalDisplay.textContent = `${formatPrice(initialTotal)}`;
 
   const form = document.getElementById("checkout-form");
@@ -122,16 +122,37 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // Förhindra siffror i namn, efternamn och postort
+  ["name", "lastname", "city"].forEach((id) => {
+    const input = document.getElementById(id);
+    input.addEventListener("input", () => {
+      input.value = input.value.replace(/[0-9]/g, "");
+    });
+  });
+
+  // Förhindra bokstäver i postnummer
+  const zipInput = document.getElementById("zipcode");
+  zipInput.addEventListener("input", () => {
+    zipInput.value = zipInput.value.replace(/\D/g, "");
+  });
+
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const name = form.name.value.trim();
-    const address = form.address.value.trim();
-    const phone = form.phone.value.trim();
-    const cart = getCart();
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Skickar beställning...";
 
-    if (!name || !address) {
-      alert("Fyll i både namn och adress.");
+    const name = form.name.value.trim();
+    const lastname = form.lastname.value.trim();
+    const address = form.address.value.trim();
+    const zipcode = form.zipcode.value.trim();
+    const city = form.city.value.trim();
+    const phone = form.phone.value.trim();
+
+    if (!name || !lastname || !address || !zipcode || !city) {
+      alert("Fyll i alla obligatoriska fält.");
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Beställ";
       return;
     }
 
@@ -141,8 +162,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }));
 
     const orderData = {
-      name,
-      address,
+      name: `${name} ${lastname}`,
+      address: `${address}, ${zipcode} ${city}`,
       phone,
       items: products,
     };
@@ -164,7 +185,6 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!res.ok) throw new Error("Kunde inte skicka beställningen");
 
       const currentTotal = calculateTotal(cart);
-
       message.innerHTML = `
         Beställningen är mottagen!<br>
         Vänligen swisha <strong>${formatPrice(currentTotal)}</strong> till <strong>123 456 676</strong>.<br>
@@ -176,6 +196,8 @@ document.addEventListener("DOMContentLoaded", () => {
     } catch (error) {
       console.error("Fel vid beställning:", error);
       alert("Kunde inte skicka beställningen, försök igen.");
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Beställ";
     }
   });
 

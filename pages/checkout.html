@@ -1,9 +1,13 @@
 <!doctype html>
-<html lang="en">
+<html lang="sv">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="src/assets/hakim_favicon_io/favicon-16x16.png">
+    <link
+      rel="icon"
+      type="image/png"
+      href="src/assets/hakim_favicon_io/favicon-16x16.png"
+    />
     <title>Hakim Livs – Kassa</title>
     <link rel="stylesheet" href="/public/css/main.css" />
   </head>
@@ -11,11 +15,20 @@
     <div class="checkout-wrapper">
       <h1 class="checkout-title">Slutför din beställning</h1>
       <form id="checkout-form" class="checkout-form">
-        <label for="name">Namn *</label>
+        <label for="name">Förnamn *</label>
         <input type="text" id="name" name="name" required />
+
+        <label for="lastname">Efternamn *</label>
+        <input type="text" id="lastname" name="lastname" required />
 
         <label for="address">Adress *</label>
         <input type="text" id="address" name="address" required />
+
+        <label for="zipcode">Postnummer *</label>
+        <input type="text" id="zipcode" name="zipcode" maxlength="5" required />
+
+        <label for="city">Postort *</label>
+        <input type="text" id="city" name="city" required />
 
         <label for="phone">Telefonnummer *</label>
         <input

@@ -328,6 +328,7 @@ function initSearch() {
       currentPage = 1;
       renderPaginatedProducts(filteredProducts, false);
       renderPagination(filteredProducts.length);
+      input.value = "";
     } catch (error) {
       console.error("Sökningen misslyckades:", error);
       document.getElementById("products").innerHTML =
