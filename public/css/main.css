@@ -1010,11 +1010,39 @@ a:hover {
     font-size: 1rem;
   }
 }
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #fdf8f3;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 1000;
+  border-bottom: 2px solid #e30613;
+}
+
+.login-main-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 140px;
+}
+@media (max-width: 768px) {
+  .login-main-content {
+    margin-bottom: 0;
+  }
+}
+
 #login-container {
   display: flex;
   flex-direction: column;
   gap: 30px;
-  margin-top: 0;
   background-color: white;
   border-radius: 10px 10px 20px 20px;
   box-shadow: 0 5px 15px rgba(216, 216, 216, 0.408);
@@ -1022,19 +1050,22 @@ a:hover {
   width: 500px;
   max-width: 400px;
   margin-inline: auto;
+  margin-top: 0;
 }
-
-.login-main-content {
-  margin-bottom: 140px;
+@media (max-width: 768px) {
+  #login-container {
+    width: 95%;
+    max-width: 95%;
+    gap: 0;
+  }
 }
 
 .toggle-buttons {
   display: flex;
   justify-content: space-between;
-  flex-direction: row;
   margin-bottom: 1rem;
+  cursor: pointer;
 }
-
 .toggle-buttons button {
   flex: 1;
   padding: 0.5rem;
@@ -1044,10 +1075,15 @@ a:hover {
   border-radius: 20px;
   transition: background-color 0.2s ease;
 }
-
 .toggle-buttons button.active {
   background-color: #e30613;
   color: white;
+}
+@media (max-width: 768px) {
+  .toggle-buttons button {
+    font-size: 0.95rem;
+    padding: 0.6rem;
+  }
 }
 
 .login-forms {
@@ -1056,19 +1092,35 @@ a:hover {
   align-items: center;
   border-radius: 50px;
   width: 70%;
-  padding: 0 50px 50px 50px;
-  border: none;
+  padding: 0 50px 50px;
+}
+@media (max-width: 768px) {
+  .login-forms {
+    width: 90%;
+    padding: 20px;
+  }
 }
 
 .form {
-  display: none;
+  display: flex;
   flex-direction: column;
   gap: 10px;
   width: 100%;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: max-height 0.4s ease, opacity 0.3s ease;
 }
-
 .form.active {
-  display: flex;
+  max-height: 300px;
+  opacity: 1;
+  pointer-events: all;
+}
+@media (max-width: 768px) {
+  .form {
+    gap: 0.75rem;
+  }
 }
 
 #admin-email,
@@ -1078,19 +1130,26 @@ a:hover {
   background-color: white;
   border-radius: 50px;
   box-shadow: 0 5px 15px rgba(210, 210, 210, 0.1);
-  padding: 5px 20px;
   border: 2px solid rgba(245, 245, 245, 0.7176470588);
-  background: transparent;
   font-size: 1rem;
   height: 1.8rem;
-  padding-left: 1.5rem;
+  padding: 5px 20px 5px 1.5rem;
 }
-
 #admin-email:focus,
 #user-email:focus,
 #admin-password:focus,
 #user-password:focus {
   outline: none;
+}
+@media (max-width: 768px) {
+  #admin-email,
+  #user-email,
+  #admin-password,
+  #user-password {
+    font-size: 1rem;
+    padding: 0.6rem 1rem;
+    height: auto;
+  }
 }
 
 .login-btn {
@@ -1103,9 +1162,24 @@ a:hover {
   cursor: pointer;
   transition: background-color 0.2s ease;
 }
-
 .login-btn:hover {
   background-color: #b70010;
+}
+@media (max-width: 768px) {
+  .login-btn {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 12px;
+    padding: 0.75rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  #admin-login-btn {
+    margin-bottom: 15px;
+  }
 }
 
 .login-actions {
@@ -1116,70 +1190,15 @@ a:hover {
   gap: 110px;
   font-size: 11px;
 }
-
 @media (max-width: 768px) {
-  .login-site-wrapper {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    padding: 20px;
-  }
-  #login-container {
-    width: 95%;
-    max-width: 95%;
-    gap: 0;
-    border-radius: 10px;
-    box-shadow: none;
-    background-color: white;
-    border-radius: 10px 10px 20px 20px;
-    box-shadow: 0 5px 15px rgba(216, 216, 216, 0.408);
-  }
-  .login-main-content {
-    margin-bottom: 0;
-  }
-  .toggle-buttons {
-    flex-direction: row;
-  }
-  .toggle-buttons button {
-    font-size: 0.95rem;
-    padding: 0.6rem;
-  }
-  .login-forms {
-    width: 90%;
-    padding: 0 1rem 2rem 1rem;
-    padding: 20px !important;
-  }
-  .form {
-    gap: 0.75rem;
-  }
-  #admin-email,
-  #user-email,
-  #admin-password,
-  #user-password {
-    font-size: 1rem;
-    padding: 0.6rem 1rem;
-    height: auto;
-  }
-  .login-btn {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    width: 100%;
-    margin-top: 12px;
-    padding: 0.75rem;
-    font-size: 1rem;
-  }
-  #admin-login-btn {
-    margin-bottom: 15px;
-  }
   .login-actions {
-    flex-direction: row;
     justify-content: space-around;
     margin-right: 25px;
     font-size: 0.85rem;
-    gap: 80px !important;
+    gap: 80px;
   }
 }
+
 .main-content {
   max-width: 1200px;
   margin: 0 auto;

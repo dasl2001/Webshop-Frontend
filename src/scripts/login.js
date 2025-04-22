@@ -1,5 +1,4 @@
 import { loginAdmin } from "../utils/api.js";
-//import { formatPrice } from '../utils/utils.js';
 
 document.addEventListener("DOMContentLoaded", () => {
   const userBtn = document.getElementById("userBtn");
@@ -7,6 +6,34 @@ document.addEventListener("DOMContentLoaded", () => {
   const userForm = document.getElementById("userForm");
   const adminForm = document.getElementById("adminForm");
 
+  // Inloggning som användare (demo)
+  userForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    try {
+      alert("Inloggning som användare lyckades (demo)");
+      window.location.href = "/index.html";
+    } catch (err) {
+      alert("Inloggning misslyckades. Kontrollera uppgifterna.");
+    }
+  });
+
+  // Inloggning som admin
+  adminForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const adminID = document.getElementById("admin-email").value;
+    const adminPassword = document.getElementById("admin-password").value;
+
+    try {
+      const result = await loginAdmin(adminID, adminPassword);
+      localStorage.setItem("token", result.token);
+      localStorage.setItem("user", JSON.stringify(result.user));
+      window.location.href = "/pages/admin-dashboard.html";
+    } catch (err) {
+      alert("Inloggning misslyckades. Kontrollera uppgifterna.");
+    }
+  });
+  // Toggle mellan admin / användare
   userBtn.addEventListener("click", () => {
     userBtn.classList.add("active");
     adminBtn.classList.remove("active");
@@ -19,21 +46,5 @@ document.addEventListener("DOMContentLoaded", () => {
     userBtn.classList.remove("active");
     adminForm.classList.add("active");
     userForm.classList.remove("active");
-  });
-
-  adminForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const adminID = document.getElementById("admin-email").value;
-    const adminPassword = document.getElementById("admin-password").value;
-
-    try {
-      const result = await loginAdmin(adminID, adminPassword);
-      console.log(result);
-      localStorage.setItem("token", result.token);
-      localStorage.setItem("user", JSON.stringify(result.user));
-      window.location.href = "/pages/admin-dashboard.html";
-    } catch (err) {
-      alert("Inloggning misslyckades. Kontrollera uppgifterna.");
-    }
   });
 });
