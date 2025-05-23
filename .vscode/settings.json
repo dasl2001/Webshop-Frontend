@@ -16,7 +16,6 @@
     "**/jonatan.scss",
     "**/checkout.scss"
   ],
-
   "liveSassCompile.settings.watchOnLaunch": true,
   "liveServer.settings.port": 5509
 }
