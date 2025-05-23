@@ -92,7 +92,7 @@ Motsvarar:
 sass --no-source-map --watch src/scss/main.scss:public/css/main.css --style expanded
 \`\`\`
 
-**OBS!**  
+**Observera**  
 Kompilerad CSS ska **alltid** hamna i `public/css/main.css`.  
 Skapa **inte** mappar som `dist/` eller `build/`.
 
@@ -192,7 +192,7 @@ Finns i `admin-dashboard.html`. Funktioner:
 ## 11. Förbättringspunkter
 
 - **Responsivitet:** Just nu anpassad för desktop – bör utökas till mobil & surfplatta
-- **UX-förbättringar:** T.ex. laddningsindikator, feedback vid fel
+- **UX-förbättringar:** Till exempel laddningsindikator, feedback vid fel
 - **Kodkommentarer:** Tydligare beskrivning i komplexa funktioner
 - **Kodstruktur:** Fler SCSS-partials vid större projekt
 - **Orderhantering:** Utöka adminlogik t.ex. genom att rensa varukorg först vid bekräftad order
