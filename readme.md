@@ -1,5 +1,3 @@
-# Hakim Livs – E-handelsprojekt (Frontend)
-
 ## Projektbeskrivning & Syfte
 
 Detta projekt är en webbshop för livsmedel, utvecklad som en skoluppgift på Nackademin. Syftet är att träna på att bygga en fullständig e-handelsapplikation med både kundsida och adminpanel. Projektet är uppdelat i flera team (frontend, backend, testning) som samverkar.
@@ -50,25 +48,6 @@ https://be-webshop-2025-fe.vercel.app/index.html
 ## 2. Kodstruktur & Arkitektur
 
 ![Hakim Livs logotyp](src/assets/readme-images/2-readme-image.webp)
-
-
-
-HakimLivs-Frontend/
-├── index.html                 # Startsida (kundsida)
-├── pages/
-│   ├── checkout.html         # Checkout-formulär
-│   ├── admin-dashboard.html  # Adminpanel
-│   ├── login.html            # Inloggning för admin
-├── public/
-│   └── css/                  # Kompilerad CSS från SCSS
-├── src/
-│   ├── assets/               # Bilder och media
-│   ├── scss/                 # SCSS-filer (partials + main.scss)
-│   ├── scripts/              # JavaScript för respektive sida
-│   └── utils/                # Hjälpfunktioner (api, storage etc.)
-├── package.json
-└── README.md
-
 
 ---
 
