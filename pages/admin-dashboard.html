@@ -11,7 +11,6 @@
     />
     <title>Admin Dashboard - Hakim Livs</title>
   </head>
-
   <body class="admin">
     <div class="site-wrapper">
       <header class="site-header">
@@ -22,18 +21,13 @@
           </div>
         </nav>
       </header>
-
       <main class="main-content">
         <h1>Här kan du som admin hantera innehållet för Hakim Livs</h1>
-
-        <!-- Tabs -->
         <div class="tabs">
           <button data-tab="products-tab" class="active">Produkter</button>
           <button data-tab="categories-tab">Kategorier</button>
           <button data-tab="orders-tab">Ordrar</button>
         </div>
-
-        <!-- PRODUKTER -->
         <section id="products-tab" class="tab-content active">
           <div class="admin-controls">
             <div class="admin-actions">
@@ -45,7 +39,6 @@
               <button id="add-product-btn">Lägg till produkt</button>
             </div>
           </div>
-
           <section id="add-product-section" class="add-product hidden">
             <h3>Lägg till ny produkt</h3>
             <form id="add-product-form">
@@ -111,14 +104,11 @@
               </button>
             </form>
           </section>
-
           <h3>Produktöversikt</h3>
           <div class="product-list-section">
             <div id="admin-product-list" class="product-list"></div>
           </div>
         </section>
-
-        <!-- KATEGORIER -->
         <section id="categories-tab" class="tab-content">
           <h3>Kategorihantering</h3>
           <form id="add-category-form">
@@ -132,8 +122,6 @@
           </form>
           <ul id="admin-category-list"></ul>
         </section>
-
-        <!-- ORDRAR -->
         <section id="orders-tab" class="tab-content">
           <h3>Inkommande beställningar</h3>
           <div id="order-list">
@@ -141,14 +129,11 @@
           </div>
         </section>
       </main>
-
       <footer>
         <div class="footer-container">
-          <!-- Din footer här -->
         </div>
       </footer>
     </div>
-
     <script type="module" src="../src/scripts/admin-dashboard.js"></script>
   </body>
 </html>
