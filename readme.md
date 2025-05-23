@@ -2,7 +2,7 @@
 
 ## Projektbeskrivning & Syfte
 
-Detta projekt är en webbshop för livsmedel, utvecklad som en skoluppgift i frontendutbildningen på Nackademin. Syftet är att träna på att bygga en fullständig e-handelsapplikation med både kundsida och adminpanel. Projektet är uppdelat i flera team (frontend, backend, testning) som samverkar.
+Detta projekt är en webbshop för livsmedel, utvecklad som en skoluppgift på Nackademin. Syftet är att träna på att bygga en fullständig e-handelsapplikation med både kundsida och adminpanel. Projektet är uppdelat i flera team (frontend, backend, testning) som samverkar.
 
 **Deployad sida:**  
 https://be-webshop-2025-fe.vercel.app/index.html
@@ -219,6 +219,3 @@ Finns i `admin-dashboard.html`. Funktioner:
 - **Orderhantering:** Utöka adminlogik t.ex. genom att rensa varukorg först vid bekräftad order
 - **Testbarhet:** Förbered frontend för enhetstester vid behov
 
----
-
-*Frågor? Kontakta frontendgruppen på GitHub eller via Slack.*
