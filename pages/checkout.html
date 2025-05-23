@@ -17,19 +17,14 @@
       <form id="checkout-form" class="checkout-form">
         <label for="name">Förnamn *</label>
         <input type="text" id="name" name="name" required />
-
         <label for="lastname">Efternamn *</label>
         <input type="text" id="lastname" name="lastname" required />
-
         <label for="address">Adress *</label>
         <input type="text" id="address" name="address" required />
-
         <label for="zipcode">Postnummer *</label>
         <input type="text" id="zipcode" name="zipcode" maxlength="5" required />
-
         <label for="city">Postort *</label>
         <input type="text" id="city" name="city" required />
-
         <label for="phone">Telefonnummer *</label>
         <input
           type="tel"
@@ -40,14 +35,11 @@
           maxlength="10"
           placeholder="Ex. 0701234567"
         />
-
         <div class="checkout-summary">
           <p>Totalt att betala: <span id="checkout-total">0 kr</span></p>
         </div>
-
         <button type="submit" class="checkout-submit">Beställ</button>
       </form>
-
       <div id="confirmation-popup" class="confirmation-popup hidden">
         <div class="popup-content">
           <p id="confirmation-message"></p>
@@ -55,7 +47,6 @@
         </div>
       </div>
     </div>
-
     <script type="module" src="/src/scripts/checkout.js"></script>
   </body>
 </html>
