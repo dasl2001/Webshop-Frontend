@@ -6,14 +6,12 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
-
 # NODE & BYGGFILER
 node_modules/
 dist/
 dist-ssr/
 *.local
 .env
-
 # EDITORER OCH SYSTEMFILER
 .vscode/*
 !.vscode/extensions.json
@@ -26,13 +24,10 @@ Thumbs.db
 *.njsproj
 *.sln
 *.sw?
-
 # FRONTEND / SCSS-KOMPILERING
-
 # Ignorera gamla/felaktiga css-filer
 public/css/style.css
 public/css/main.css.map
 public/css/jonatan.css
-
 # Tillåt main.css (rätt Sass-kompilering)
 !public/css/main.css
