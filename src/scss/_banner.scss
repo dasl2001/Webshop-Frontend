@@ -1,5 +1,4 @@
 @use "./variables" as *;
-
 .top-banner {
   background-color: $primary-color;
   color: white;
@@ -11,11 +10,9 @@
   position: sticky;
   top: 0;
   z-index: 1100;
-
   p {
     margin: 0;
   }
-
   @media (max-width: 768px) {
     font-size: 0.85rem;
     padding: 0.4rem;
