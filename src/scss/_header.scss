@@ -1,5 +1,4 @@
 @use "./variables" as *;
-
 .site-header {
   position: sticky;
   top: 2.5rem;
@@ -7,41 +6,34 @@
   padding: 1rem 2rem;
   background-color: white;
   border-bottom: 2px solid $primary-color;
-
   @media (max-width: 768px) {
     padding: 0.8rem 1rem;
   }
-
   nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-
     @media (max-width: 768px) {
       flex-direction: column;
       align-items: flex-start;
       gap: 1rem;
     }
-
     // Flex runt logga
     a {
       display: flex;
       align-items: center;
     }
   }
-
   #hakim-logo {
     max-height: 130px;
     height: auto;
     width: auto;
-
     @media (max-width: 768px) {
       max-height: 50px;
     }
   }
 }
-
 .nav-actions {
   display: flex;
   align-items: center;
@@ -49,11 +41,9 @@
   list-style: none;
   padding: 0;
   margin: 0;
-
   li {
     display: flex;
     align-items: center;
-
     a {
       display: flex;
       align-items: center;
@@ -63,23 +53,19 @@
       font-size: 1rem;
       font-weight: 500;
       transition: color 0.2s ease;
-
       &:hover {
         color: $primary-color;
-
         .nav-icon {
           filter: brightness(0) saturate(100%) invert(17%) sepia(95%)
             saturate(7484%) hue-rotate(352deg) brightness(95%) contrast(106%);
         }
       }
-
       .nav-icon {
         width: 20px;
         height: 20px;
         object-fit: contain;
         transition: filter 0.2s ease;
       }
-
       .cart-icon-wrapper {
         position: relative;
         background-color: $primary-color;
@@ -88,18 +74,15 @@
         display: flex;
         align-items: center;
         justify-content: center;
-
         .nav-icon {
           width: 24px;
           height: 24px;
           object-fit: contain;
           filter: brightness(0) invert(1);
         }
-
         &:hover {
           background-color: $button-hover;
         }
-
         .cart-count {
           position: absolute;
           top: -10px;
@@ -117,18 +100,15 @@
       }
     }
   }
-
   @media (max-width: 768px) {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.5rem;
-
     li a {
       font-size: 0.95rem;
     }
   }
 }
-
 body.admin {
   .site-header {
     top: 0 !important; // headern ska ligga allra överst utan banner
