@@ -1,5 +1,4 @@
 @use "./variables" as *;
-
 .cart-offcanvas {
   position: fixed;
   top: 0;
@@ -13,53 +12,44 @@
   transition: transform 0.3s ease-in-out;
   border-top-left-radius: 1rem;
   border-bottom-left-radius: 1rem;
-
   &.visible {
     transform: translateX(0);
   }
-
   .cart-content {
     display: flex;
     flex-direction: column;
     height: 100%;
     padding: 1.5rem;
     box-sizing: border-box;
-
     h2 {
       padding: 0 1.5rem;
       margin-bottom: 1rem;
     }
   }
-
   .cart-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 16px 1.5rem;
     border-bottom: 1px solid #eee;
-
     .cart-item-info {
       display: flex;
       flex-direction: column;
-
       p:first-child {
         font-size: 16px;
         font-weight: 550;
         margin: 0;
       }
-
       p:last-child {
         font-size: 14px;
         color: #666;
         margin: 0.2rem 0 0 0;
       }
     }
-
     .cart-item-actions {
       display: flex;
       align-items: center;
       gap: 0.5rem;
-
       span {
         font-size: 1rem;
         min-width: 24px;
@@ -67,44 +57,36 @@
       }
     }
   }
-
   .cart-items-scroll {
     flex-grow: 1;
     overflow-y: auto;
     margin-bottom: 1.5rem;
-
     scrollbar-width: thin;
     scrollbar-color: #ccc transparent;
-
     &::-webkit-scrollbar {
       width: 8px;
     }
-
     &::-webkit-scrollbar-thumb {
       background-color: #ccc;
       border-radius: 4px;
     }
   }
-
   .cart-footer {
     position: sticky;
     bottom: 0;
     background-color: white;
     padding-top: 1rem;
     border-top: 1px solid #eee;
-
     .cart-total-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 1rem;
-
       .label {
         font-weight: bold;
         font-size: 1rem;
         color: #333;
       }
-
       .value {
         font-weight: bold;
         font-size: 1rem;
@@ -113,46 +95,36 @@
     }
   }
 }
-
 @media (max-width: 768px) {
   .cart-offcanvas {
     width: 100vw;
     border-radius: 0;
   }
-
   .cart-content {
     padding: 1rem;
   }
-
   .cart-item {
     padding: 12px 1rem;
-
     .cart-item-info {
       p:first-child {
         font-size: 15px;
       }
-
       p:last-child {
         font-size: 13px;
       }
     }
-
     .cart-item-actions {
       gap: 0.4rem;
-
       span {
         font-size: 1rem;
       }
     }
   }
-
   .cart-footer {
     padding: 1rem;
-
     .cart-total-row {
       flex-direction: column;
       align-items: flex-start;
-
       .label,
       .value {
         font-size: 1rem;
