@@ -1,44 +1,37 @@
 @use "./variables" as *;
-
 // MAIN CONTENT
 .main-content {
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
   width: 100%;
-
   h1,
   h2 {
     text-align: center;
   }
 }
-
 // ADMIN CONTROLS
 .admin-controls {
   display: flex;
   flex-direction: column;
   gap: 1rem;
   margin-bottom: 2rem;
-
   .admin-actions {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 1rem;
-
     input[type="text"] {
       background-color: white;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
       border: 1px solid #ddd;
       border-radius: 8px;
       transition: border 0.2s ease;
-
       &:focus {
         border: 1px solid $primary-color;
         outline: none;
       }
     }
-
     button {
       background-color: #2a2d2f;
       color: white;
@@ -47,14 +40,12 @@
       border-radius: 8px;
       cursor: pointer;
       font-size: 0.8rem;
-
       &:hover {
         opacity: 0.9;
       }
     }
   }
 }
-
 // PRODUKTÖVERSIKT
 .product-list-section {
   h3 {
@@ -63,13 +54,11 @@
     font-weight: bold;
     color: $text-color;
   }
-
   .product-list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 2rem;
     padding: 1rem 0;
-
     .product-card {
       background-color: white;
       border: 1px solid #ddd;
@@ -84,12 +73,10 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-
       &:hover {
         transform: translateY(-4px);
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       }
-
       img {
         width: 100%;
         height: 150px;
@@ -98,25 +85,21 @@
         background-color: transparent;
         aspect-ratio: 1 / 1;
       }
-
       h4 {
         font-size: 1.2rem;
         margin: 0.5rem 0;
         color: #333;
       }
-
       p {
         margin: 0.5rem 0;
         font-weight: bold;
         color: #444;
       }
-
       .actions {
         display: flex;
         justify-content: space-between;
         gap: 0.5rem;
         margin-top: 1rem;
-
         button {
           flex: 1;
           padding: 0.4rem;
@@ -124,17 +107,14 @@
           border-radius: 5px;
           font-size: 0.9rem;
           cursor: pointer;
-
           &.edit {
             background-color: #2a2d2f;
             color: white;
           }
-
           &.delete {
             background-color: $primary-color;
             color: white;
           }
-
           &:hover {
             opacity: 0.9;
           }
@@ -143,7 +123,6 @@
     }
   }
 }
-
 // FORMULÄR
 .add-product {
   background-color: white;
@@ -151,19 +130,16 @@
   border-radius: 10px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
   margin-top: 2rem;
-
   form {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-
     input,
     select {
       padding: 0.75rem 1rem;
       border-radius: 8px;
       border: 1px solid $primary-color;
     }
-
     select {
       background-color: white;
       font-size: 1rem;
@@ -173,17 +149,14 @@
       background-position: right 1rem center;
       background-size: 12px 8px;
     }
-
     input[type="number"] {
       -moz-appearance: textfield;
-
       &::-webkit-inner-spin-button,
       &::-webkit-outer-spin-button {
         -webkit-appearance: none;
         margin: 0;
       }
     }
-
     button {
       align-self: flex-start;
       background-color: #2a2d2f;
@@ -192,30 +165,25 @@
       border-radius: 8px;
       border: none;
       cursor: pointer;
-
       &:hover {
         opacity: 0.9;
       }
     }
   }
 }
-
 // ORDERLISTA
 .order-list-section {
   margin-top: 3rem;
-
   h3 {
     font-size: 1.8rem;
     margin-bottom: 1.5rem;
   }
-
   #order-list {
     display: flex;
     flex-direction: column;
     gap: 1rem;
   }
 }
-
 // ORDER-KORT
 .order-card {
   background: white;
@@ -224,17 +192,14 @@
   padding: 1.5rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   transition: 0.3s;
-
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
   }
-
   .order-summary {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
     .toggle-details {
       background: #616161;
       color: white;
@@ -243,35 +208,29 @@
       font-size: 0.9rem;
       border: none;
       cursor: pointer;
-
       &:hover {
         background: black;
       }
     }
   }
-
   .order-details {
     margin-top: 1rem;
     border-top: 1px solid #ddd;
     padding-top: 1rem;
     font-size: 0.95rem;
-
     ul {
       margin-top: 0.5rem;
       padding-left: 1.2rem;
-
       li {
         margin-bottom: 0.3rem;
       }
     }
-
     select {
       padding: 0.4rem 0.6rem;
       border-radius: 5px;
       border: 1px solid #ccc;
       margin: 0.5rem 0;
     }
-
     // Knappar inne i order-details
     button {
       padding: 5px 10px;
@@ -281,20 +240,16 @@
       margin-right: 5px;
       font-size: 0.85rem;
       transition: background-color 0.2s;
-
       &.change-status-btn {
         background-color: #777;
         color: white;
-
         &:hover {
           opacity: 0.9;
         }
       }
-
       &.print-order {
         background-color: $primary-color;
         color: white;
-
         &:hover {
           background-color: $button-hover;
         }
@@ -302,7 +257,6 @@
     }
   }
 }
-
 // STATUS BADGES
 .order-status {
   display: inline-block;
@@ -311,29 +265,23 @@
   font-size: 0.85rem;
   font-weight: bold;
   color: white;
-
   &.mottagen {
     background-color: #777;
   }
-
   &.under-behandling {
     background-color: orange;
   }
-
   &.skickad {
     background-color: #007bff;
   }
-
   &.levererad {
     background-color: green;
   }
 }
-
 // ANNAT
 .hidden {
   display: none !important;
 }
-
 // KATEGORI-HANTERING
 .category-management-section {
   background-color: white;
@@ -341,14 +289,12 @@
   border-radius: 10px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
   margin-top: 2rem;
-
   // Formuläret för att lägga till ny kategori
   form {
     display: flex;
     gap: 1rem;
     margin-bottom: 1rem;
   }
-
   // Inputfältet i formuläret
   input[type="text"] {
     flex: 1;
@@ -356,7 +302,6 @@
     border-radius: 8px;
     border: 1px solid $primary-color;
   }
-
   // Lägg till-knappen i formuläret
   button {
     background-color: #2a2d2f;
@@ -366,19 +311,16 @@
     border: none;
     cursor: pointer;
   }
-
   // Lista med befintliga kategorier
   .admin-category-list {
     list-style: none;
     padding: 0;
-
     li {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 0.5rem 0;
       border-bottom: 1px solid #eee;
-
       // Redigeringsfält för kategori
       input[type="text"] {
         flex: 1;
@@ -387,7 +329,6 @@
         border: 1px solid #ccc;
         margin-right: 1rem;
       }
-
       // Knappar: redigera & ta bort
       button {
         padding: 0.4rem 0.8rem;
@@ -395,12 +336,10 @@
         border: none;
         cursor: pointer;
         font-size: 0.9rem;
-
         &.edit {
           background-color: #2a2d2f;
           color: white;
         }
-
         &.delete {
           background-color: $primary-color;
           color: white;
@@ -409,23 +348,19 @@
     }
   }
 }
-
 // TABBAR - Visa bara aktiv tab
 .tab-content {
   display: none;
 }
-
 .tab-content.active {
   display: block;
 }
-
 // TABBAR - DESIGN
 .tabs {
   display: flex;
   justify-content: center;
   gap: 1rem;
   margin: 2rem 0;
-
   button {
     padding: 0.7rem 1.5rem;
     border: 1px solid #ddd;
@@ -435,11 +370,9 @@
     font-weight: 600;
     cursor: pointer;
     transition: 0.2s ease;
-
     &:hover {
       background-color: #f5f5f5;
     }
-
     &.active {
       background-color: $primary-color;
       color: white;
@@ -447,7 +380,6 @@
     }
   }
 }
-
 // KATEGORI-HANTERING - STYLING
 #categories-tab {
   form {
@@ -455,20 +387,17 @@
     justify-content: flex-start;
     gap: 0.5rem;
     margin: 1rem 0;
-
     input[type="text"] {
       width: 250px;
       padding: 0.5rem 0.75rem;
       font-size: 0.85rem;
       border-radius: 6px;
       border: 1px solid #ccc;
-
       &:focus {
         border-color: $primary-color;
         outline: none;
       }
     }
-
     button {
       background-color: #2a2d2f;
       color: white;
@@ -477,54 +406,45 @@
       border-radius: 6px;
       border: none;
       cursor: pointer;
-
       &:hover {
         opacity: 0.9;
       }
     }
   }
 }
-
 #admin-category-list {
   list-style: none;
   padding: 0;
   margin-top: 1rem;
-
   li {
     display: flex;
     align-items: center;
     gap: 1rem;
     padding: 0.5rem 0;
     border-bottom: 1px solid #eee;
-
     input[type="text"] {
       flex: 1;
       padding: 0.6rem 1rem;
       border-radius: 8px;
       border: 1px solid #ccc;
-
       &:focus {
         border-color: $primary-color;
       }
     }
-
     button {
       padding: 0.5rem 0.9rem;
       border-radius: 8px;
       border: none;
       cursor: pointer;
       font-size: 0.85rem;
-
       &.edit {
         background-color: #2a2d2f;
         color: white;
       }
-
       &.delete {
         background-color: $primary-color;
         color: white;
       }
-
       &:hover {
         opacity: 0.9;
       }
