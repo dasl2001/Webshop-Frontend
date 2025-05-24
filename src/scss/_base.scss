@@ -1,13 +1,10 @@
 // Grundinstyling för typsnitt, margin/padding på body/html,
-
 @use "./variables" as*;
-
 :root {
   font-family: "Roboto", sans-serif;
   color: $text-color;
   background-color: $bg-color;
 }
-
 html,
 body {
   color: $text-color;
@@ -17,32 +14,26 @@ body {
   line-height: 1.6;
   padding-bottom: 2rem;
 }
-
 .main-content {
   flex: 1;
   padding: 2rem;
   padding-top: 0;
   max-width: 1000px;
   margin: auto;
-
   h1 {
     font-size: 2rem;
     margin-bottom: 1rem;
   }
-
   @media (max-width: 768px) {
     padding: 1rem;
-
     h1 {
       font-size: 1.5rem;
     }
   }
 }
-
 img {
   display: block;
   max-height: 241.83px;
   width: auto;
-  height: auto;
-  
+  height: auto; 
 }
