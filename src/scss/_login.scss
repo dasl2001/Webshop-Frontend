@@ -1,5 +1,4 @@
 @use "./variables" as *;
-
 body {
   display: flex;
   flex-direction: column;
@@ -7,7 +6,6 @@ body {
   min-height: 100vh;
   background-color: #fdf8f3;
 }
-
 .site-header {
   position: sticky;
   top: 0;
@@ -15,19 +13,16 @@ body {
   z-index: 1000;
   border-bottom: 2px solid $primary-color;
 }
-
 .login-main-content {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   margin-bottom: 140px;
-
   @media (max-width: 768px) {
     margin-bottom: 0;
   }
 }
-
 #login-container {
   display: flex;
   flex-direction: column;
@@ -40,20 +35,17 @@ body {
   max-width: 400px;
   margin-inline: auto;
   margin-top: 0;
-
   @media (max-width: 768px) {
     width: 95%;
     max-width: 95%;
     gap: 0;
   }
 }
-
 .toggle-buttons {
   display: flex;
   justify-content: space-between;
   margin-bottom: 1rem;
   cursor: pointer;
-
   button {
     flex: 1;
     padding: 0.5rem;
@@ -62,19 +54,16 @@ body {
     font-weight: bold;
     border-radius: 20px;
     transition: background-color 0.2s ease;
-
     &.active {
       background-color: $primary-color;
       color: white;
     }
-
     @media (max-width: 768px) {
       font-size: 0.95rem;
       padding: 0.6rem;
     }
   }
 }
-
 .login-forms {
   display: flex;
   flex-direction: column;
@@ -82,13 +71,11 @@ body {
   border-radius: 50px;
   width: 70%;
   padding: 0 50px 50px;
-
   @media (max-width: 768px) {
     width: 90%;
     padding: 20px;
   }
 }
-
 .form {
   display: flex;
   flex-direction: column;
@@ -101,18 +88,15 @@ body {
   transition:
     max-height 0.4s ease,
     opacity 0.3s ease;
-
   &.active {
     max-height: 300px; // justera om det behövs!
     opacity: 1;
     pointer-events: all;
   }
-
   @media (max-width: 768px) {
     gap: 0.75rem;
   }
 }
-
 #admin-email,
 #user-email,
 #admin-password,
@@ -124,18 +108,15 @@ body {
   font-size: 1rem;
   height: 1.8rem;
   padding: 5px 20px 5px 1.5rem;
-
   &:focus {
     outline: none;
   }
-
   @media (max-width: 768px) {
     font-size: 1rem;
     padding: 0.6rem 1rem;
     height: auto;
   }
 }
-
 .login-btn {
   background-color: $primary-color;
   color: white;
@@ -145,11 +126,9 @@ body {
   border: none;
   cursor: pointer;
   transition: background-color 0.2s ease;
-
   &:hover {
     background-color: $button-hover;
   }
-
   @media (max-width: 768px) {
     display: flex;
     justify-content: center;
@@ -159,13 +138,11 @@ body {
     font-size: 1rem;
   }
 }
-
 #admin-login-btn {
   @media (max-width: 768px) {
     margin-bottom: 15px;
   }
 }
-
 .login-actions {
   display: flex;
   flex-direction: row;
@@ -173,7 +150,6 @@ body {
   width: 100%;
   gap: 110px;
   font-size: 11px;
-
   @media (max-width: 768px) {
     justify-content: space-around;
     margin-right: 25px;
