@@ -1,41 +1,34 @@
 //  Sidebar allt som rör sidomenyn (t.ex. kategorier, filter och liknande).
 @use "./variables" as *;
-
 .sidebar-section {
   background-color: white;
   padding: 1.5rem;
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   width: 220px;
-
   h2 {
     font-size: 1.2rem;
     margin-bottom: 0.5rem;
     color: $text-color;
   }
-
   .sidebar-subheading {
     font-size: 0.85rem;
     font-weight: 500;
     color: #777;
     margin-bottom: 1rem;
   }
-
   .category-list {
     list-style: none;
     padding: 0;
     margin: 0;
-
     li {
       cursor: pointer;
       padding: 0.4rem 0;
       transition: color 0.2s ease;
-
       &:hover {
         color: $primary-color;
         text-decoration: underline;
       }
-
       &.active {
         font-weight: bold;
         color: $primary-color;
@@ -43,7 +36,6 @@
     }
   }
 }
-
 @media (max-width: 768px) {
   .sidebar-section {
     width: 100%;
