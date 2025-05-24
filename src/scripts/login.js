@@ -1,15 +1,12 @@
 import { loginAdmin } from "../utils/api.js";
-
 document.addEventListener("DOMContentLoaded", () => {
   const userBtn = document.getElementById("userBtn");
   const adminBtn = document.getElementById("adminBtn");
   const userForm = document.getElementById("userForm");
   const adminForm = document.getElementById("adminForm");
-
   // Inloggning som användare (demo)
   userForm.addEventListener("submit", async (e) => {
     e.preventDefault();
-
     try {
       alert("Inloggning som användare lyckades (demo)");
       window.location.href = "/index.html";
@@ -17,13 +14,11 @@ document.addEventListener("DOMContentLoaded", () => {
       alert("Inloggning misslyckades. Kontrollera uppgifterna.");
     }
   });
-
   // Inloggning som admin
   adminForm.addEventListener("submit", async (e) => {
     e.preventDefault();
     const adminID = document.getElementById("admin-email").value;
     const adminPassword = document.getElementById("admin-password").value;
-
     try {
       const result = await loginAdmin(adminID, adminPassword);
       localStorage.setItem("token", result.token);
@@ -40,7 +35,6 @@ document.addEventListener("DOMContentLoaded", () => {
     userForm.classList.add("active");
     adminForm.classList.remove("active");
   });
-
   adminBtn.addEventListener("click", () => {
     adminBtn.classList.add("active");
     userBtn.classList.remove("active");
