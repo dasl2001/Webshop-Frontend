@@ -2,7 +2,7 @@
   "name": "be-webshop-2025-fe",
   "version": "1.0.0",
   "description": "Frontend-projekt för Webshop 2025",
-  "main": "index.js",
+  "main": "index.js", 
   "scripts": {
     "sass": "sass --no-source-map --watch src/scss/main.scss:public/css/main.css --style expanded",
     "lint": "eslint 'src/**/*.{js,ts,jsx,tsx}'",
