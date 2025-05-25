@@ -19,19 +19,15 @@ def generate_output_file(file_contents, output_file):
             f.write(content)
             f.write("\n\n")
 def main():
-    # Define the file extensions to include
     extensions = [".html", ".css", ".js"]
     output_file = "output.txt"  # Output file name
-    # Get the directory from command-line arguments or use the current directory
     if len(sys.argv) > 1:
         directory = sys.argv[1]
     else:
         directory = os.getcwd()  # Use the current working directory
-    # Check if the directory exists
     if not os.path.isdir(directory):
         print(f"Error: The directory '{directory}' does not exist.")
         return
-    # Collect files and generate the output
     file_contents = collect_files(directory, extensions)
     generate_output_file(file_contents, output_file)
     print(f"All files have been combined into {output_file}")
