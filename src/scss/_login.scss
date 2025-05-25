@@ -89,7 +89,7 @@ body {
     max-height 0.4s ease,
     opacity 0.3s ease;
   &.active {
-    max-height: 300px; // justera om det behövs!
+    max-height: 300px; 
     opacity: 1;
     pointer-events: all;
   }
