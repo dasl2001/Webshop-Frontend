@@ -12,54 +12,52 @@
     <link rel="stylesheet" href="/public/css/main.css" />
   </head>
   <body>
-        <nav>
-          <a href="/index.html">
-            <img
-            src="/src/assets/hakim-logo-616161.png"
-            id="hakim-logo"
-              alt="Logotype for Hakim's Livs"
+    <nav>
+      <a href="/index.html">
+        <img
+          src="/src/assets/hakim-logo-616161.png"
+          id="hakim-logo"
+          alt="Logotype for Hakim's Livs"
+        />
+      </a>
+      <div class="custom-search-wrapper">
+        <div class="custom-search-container">
+          <form class="custom-search-form">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="search-icon"
+            >
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input
+              class="search-input"
+              type="search"
+              placeholder="Sök..."
+              aria-label="Search"
             />
+            <button class="search-button" type="submit">Sök</button>
+          </form>
+        </div>
+      </div>
+      <ul class="nav-links">
+        <li>
+          <a href="/pages/cart.html">
+            Varukorg <span class="cart-count">(0)</span>
           </a>
-          <div class="custom-search-wrapper">
-            <div class="custom-search-container">
-              <form class="custom-search-form">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="search-icon"
-                >
-                  <circle cx="11" cy="11" r="8"></circle>
-                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                </svg>
-                <input
-                  class="search-input"
-                  type="search"
-                  placeholder="Sök..."
-                  aria-label="Search"
-                />
-                <button class="search-button" type="submit">Sök</button>
-              </form>
-            </div>
-          </div>
-          <ul class="nav-links">
-            <li>
-              <a href="/pages/cart.html">
-                Varukorg <span class="cart-count">(0)</span>
-              </a>
-            </li>
-            <li><a href="/pages/login.html">Logga in</a></li>
-          </ul>
-        </nav>
-      </header> -->
+        </li>
+        <li><a href="/pages/login.html">Logga in</a></li>
+      </ul>
+    </nav>
     <div class="site-wrapper">
-      <!-- HEADER -->
       <header class="site-header">
         <nav>
           <a href="/index.html">
@@ -72,7 +70,6 @@
         </nav>
       </header>
       <main class="login-main-content">
-        <h1></h1>
         <h2 style="text-align: center">Logga in på ditt konto</h2>
         <div id="login-container">
           <div class="toggle-buttons">
@@ -134,19 +131,18 @@
           <h4>Kontakt</h4>
           <div class="contact-info">
             <p>
-              📍 Livsmedelsvägen 12<br /><span class="postal"
-                >123 45 Stockholm</span
-              >
+              📍 Livsmedelsvägen 12<br />
+              <span class="postal">123 45 Stockholm</span>
             </p>
           </div>
           <p>📞 08-123 456 78</p>
           <p>
-            <a href="mailto:someone@example.com" class="send-email"
-              >✉️ kontakt@hakimlivs.se</a
-            >
+            <a href="mailto:someone@example.com" class="send-email">
+              ✉️ kontakt@hakimlivs.se
+            </a>
           </p>
         </div>
-         <div class="footer-section">
+        <div class="footer-section">
           <h4>Öppettider</h4>
           <p>Våra öppettider kommer snart!</p>
           <p>Håll utkik här eller på våra sociala medier.</p>
@@ -170,3 +166,4 @@
     <script type="module" src="./src/scripts/cart.js"></script>
   </body>
 </html>
+
