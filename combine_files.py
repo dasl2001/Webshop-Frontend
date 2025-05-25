@@ -20,11 +20,11 @@ def generate_output_file(file_contents, output_file):
             f.write("\n\n")
 def main():
     extensions = [".html", ".css", ".js"]
-    output_file = "output.txt"  # Output file name
+    output_file = "output.txt"  
     if len(sys.argv) > 1:
         directory = sys.argv[1]
     else:
-        directory = os.getcwd()  # Use the current working directory
+        directory = os.getcwd()  
     if not os.path.isdir(directory):
         print(f"Error: The directory '{directory}' does not exist.")
         return
