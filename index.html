@@ -6,49 +6,26 @@
     <title>Hakim Livs</title>
     <link rel="stylesheet" href="/public/css/main.css" />
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/png" href="src/assets/hakim_favicon_io/favicon-16x16.png">
+    <link rel="icon" type="image/png" href="src/assets/hakim_favicon_io/favicon-16x16.png">
   </head>
   <body>
     <div class="top-banner">
       <p>Erbjudande! Köp 3 betala för 2 på snacks! Gäller t.o.m. söndag!</p>
     </div>
     <div class="site-wrapper">
-      <!-- HEADER -->
       <header class="site-header">
         <nav>
           <a href="index.html">
-            <img
-              src="src/assets/hakim-logo-616161.png"
-              id="hakim-logo"
-              alt="Logotype for Hakim's Livs"
-            />
+            <img src="src/assets/hakim-logo-616161.png" id="hakim-logo" alt="Logotype for Hakim's Livs" />
           </a>
-          <!-- SEARCHBAR -->
           <div class="custom-search-wrapper">
             <div class="custom-search-container">
               <form class="custom-search-form" id="search-form">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="search-icon"
-                >
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="search-icon">
                   <circle cx="11" cy="11" r="8"></circle>
                   <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                 </svg>
-                <input
-                  class="search-input"
-                  type="search"
-                  placeholder="Sök..."
-                  aria-label="Search"
-                  id="search-input"
-                />
+                <input class="search-input" type="search" placeholder="Sök..." aria-label="Search" id="search-input" />
                 <button class="search-button" type="submit">Sök</button>
               </form>
             </div>
@@ -56,22 +33,14 @@
           <ul class="nav-actions">
             <li class="nav-login">
               <a href="/pages/login.html">
-                <img
-                  src="/src/assets/user-svgrepo-com.svg"
-                  alt="Logga in ikon"
-                  class="nav-icon"
-                />
+                <img src="/src/assets/user-svgrepo-com.svg" alt="Logga in ikon" class="nav-icon" />
                 Logga in
               </a>
             </li>
             <li class="nav-cart">
               <a href="/pages/cart.html">
                 <div class="cart-icon-wrapper">
-                  <img
-                    src="/src/assets/shopping-cart-01-svgrepo-com.svg"
-                    alt="Varukorg"
-                    class="nav-icon"
-                  />
+                  <img src="/src/assets/shopping-cart-01-svgrepo-com.svg" alt="Varukorg" class="nav-icon" />
                   <span class="cart-count">0</span>
                 </div>
               </a>
@@ -79,9 +48,7 @@
           </ul>
         </nav>
       </header>
-      <!-- SIDEBAR + MAIN -->
       <div class="content-container">
-        <!-- SIDEBAR -->
         <aside>
           <section class="sidebar-section">
             <h2>Kategorier</h2>
@@ -89,7 +56,6 @@
             <ul id="category-list" class="category-list"></ul>
           </section>
         </aside>
-        <!-- MAIN -->
         <main class="main-content">
           <div class="sort-dropdown-wrapper">
             <button id="sort-toggle" class="sort-button">
@@ -106,36 +72,31 @@
         </main>
       </div>
     </div>
-    <!-- site-wrapper -->
-<div id="product-modal" class="modal hidden">
-  <div class="modal-content">
-    <div id="modal-info">
-      <span id="close-modal" class="close-button">&times;</span>
-      <p id="modal-category"></p>
-      <div id="product-wrapper">
-        <img id="modal-image" class="modal-image" />
-        <div id="product-info">
-          <h2 id="modal-title"></h2>
-          <p id="modal-price"></p>
-          <p id="modal-description"></p>
-          <!-- Jämförpris direkt under pris -->
-          <div id="modal-compare-price"></div>
-          <button id="modal-add-to-cart-btn" class="add-to-cart-btn">Lägg i varukorg</button>
+    <div id="product-modal" class="modal hidden">
+      <div class="modal-content">
+        <div id="modal-info">
+          <span id="close-modal" class="close-button">&times;</span>
+          <p id="modal-category"></p>
+          <div id="product-wrapper">
+            <img id="modal-image" class="modal-image" />
+            <div id="product-info">
+              <h2 id="modal-title"></h2>
+              <p id="modal-price"></p>
+              <p id="modal-description"></p>
+              <div id="modal-compare-price"></div>
+              <button id="modal-add-to-cart-btn" class="add-to-cart-btn">Lägg i varukorg</button>
+            </div>
+          </div>
+          <div id="modal-product-info" class="modal-section">
+            <h3>Produktinformation:</h3>
+            <div id="modal-info-attributes"></div>
+          </div>
+          <div id="modal-details" class="modal-section">
+            <div id="modal-content-attributes"></div>
+          </div>
         </div>
       </div>
-      <!-- Produktinformation (leverantör, ursprungsland, varumärke) -->
-      <div id="modal-product-info" class="modal-section">
-        <h3>Produktinformation:</h3>
-        <div id="modal-info-attributes"></div>
-      </div>
-      <!-- Innehåll och näringsvärde -->
-      <div id="modal-details" class="modal-section">
-        <div id="modal-content-attributes"></div>
-      </div>
     </div>
-  </div>
-</div>
-    <!-- Offcanvas-varukorg -->
     <div id="cart-offcanvas" class="cart-offcanvas hidden">
       <div class="cart-content">
         <h2>Varukorg</h2>
@@ -149,7 +110,6 @@
         </div>
       </div>
     </div>
-    <!-- FOOTER -->
     <footer>
       <div class="footer-container">
         <div class="footer-section brand-section">
@@ -159,37 +119,25 @@
         <div class="footer-section">
           <h4>Kontakt</h4>
           <div class="contact-info">
-          <p>📍 Livsmedelsvägen 12<br><span class="postal">123 45 Stockholm</span></p>
+            <p>📍 Livsmedelsvägen 12<br><span class="postal">123 45 Stockholm</span></p>
           </div>
           <p>📞 08-123 456 78</p>
           <p><a href="mailto:someone@example.com" class="send-email">✉️ kontakt@hakimlivs.se</a></p>
         </div>
-        <!-- Ändra till detta om vi inte ska ha satta tider och ta bort footer-sectorn under:
-         <div class="footer-section">
-          <h4>Öppettider</h4>
-          <p>Våra öppettider kommer snart!</p>
-          <p>Håll utkik här eller på våra sociala medier.</p>
-        </div>
-        -->
         <div class="footer-section">
           <h4>Öppettider</h4>
           <p>Mån–Fre: 08:00 – 20:00</p>
           <p>Lör: 10:00 – 18:00</p>
           <p>Sön: 11:00 – 17:00</p>
         </div>
-        <div class="footer-section">
-          <!-- <h4>Följ oss</h4> -->
-          <!-- <p>Facebook | Instagram | Twitter</p> -->
-        </div>
+        <div class="footer-section"></div>
       </div>
       <div class="footer-bottom">
         <p>&copy; 2025 Hakim Livs. Alla rättigheter reserverade.</p>
       </div>
     </footer>
-
-
-
     <script type="module" src="./src/scripts/index.js"></script>
     <script type="module" src="./src/scripts/cart.js"></script>
   </body>
 </html>
+
