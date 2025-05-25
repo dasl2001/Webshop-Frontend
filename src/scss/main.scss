@@ -1,9 +1,6 @@
-// Alla partials ska finnas här:
 @use "./variables" as *;
 @use "./mixins" as *;
-// Base styles
 @use "./base";
-// Layout och komponenter
 @use "./layout";
 @use "./header";
 @use "./footer";
@@ -11,9 +8,7 @@
 @use "./components";
 @use "./searchbar";
 @use "./banner";
-// Buttons
 @use "./buttons";
-// Page-specifika
 @use "./index";
 @use "./category";
 @use "./products";
