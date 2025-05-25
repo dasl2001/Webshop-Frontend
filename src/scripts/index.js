@@ -100,4 +100,188 @@ function renderPagination(totalProducts) {
       if (!prevWasEllipsis) {
         const ellipsis = document.createElement("span");
         ellipsis.textContent = "...";
+        ellipsis.classList.add("pagination-ellipsis");
+        paginationContainer.appendChild(ellipsis);
+        prevWasEllipsis = true;
+      }
+    } else {
+      paginationContainer.appendChild(
+        createPageButton(page, page, page === currentPage)
+      );
+      prevWasEllipsis = false;
+    }
+  });
+  const nextBtn = createPageButton(
+    "Nästa",
+    currentPage < totalPages ? currentPage + 1 : null
+  );
+  paginationContainer.appendChild(nextBtn);
+}
+function createProductCard(product) {
+  const element = document.createElement("div");
+  element.className = "product-card";
+  element.innerHTML = `
+    <img src="${product.imageUrl}" alt="${product.name}" class="product-image" />
+    <h3>${product.name}</h3>
+    <p>${formatPrice(product.price)}</p>
+    <button class="add-to-cart-btn">Lägg i varukorg</button>
+  `;
+  element.addEventListener("click", () => {
+    showProductModal(product);
+  });
+  element.querySelector(".add-to-cart-btn").addEventListener("click", (event) => {
+    event.stopPropagation();
+    addToCart(product);
+  });
+  return element;
+}
+function showProductModal(product) {
+  try {
+    const description =
+      product.description?.length > 500
+        ? product.description.slice(0, 500) + "..."
+        : product.description || "Ingen beskrivning tillgänglig.";
+    document.getElementById("modal-title").textContent = product.name;
+    document.getElementById("modal-description").textContent = description;
+    document.getElementById("modal-category").textContent =
+      ` ${product.category?.name || "Okänd"}`;
+    document.getElementById("modal-price").textContent = formatPrice(product.price);
+    document.getElementById("modal-image").src = product.imageUrl;
+    document.getElementById("modal-image").alt = product.name;
+    const comparePrice = { label: "Jämförpris", value: product.comparePrice };
+    const infoAttributes = [
+      { label: "Ursprungsland", value: product.originCountry },
+      { label: "Leverantör", value: product.supplier },
+      { label: "Varumärke", value: product.brand },
+    ];
+    const contentAttributes = [
+      { label: "Innehållsförteckning", value: product.ingredients },
+      { label: "Näringsvärde", value: product.nutrition },
+    ];
+    document.getElementById("modal-compare-price").innerHTML = `
+      <p><span class="attribute-label">${comparePrice.label}:</span> ${comparePrice.value || "Ej tillgängligt"}</p>
+    `;
+    const infoContainer = document.getElementById("modal-info-attributes");
+    infoContainer.innerHTML = "";
+    infoAttributes.forEach((attr) => {
+      const p = document.createElement("p");
+      p.innerHTML = `<span class="attribute-label">${attr.label}:</span> ${attr.value || "Ej tillgängligt"}`;
+      infoContainer.appendChild(p);
+    });
+    const contentContainer = document.getElementById("modal-content-attributes");
+    contentContainer.innerHTML = "";
+    contentAttributes.forEach((attr) => {
+      const p = document.createElement("p");
+      p.innerHTML = `<span class="attribute-label">${attr.label}:</span> ${attr.value || "Ej tillgängligt"}`;
+      contentContainer.appendChild(p);
+    });
+    const addToCartBtn = document.getElementById("modal-add-to-cart-btn");
+    addToCartBtn.onclick = () => {
+      addToCart(product);
+      document.getElementById("product-modal").classList.add("hidden");
+    };
+    document.getElementById("product-modal").classList.remove("hidden");
+  } catch (err) {
+    console.error("Fel vid visning av produktmodal:", err);
+  }
+}
+document.getElementById("close-modal").addEventListener("click", () => {
+  document.getElementById("product-modal").classList.add("hidden");
+});
+document.getElementById("product-modal").addEventListener("click", (e) => {
+  if (e.target === document.getElementById("product-modal")) {
+    document.getElementById("product-modal").classList.add("hidden");
+  }
+});
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    document.getElementById("product-modal").classList.add("hidden");
+  }
+});
+async function loadCategories() {
+  const categoriesContainer = document.getElementById("category-list");
+  const categories = await fetchCategories();
+  const allCategoriesLi = document.createElement("li");
+  allCategoriesLi.textContent = "Visa alla";
+  allCategoriesLi.classList.add("category-item");
+  allCategoriesLi.addEventListener("click", () => {
+    setActiveCategory(allCategoriesLi);
+    loadProducts();
+  });
+  categoriesContainer.appendChild(allCategoriesLi);
+  categories.forEach((cat) => {
+    const categoryLi = document.createElement("li");
+    categoryLi.textContent = cat.name;
+    categoryLi.classList.add("category-item");
+    categoryLi.addEventListener("click", () => {
+      setActiveCategory(categoryLi);
+      loadProducts(cat);
+    });
+    categoriesContainer.appendChild(categoryLi);
+  });
+}
+function setActiveCategory(selectedLi) {
+  document.querySelectorAll("#category-list li").forEach((li) => {
+    li.classList.remove("active");
+  });
+  selectedLi.classList.add("active");
+}
+function initSearch() {
+  const form = document.getElementById("search-form");
+  const input = document.getElementById("search-input");
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const query = input.value.trim();
+    if (!query) return;
+    const endpoint = `/api/products/search?q=${encodeURIComponent(query)}`;
+    try {
+      const response = await fetch(`${getBaseUrl()}${endpoint}`);
+      if (!response.ok) {
+        if (response.status === 404) {
+          document.getElementById("products").innerHTML = "<p>Inga produkter hittades.</p>";
+          document.getElementById("pagination").innerHTML = "";
+          return;
+        }
+        throw new Error("Något gick fel vid hämtning av sökresultat");
+      }
+      const searchResults = await response.json();
+      filteredProducts = searchResults;
+      currentPage = 1;
+      renderPaginatedProducts(filteredProducts, false);
+      renderPagination(filteredProducts.length);
+      input.value = "";
+    } catch (error) {
+      document.getElementById("products").innerHTML =
+        "<p>Det gick inte att söka just nu.</p>";
+    }
+  });
+}
+function initSort() {
+  const sortToggle = document.getElementById("sort-toggle");
+  const sortOptions = document.getElementById("sort-options");
+  sortToggle.addEventListener("click", () => {
+    sortOptions.classList.toggle("hidden");
+  });
+  sortOptions.addEventListener("click", (e) => {
+    if (e.target.tagName === "LI") {
+      const value = e.target.dataset.value;
+      if (value === "asc") {
+        filteredProducts.sort((a, b) => a.price - b.price);
+      } else if (value === "desc") {
+        filteredProducts.sort((a, b) => b.price - a.price);
+      }
+      currentPage = 1;
+      renderPaginatedProducts(filteredProducts, false);
+      renderPagination(filteredProducts.length);
+      sortOptions.classList.add("hidden");
+    }
+  });
+  document.addEventListener("click", (e) => {
+    if (!sortToggle.contains(e.target) && !sortOptions.contains(e.target)) {
+      sortOptions.classList.add("hidden");
+    }
+  });
+}
+export { showProductModal };
+
 
