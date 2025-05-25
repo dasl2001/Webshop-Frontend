@@ -7,14 +7,12 @@
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
   border-radius: 1rem;
   border: solid 1px $checkout-neutral;
-  // Rubrik (stylar endast den med klassen)
   .checkout-title {
     font-size: 2rem;
     margin-bottom: 2rem;
     text-align: center;
     color: $text-color;
   }
-  // Formulär
   .checkout-form {
     display: flex;
     flex-direction: column;
@@ -68,7 +66,6 @@
       }
     }
   }
-  // Popup vid bekräftelse
   .confirmation-popup {
     position: fixed;
     top: 0;
@@ -107,7 +104,6 @@
     }
   }
 }
-// Mobilanpassning
 @media (max-width: 600px) {
   .checkout-wrapper {
     margin: 2rem 1rem;
