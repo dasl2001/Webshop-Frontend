@@ -19,7 +19,6 @@
       align-items: flex-start;
       gap: 1rem;
     }
-    // Flex runt logga
     a {
       display: flex;
       align-items: center;
@@ -111,6 +110,6 @@
 }
 body.admin {
   .site-header {
-    top: 0 !important; // headern ska ligga allra överst utan banner
+    top: 0 !important; 
   }
 }
