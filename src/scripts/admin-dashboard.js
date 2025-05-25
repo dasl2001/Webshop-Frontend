@@ -42,7 +42,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     form.removeAttribute("data-editing-id");
     form.reset();
   });
-  // Avbryt redigering
   cancelBtn.addEventListener("click", () => {
     form.reset();
     form.removeAttribute("data-editing-id");
@@ -50,7 +49,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     formTitle("Lägg till ny produkt");
     cancelBtn.classList.add("hidden");
   });
-  // Sökfunktion
   const searchInput = document.getElementById("admin-search");
   searchInput?.addEventListener("keypress", (e) => {
     if (e.key === "Enter") {
@@ -65,7 +63,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       searchInput.value = "";
     }
   });
-  // Formuläret - spara (ny eller redigering)
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     const name = document.getElementById("new-name").value.trim();
@@ -101,7 +98,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     const editingId = form.dataset.editingId;
     try {
       if (editingId) {
-        // PUT: uppdatera befintlig produkt
         const res = await fetch(
           `https://webshop-2025-be-g10-five.vercel.app/api/products/${editingId}`,
           {
@@ -116,7 +112,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (!res.ok) throw new Error("Uppdatering misslyckades");
         await loadAdminProducts();
       } else {
-        // POST: skapa ny produkt
         const created = await createProduct(productData);
         allProducts.push(created);
         renderPaginatedProducts(allProducts);
@@ -136,10 +131,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   loadCategories();
   loadOrders();
   await loadCategories();
-  // renderCategoryList();
   setupCategoryListeners();
 });
-// Hämtar och renderar produkter
 async function loadAdminProducts() {
   const container = document.getElementById("admin-product-list");
   container.innerHTML = "<p>Laddar produkter...</p>";
@@ -187,7 +180,6 @@ function renderPagination(totalProducts) {
     }
     return btn;
   };
-  // Skapa "Föregående"-knapp
   paginationContainer.appendChild(
     createPageButton("Föregående", currentPage > 1 ? currentPage - 1 : null),
   );
@@ -255,7 +247,6 @@ async function loadCategories() {
     console.error("Kunde inte ladda kategorier:", err);
   }
 }
-// Orderlistan som kommit in via API
 async function loadOrders() {
   const container = document.getElementById("order-list");
   container.innerHTML = "<p>Laddar beställningar...</p>";
@@ -277,7 +268,6 @@ async function loadOrders() {
     container.innerHTML = "<p>Kunde inte ladda beställningar.</p>";
   }
 }
-// Renderar orderlistan
 function renderOrderList(orders) {
   const container = document.getElementById("order-list");
   container.innerHTML = "";
@@ -335,20 +325,17 @@ function renderOrderList(orders) {
     `;
       container.appendChild(el);
     });
-  // Toggle visa/dölj detaljer
   container.querySelectorAll(".toggle-details").forEach((btn) => {
     btn.addEventListener("click", () => {
       btn.parentElement.nextElementSibling.classList.toggle("hidden");
     });
   });
-  // Visa/dölj select när man klickar på "Ändra status"
   container.querySelectorAll(".change-status-btn").forEach((btn) => {
     btn.addEventListener("click", () => {
       const select = btn.previousElementSibling;
       select.classList.toggle("hidden");
     });
   });
-  // Ändra status
   container.querySelectorAll(".order-status-select").forEach((select) => {
     select.addEventListener("change", async () => {
       const orderId = select.dataset.id;
@@ -378,7 +365,6 @@ function renderOrderList(orders) {
       }
     });
   });
-  // Skriv ut plocklista
   container.querySelectorAll(".print-order").forEach((btn) => {
     btn.addEventListener("click", () => {
       const orderCard = btn.closest(".order-card");
@@ -394,7 +380,6 @@ function renderOrderList(orders) {
 function createAdminProductCard(product) {
   const card = document.createElement("div");
   card.className = "product-card";
-  // Visa pris med komma
   const price = formatPrice(product.price);
   let cat = "Ingen kategori";
   if (product.category?.name) {
@@ -487,7 +472,6 @@ function addDeleteListeners() {
         );
         const data = await response.json();
         if (!response.ok) {
-          // Visa backendens felmeddelande om produkten finns i order
           alert(data.error || "Produkten kunde inte raderas.");
           return;
         }
@@ -545,7 +529,6 @@ function renderCategoryList() {
     const deleteBtn = document.createElement("button");
     deleteBtn.textContent = "Ta bort";
     deleteBtn.classList.add("delete");
-    // REDIGERA/SPARA-knappen
     editBtn.addEventListener("click", async () => {
       if (currentlyEditing && currentlyEditing !== input) {
         currentlyEditing.disabled = true;
