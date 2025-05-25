@@ -1,6 +1,4 @@
-// Alla olika typer av knappar och deras lägen – t.ex. standard-knappar, cta-button hover/active-states osv.
 @use "./variables" as *;
-// Product-modal stängknapp
 .close-button {
   position: absolute;
   top: 0.5rem;
@@ -11,7 +9,6 @@
   background: none;
   border: none;
 }
-// Lägg i varukorg-knapp
 .add-to-cart-btn {
   margin-top: auto;
   background-color: $primary-color;
@@ -29,7 +26,6 @@
     font-size: 1rem;
   }
 }
-// Sorteringsknapp (dropdown toggle)
 .sort-dropdown-wrapper {
   position: relative;
   display: inline-block;
@@ -75,7 +71,6 @@
     }
   }
 }
-// Pagination-knappar
 .pagination-button {
   padding: 0.5rem 1rem;
   border: none;
@@ -96,12 +91,10 @@
     font-size: 0.9rem;
   }
 }
-// Pagination-ellips (…)
 .pagination-ellipsis {
   padding: 0.5rem;
   color: #888;
 }
-// Login toggle-knappar
 #userBtn,
 #adminBtn {
   padding: 0.8rem 1.2rem;
@@ -115,7 +108,6 @@
 #adminBtn {
   border-radius: 10px 0 0 0;
 }
-// Logout-knapp
 #logoutBtn {
   background-color: $primary-color;
   color: white;
@@ -135,7 +127,6 @@
     text-align: center;
   }
 }
-// OffCanvas Cart-knappar (+/–/papperskorg)
 .cart-item-actions button {
   width: 25px;
   height: 25px;
@@ -154,7 +145,6 @@
     font-size: 14px;
   }
 }
-// Checkout-knapp "Till Kassan"
 .cart-footer .checkout-btn {
   display: inline-block;
   width: 100%;
