@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const adminBtn = document.getElementById("adminBtn");
   const userForm = document.getElementById("userForm");
   const adminForm = document.getElementById("adminForm");
-  // Inloggning som användare (demo)
   userForm.addEventListener("submit", async (e) => {
     e.preventDefault();
     try {
@@ -14,7 +13,6 @@ document.addEventListener("DOMContentLoaded", () => {
       alert("Inloggning misslyckades. Kontrollera uppgifterna.");
     }
   });
-  // Inloggning som admin
   adminForm.addEventListener("submit", async (e) => {
     e.preventDefault();
     const adminID = document.getElementById("admin-email").value;
@@ -28,7 +26,6 @@ document.addEventListener("DOMContentLoaded", () => {
       alert("Inloggning misslyckades. Kontrollera uppgifterna.");
     }
   });
-  // Toggle mellan admin / användare
   userBtn.addEventListener("click", () => {
     userBtn.classList.add("active");
     adminBtn.classList.remove("active");
