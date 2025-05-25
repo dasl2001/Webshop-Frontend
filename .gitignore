@@ -21,10 +21,7 @@ Thumbs.db
 *.njsproj
 *.sln
 *.sw?
-# FRONTEND / SCSS-KOMPILERING
-# Ignorera gamla/felaktiga css-filer
 public/css/style.css
 public/css/main.css.map
 public/css/jonatan.css
-# Tillåt main.css (rätt Sass-kompilering)
 !public/css/main.css
